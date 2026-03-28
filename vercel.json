@@ -1,6 +1,6 @@
 {
   "functions": {
-    "**/*.php": {
+    "api/index.php": {
       "runtime": "vercel-php@0.7.2"
     }
   },
@@ -10,14 +10,8 @@
       "dest": "/$1/$2"
     },
     {
-      "src": "/(.*).php",
-      "dest": "/$1.php"
-    },
-    {
-      "src": "/",
-      "dest": "/index.php"
+      "src": "/(.*)",
+      "dest": "/api/index.php"
     }
-  ],
-  "installCommand": "echo 'Skipping install...'",
-  "buildCommand": "echo 'Skipping build...'"
+  ]
 }
