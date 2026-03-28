@@ -1,7 +1,18 @@
 {
   "functions": {
     "api/index.php": {
-      "runtime": "vercel-php@0.7.2"
+      "runtime": "vercel-php@0.7.2",
+      "config": {
+        "includeFiles": [
+          "*.php",
+          "api/**",
+          "imports/**",
+          "Meta_Tag/**",
+          "UxUI-Back/**",
+          "UxUi/**",
+          "Project/**/*.php"
+        ]
+      }
     }
   },
   "routes": [
