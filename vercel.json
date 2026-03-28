@@ -1,10 +1,14 @@
 {
   "functions": {
-    "*.php": {
-      "runtime": "vercel-php@0.6.1"
+    "**/*.php": {
+      "runtime": "vercel-php@0.7.2"
     }
   },
   "routes": [
+    {
+      "src": "/(assets|imports|Meta_Tag)/(.*)",
+      "dest": "/$1/$2"
+    },
     {
       "src": "/(.*).php",
       "dest": "/$1.php"
@@ -13,5 +17,7 @@
       "src": "/",
       "dest": "/index.php"
     }
-  ]
+  ],
+  "installCommand": "echo 'Skipping install...'",
+  "buildCommand": "echo 'Skipping build...'"
 }
