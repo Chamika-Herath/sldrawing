@@ -1,4 +1,7 @@
 <?php
+// Set the working directory to the root so relative paths work
+chdir(__DIR__ . '/../');
+
 // Proxy all requests to the root directory
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
