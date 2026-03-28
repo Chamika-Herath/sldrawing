@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 <?php include_once './imports/need/session_setup.php'; ?>
+<!DOCTYPE html>
 
 <html lang="en">
     <head>
