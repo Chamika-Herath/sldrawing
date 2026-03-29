@@ -33,18 +33,14 @@
         content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 3px; 
         background: var(--primary); border-radius: 10px; transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
     }
-    .nav-link:hover::after { width: 100%; }
-    .nav-link:hover { color: var(--primary); transform: translateY(-2px); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-link:hover, .nav-link.active { color: var(--primary); transform: translateY(-2px); }
 </style>
 
 <div class="nav-container" style="position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; pointer-events: none;">
-    <nav class="nav-capsule" style="
-        background: rgba(255, 255, 255, 0.85); 
-        backdrop-filter: blur(20px); 
-        border: 1px solid rgba(255, 255, 255, 0.5); 
+    <nav class="nav-capsule glass" style="
         padding: 12px 40px; 
         border-radius: 100px; 
-        box-shadow: 0 10px 30px rgba(0, 132, 255, 0.1); 
         display: flex; 
         justify-content: space-between; 
         align-items: center; 
@@ -64,7 +60,7 @@
         
         <ul class="nav-links" id="mobile-nav-links" style="display: flex; gap: 40px; list-style: none; align-items: center; margin: 0; padding: 0;">
             <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="/ai-grader.php" class="nav-link" style="color: #fe621d; font-weight: 800;">AI Check</a></li>
+            <li><a href="/ai-grader.php" class="nav-link">AI Check</a></li>
             <li><a href="/tutorials.php" class="nav-link">Tutorials</a></li>
             <li><a href="/studio.php" class="nav-link">Studio</a></li>
             <li><a href="/gallery.php" class="nav-link">Community</a></li>
@@ -85,6 +81,7 @@
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Mobile Menu Logic
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navLinks = document.getElementById('mobile-nav-links');
         if (menuBtn && navLinks) {
@@ -94,5 +91,19 @@
                 navLinks.classList.toggle('active');
             });
         }
+
+        // Active Link Highlighting
+        const currentPath = window.location.pathname;
+        const allLinks = document.querySelectorAll('.nav-link');
+        
+        allLinks.forEach(link => {
+            const linkPath = link.getAttribute('href');
+            if (currentPath === linkPath || (currentPath === '/' && linkPath === '/')) {
+                link.classList.add('active');
+            } else if (linkPath !== '/' && currentPath.includes(linkPath)) {
+                // Handle cases where path might have extra segments
+                link.classList.add('active');
+            }
+        });
     });
 </script>
