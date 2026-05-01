@@ -67,119 +67,34 @@
 
 <div class="container ag-wrap">
 
-<!-- ===== DASHBOARD ===== -->
-<div id="dashboard-view">
-  <div class="dash-hero reveal">
-    <span style="background:var(--secondary);color:var(--primary);padding:5px 16px;border-radius:20px;font-weight:800;font-size:.85rem;letter-spacing:1px">AI GRADER 2026</span>
-    <h1 style="margin-top:18px">My Projects</h1>
-    <p>Your AI-graded drawing sessions. Each project captures your reference, grid and sketch for analysis.</p>
-    <button class="new-proj-btn" onclick="startNewProject()"><span style="font-size:1.3rem">＋</span> New Project</button>
-  </div>
-  <div id="projects-grid" class="projects-grid"></div>
-  <div id="empty-state" class="empty-state" style="display:none">
-    <span class="empty-icon">🎨</span>
-    <h3>No Projects Yet</h3>
-    <p>Click <strong>New Project</strong> to start your first AI-graded drawing session.</p>
-  </div>
-</div>
-
-<!-- ===== WIZARD ===== -->
-<div id="wizard-view" class="wizard-view">
-  <button class="back-btn reveal" onclick="showDashboard()">← Back to Projects</button>
-  <div class="stepper reveal" id="stepper"></div>
-
-  <!-- Step 1 -->
-  <div class="step-panel active" id="panel-1">
-    <div class="panel-card reveal">
-      <div class="panel-title">📸 Upload Reference Image</div>
-      <p class="panel-sub">Upload a portrait photo to use as your drawing reference.</p>
-      <label class="dropzone2" for="ref-input" id="ref-dz">
-        <span class="dz-icon">📷</span>
-        <h3>Drop your reference photo here</h3>
-        <p>PNG, JPG or WEBP — click or drag &amp; drop</p>
-        <input type="file" id="ref-input" accept="image/*" style="display:none">
-      </label>
-      <img id="ref-preview" class="dz-preview" alt="Reference preview">
-      <button class="next-btn" onclick="goStep(2)">Next: Edit Image →</button>
+  <!-- ===== DASHBOARD ===== -->
+  <div id="dashboard-view">
+    <div class="dash-hero reveal">
+      <span style="background:var(--secondary);color:var(--primary);padding:5px 16px;border-radius:20px;font-weight:800;font-size:.85rem;letter-spacing:1px">AI GRADER 2026</span>
+      <h1 style="margin-top:18px">My Projects</h1>
+      <p>Your AI-graded drawing sessions. Each project captures your reference, grid and sketch for analysis.</p>
+      <button class="new-proj-btn" onclick="startNewProject()"><span style="font-size:1.3rem">＋</span> New Project</button>
+    </div>
+    <div id="projects-grid" class="projects-grid"></div>
+    <div id="empty-state" class="empty-state" style="display:none">
+      <span class="empty-icon">🎨</span>
+      <h3>No Projects Yet</h3>
+      <p>Click <strong>New Project</strong> to start your first AI-graded drawing session.</p>
     </div>
   </div>
 
-  <!-- Step 2 -->
-  <div class="step-panel" id="panel-2">
-    <div class="panel-card reveal">
-      <div class="panel-title">🎨 Edit Image</div>
-      <p class="panel-sub">Adjust the reference image to make it easier to draw from.</p>
-      <canvas id="edit-canvas" class="edit-canvas"></canvas>
-      <div style="margin-top:24px">
-        <div class="sldr-row"><label>Brightness <span id="br-val">100%</span></label><input type="range" id="sl-br" min="0" max="200" value="100"></div>
-        <div class="sldr-row"><label>Contrast <span id="ct-val">100%</span></label><input type="range" id="sl-ct" min="0" max="200" value="100"></div>
-        <div class="sldr-row"><label>Saturation <span id="sa-val">100%</span></label><input type="range" id="sl-sa" min="0" max="200" value="100"></div>
-        <div class="sldr-row"><label>Grayscale <span id="gs-val">0%</span></label><input type="range" id="sl-gs" min="0" max="100" value="0"></div>
-        <div class="sldr-row"><label>Blur <span id="bl-val">0px</span></label><input type="range" id="sl-bl" min="0" max="10" value="0"></div>
-      </div>
-      <button class="next-btn" onclick="applyAndNext()">Next: Make Grid →</button>
-    </div>
-  </div>
+  <!-- ===== WIZARD ===== -->
+  <div id="wizard-view" class="wizard-view">
+    <button class="back-btn reveal" onclick="showDashboard()">← Back to Projects</button>
+    <div class="stepper reveal" id="stepper"></div>
 
-  <!-- Step 3 -->
-  <div class="step-panel" id="panel-3">
-    <div class="panel-card reveal">
-      <div class="panel-title">📐 Make a Grid</div>
-      <p class="panel-sub">Overlay a customizable grid on your reference image to guide your drawing.</p>
-      <canvas id="grid-canvas" class="grid-canvas"></canvas>
-      <div class="g-controls">
-        <div class="g-grp"><label>Rows</label><input type="number" id="g-rows" value="5" min="1" max="20"></div>
-        <div class="g-grp"><label>Columns</label><input type="number" id="g-cols" value="5" min="1" max="20"></div>
-        <div class="g-grp"><label>Thickness (px)</label><input type="number" id="g-thick" value="2" min="1" max="10"></div>
-        <div class="g-grp"><label>Line Color</label><input type="color" id="g-color" value="#0084ff" style="height:42px;padding:3px;border-radius:10px;border:1px solid #ddd;cursor:pointer;width:100%"></div>
-      </div>
-      <button class="dl-btn" onclick="downloadGrid()">📥 Download Grid Image</button>
-      <button class="next-btn" onclick="goStep(4)">Next: Upload Drawing →</button>
-    </div>
-  </div>
+    <?php include_once __DIR__ . '/../AIGrader/step1-upload.php'; ?>
+    <?php include_once __DIR__ . '/../AIGrader/step2-edit.php'; ?>
+    <?php include_once __DIR__ . '/../AIGrader/step3-grid.php'; ?>
+    <?php include_once __DIR__ . '/../AIGrader/step4-drawing.php'; ?>
+    <?php include_once __DIR__ . '/../AIGrader/step5-ai-check.php'; ?>
 
-  <!-- Step 4 -->
-  <div class="step-panel" id="panel-4">
-    <div class="panel-card reveal">
-      <div class="panel-title">✏️ Upload Your Drawing</div>
-      <p class="panel-sub">Upload the hand-drawn sketch you made using the grid reference.</p>
-      <label class="dropzone2" for="sketch-input" id="sketch-dz">
-        <span class="dz-icon">🖊️</span>
-        <h3>Drop your sketch here</h3>
-        <p>PNG, JPG or WEBP — click or drag &amp; drop</p>
-        <input type="file" id="sketch-input" accept="image/*" style="display:none">
-      </label>
-      <img id="sketch-preview" class="dz-preview" alt="Sketch preview">
-      <button class="next-btn" onclick="runAICheck()">Next: AI Check →</button>
-    </div>
-  </div>
-
-  <!-- Step 5 -->
-  <div class="step-panel" id="panel-5">
-    <div class="panel-card reveal">
-      <div class="panel-title">🤖 AI Check</div>
-      <p class="panel-sub">Our CNN pipeline compares your sketch to the reference and scores proportional accuracy.</p>
-      <div class="proc-view" id="proc-view" style="display:none">
-        <div class="spinner2"></div>
-        <h3 style="color:var(--primary)">Running Dual-Channel CNN...</h3>
-        <p style="color:var(--text-dim);font-size:.9rem">Extracting shapes using Canny edge detection...</p>
-      </div>
-      <div id="results-view" style="display:none;text-align:center">
-        <div class="score-ring" id="score-ring">0%</div>
-        <p style="font-weight:700;font-size:1.1rem;margin-bottom:4px">Proportional Accuracy Score</p>
-        <p style="color:var(--text-dim);font-size:.88rem;margin-bottom:28px">Based on edge-detection & grid-cell comparison</p>
-        <div class="fb-grid">
-          <div class="fb-card"><h4 style="color:var(--primary)">✅ Proportions</h4><p id="fb-0">Good symmetry in upper facial region.</p></div>
-          <div class="fb-card"><h4 style="color:#f59e0b">⚠️ Details</h4><p id="fb-1">Minor deviation in jaw-line curvature.</p></div>
-          <div class="fb-card"><h4 style="color:#00c853">📐 Grid Alignment</h4><p id="fb-2">85% of cells matched within 8px tolerance.</p></div>
-          <div class="fb-card"><h4 style="color:#e91e8c">🎯 Suggestion</h4><p id="fb-3">Refine the nose-bridge width ratio.</p></div>
-        </div>
-        <button class="save-btn" onclick="saveProject()">💾 Save Project</button>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /wizard -->
+  </div><!-- /wizard -->
 </div><!-- /container -->
 
 <script>
@@ -188,7 +103,7 @@ var LABELS = ['Upload Image','Edit Image','Make Grid','Upload Drawing','AI Check
 
 function renderStepper(cur){
   var h=''; for(var i=1;i<=5;i++){
-    var done=i<cur,active=i===cur;
+    var done=i<cur, active=i===cur;
     h+='<div class="st-item"><div class="st-dot '+(done?'done':active?'active':'')+'">'+( done?'✓':i)+'</div><span class="st-lbl '+(active?'active':'')+'">'+LABELS[i-1]+'</span></div>';
     if(i<5) h+='<div class="st-line '+(done?'done':'')+'"></div>';
   }
@@ -227,7 +142,7 @@ function goStep(n){
   window.scrollTo({top:80,behavior:'smooth'});
 }
 
-// Step 1
+// Step 1 — Reference upload
 document.getElementById('ref-input').addEventListener('change',function(){
   if(!this.files[0]) return;
   var r=new FileReader(); var self=this;
@@ -239,7 +154,7 @@ document.getElementById('ref-input').addEventListener('change',function(){
   }; r.readAsDataURL(this.files[0]);
 });
 
-// Step 2
+// Step 2 — Image editor
 var editImg=null;
 function initEdit(){
   var c=document.getElementById('edit-canvas');
@@ -265,7 +180,7 @@ function applyAndNext(){
   ag.edited=document.getElementById('edit-canvas').toDataURL('image/png'); goStep(3);
 }
 
-// Step 3
+// Step 3 — Grid maker
 var gridBaseImg=null;
 function initGrid(){
   var c=document.getElementById('grid-canvas');
@@ -291,7 +206,7 @@ function drawGrid(){
 ['g-rows','g-cols','g-thick','g-color'].forEach(function(id){document.getElementById(id).addEventListener('input',drawGrid);});
 function downloadGrid(){drawGrid();var a=document.createElement('a');a.download='sldrawing_grid.png';a.href=ag.grid;a.click();}
 
-// Step 4
+// Step 4 — Sketch upload
 document.getElementById('sketch-input').addEventListener('change',function(){
   if(!this.files[0]) return;
   var r=new FileReader(); var self=this;
@@ -303,7 +218,7 @@ document.getElementById('sketch-input').addEventListener('change',function(){
   }; r.readAsDataURL(this.files[0]);
 });
 
-// Step 5
+// Step 5 — AI Check
 var FEEDBACKS=[
   ['Good symmetry in upper facial region.','Minor deviation in jaw-line curvature.','85% of cells matched within 8px tolerance.','Refine the nose-bridge width ratio.'],
   ['Strong proportions across all zones.','Ear placement slightly off-center.','90% grid alignment detected.','Improve hairline boundary precision.'],
@@ -325,7 +240,7 @@ function runAICheck(){
   },3000);
 }
 
-// Save / Load
+// Save / Load projects
 function saveProject(){
   var name=prompt('Enter a name for this project:','Project '+(Date.now()+'').slice(-4));
   if(!name) return;
@@ -348,5 +263,5 @@ function loadProjects(){
   }).join('');
 }
 
-document.addEventListener('DOMContentLoaded',loadProjects);
+document.addEventListener('DOMContentLoaded', loadProjects);
 </script>
