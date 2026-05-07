@@ -4,6 +4,8 @@
 <meta name="keywords" content="<?php echo $get_key_words; ?>">
 <title><?php echo $get_title; ?></title>
 <link rel="stylesheet" href="/assets/css/style.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
 <style>
     :root {
         /* Default Dark Theme (Premium Artistic) */

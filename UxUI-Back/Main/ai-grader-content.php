@@ -32,9 +32,12 @@
 .st-line.done{background:#00c853}
 .step-panel{display:none}
 .step-panel.active{display:block}
-.panel-card{background:#fff;border-radius:24px;padding:40px;box-shadow:0 15px 45px rgba(0,0,0,.08)}
-.panel-title{font-size:1.8rem;font-weight:900;margin-bottom:8px}
+.panel-card{background:var(--surface);border-radius:24px;padding:40px;box-shadow:var(--shadow);border:1px solid var(--glass-border)}
+.panel-title{font-size:1.8rem;font-weight:900;margin-bottom:8px;color:var(--text)}
 .panel-sub{color:var(--text-dim);margin-bottom:28px;font-size:1rem}
+.edit-split{display:flex;gap:40px;align-items:flex-start}
+.edit-settings{flex:0 0 320px}
+.edit-preview-wrap{flex:1;background:rgba(0,0,0,0.2);border-radius:20px;padding:20px;display:flex;align-items:center;justify-content:center;min-height:400px;border:1px solid var(--glass-border)}
 .dropzone2{border:2px dashed var(--primary);border-radius:20px;padding:55px 30px;text-align:center;cursor:pointer;transition:all .3s;background:rgba(0,132,255,.02);display:block}
 .dropzone2:hover{background:rgba(0,132,255,.07);transform:translateY(-3px)}
 .dz-icon{font-size:3rem;display:block;margin-bottom:14px}
@@ -63,6 +66,72 @@
 .save-btn{background:linear-gradient(45deg,#00c853,#00e676);margin-top:28px;display:block;width:100%;max-width:340px;margin-left:auto;margin-right:auto;padding:16px;border-radius:50px;color:#fff;border:none;font-size:1.05rem;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(0,200,83,.3);transition:all .3s}
 .save-btn:hover{transform:scale(1.04)}
 @media(max-width:640px){.fb-grid,.g-controls{grid-template-columns:1fr}.st-lbl{display:none}.panel-card{padding:24px}}
+/* Modern Editor Styles */
+.modern-editor-wrap { background: var(--surface); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--glass-border); display: flex; flex-direction: column; min-height: 80vh; }
+.editor-toolbar { background: var(--secondary); padding: 12px 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--glass-border); }
+.tool-group { display: flex; gap: 8px; }
+.tool-btn { background: none; border: none; padding: 10px 15px; border-radius: 12px; color: var(--text-dim); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 5px; transition: all 0.2s; min-width: 80px; }
+.tool-btn i { width: 22px; height: 22px; }
+.tool-btn span { font-size: 0.75rem; font-weight: 700; }
+.tool-btn:hover { background: rgba(254, 98, 29, 0.1); color: var(--primary); }
+.tool-btn.active { background: var(--primary); color: #fff; box-shadow: 0 4px 12px rgba(254, 98, 29, 0.3); }
+.tool-divider { width: 1px; height: 30px; background: var(--glass-border); margin: 0 10px; }
+
+.editor-main { flex: 1; display: flex; overflow: hidden; position: relative; background: #eef2f5; }
+body.dark-theme .editor-main { background: #0f0f14; }
+
+.editor-sidebar { width: 300px; background: var(--surface); border-right: 1px solid var(--glass-border); padding: 20px; overflow-y: auto; }
+.sidebar-panel { display: none; }
+.sidebar-panel.active { display: block; animation: fadeIn 0.3s; }
+.sidebar-panel h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 20px; color: var(--text); }
+
+.control-item { margin-bottom: 20px; }
+.control-item label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: var(--text-dim); }
+.control-item label span { float: right; color: var(--primary); }
+
+.modern-range { width: 100%; accent-color: var(--primary); cursor: pointer; height: 6px; border-radius: 3px; }
+.modern-input, .modern-select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--secondary); color: var(--text); font-weight: 600; outline: none; }
+.panel-action-btn { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--primary); background: none; color: var(--primary); font-weight: 800; cursor: pointer; transition: all 0.2s; margin-top: 10px; }
+.panel-action-btn:hover { background: var(--primary); color: #fff; }
+.panel-action-btn.primary { background: var(--primary); color: #fff; border: none; }
+
+.canvas-workspace { flex: 1; display: flex; align-items: center; justify-content: center; overflow: auto; padding: 40px; position: relative; background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uAnm+HUmEGo69AFIBnBAaj68MI0zQCChU6mGTCIsBAvzsAzDJmBBQUPlT8AAAAASUVORK5CYII='); }
+.canvas-container-outer { box-shadow: 0 0 50px rgba(0,0,0,0.2); border-radius: 4px; overflow: hidden; }
+
+.editor-footer { background: var(--surface); padding: 15px 30px; border-top: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: space-between; }
+.footer-btn { background: none; border: 1px solid var(--glass-border); color: var(--text); width: 40px; height: 40px; border-radius: 10px; cursor: pointer; transition: 0.2s; }
+.footer-btn:hover { background: var(--secondary); border-color: var(--primary); color: var(--primary); }
+
+.zoom-controls { display: flex; align-items: center; gap: 15px; background: var(--secondary); padding: 5px 15px; border-radius: 50px; border: 1px solid var(--glass-border); }
+.zoom-controls button { background: none; border: none; color: var(--text); cursor: pointer; padding: 5px; }
+.zoom-controls span { font-weight: 800; min-width: 50px; text-align: center; font-size: 0.9rem; }
+
+.next-step-btn { background: linear-gradient(45deg, var(--primary), #fe8c00); color: #fff; border: none; padding: 12px 30px; border-radius: 50px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.3s; box-shadow: 0 10px 20px rgba(254, 98, 29, 0.3); }
+.next-step-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(254, 98, 29, 0.4); }
+
+.transform-grid, .shapes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.icon-action-btn, .shape-btn { background: var(--secondary); border: 1px solid var(--glass-border); color: var(--text); padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.2s; }
+.icon-action-btn:hover, .shape-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+.color-presets { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.color-dot { width: 24px; height: 24px; border-radius: 50%; cursor: pointer; transition: 0.2s; border: 2px solid transparent; }
+.color-dot.active { border-color: var(--primary); transform: scale(1.2); }
+
+.info-box { background: rgba(254, 98, 29, 0.1); border-radius: 10px; padding: 10px; color: var(--primary); font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+
+@media (max-width: 1024px) {
+  .editor-sidebar { width: 240px; }
+  .tool-btn { min-width: 60px; padding: 8px; }
+}
+
+@media (max-width: 768px) {
+  .modern-editor-wrap { flex-direction: column; height: auto; }
+  .editor-main { flex-direction: column; }
+  .editor-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--glass-border); max-height: 200px; }
+  .editor-toolbar { overflow-x: auto; white-space: nowrap; }
+}
 </style>
 
 <div class="container ag-wrap">
@@ -154,31 +223,360 @@ document.getElementById('ref-input').addEventListener('change',function(){
   }; r.readAsDataURL(this.files[0]);
 });
 
-// Step 2 — Image editor
-var editImg=null;
-function initEdit(){
-  var c=document.getElementById('edit-canvas');
-  editImg=new Image();
-  editImg.onload=function(){c.width=editImg.width;c.height=editImg.height;applyFilters();};
-  editImg.src=ag.ref;
+// Step 2 — Modern Image Editor (Fabric.js)
+var canvasV2 = null, originalImageV2 = null, historyV2 = [], redoStackV2 = [], currentZoomV2 = 1;
+var isDrawingV2 = false, cropRectV2 = null;
+
+function initEdit() {
+  if (canvasV2) canvasV2.dispose();
+  
+  var workspace = document.getElementById('canvas-workspace');
+  canvasV2 = new fabric.Canvas('main-editor-canvas', {
+    width: workspace.clientWidth - 80,
+    height: workspace.clientHeight - 80,
+    backgroundColor: 'transparent'
+  });
+
+  fabric.Image.fromURL(ag.ref, function(img) {
+    originalImageV2 = img;
+    setupCanvas();
+    saveStateV2();
+  }, { crossOrigin: 'anonymous' });
+
+  // Attach events
+  canvasV2.on('object:modified', saveStateV2);
+  canvasV2.on('object:added', function(e) {
+    if (originalImageV2 && e.target !== originalImageV2 && e.target !== cropRectV2 && !canvasV2._loading) saveStateV2();
+  });
+
+  // Initialize Lucide icons
+  if (window.lucide) lucide.createIcons();
+
+  // Crop ratio listener
+  document.getElementById('m-crop-ratio').addEventListener('change', function() {
+    var ratio = parseFloat(this.value);
+    if (cropRectV2) {
+      if (ratio > 0) {
+        cropRectV2.set('height', cropRectV2.width / ratio);
+      }
+      canvasV2.renderAll();
+    }
+  });
+
+  setTool('filter');
 }
-function applyFilters(){
-  var c=document.getElementById('edit-canvas'),ctx=c.getContext('2d');
-  var b=document.getElementById('sl-br').value, ct=document.getElementById('sl-ct').value;
-  var sa=document.getElementById('sl-sa').value, gs=document.getElementById('sl-gs').value;
-  var bl=document.getElementById('sl-bl').value;
-  document.getElementById('br-val').textContent=b+'%';
-  document.getElementById('ct-val').textContent=ct+'%';
-  document.getElementById('sa-val').textContent=sa+'%';
-  document.getElementById('gs-val').textContent=gs+'%';
-  document.getElementById('bl-val').textContent=bl+'px';
-  ctx.filter='brightness('+b+'%) contrast('+ct+'%) saturate('+sa+'%) grayscale('+gs+'%) blur('+bl+'px)';
-  ctx.clearRect(0,0,c.width,c.height); ctx.drawImage(editImg,0,0);
+
+// ... (rest of the functions remain same) ...
+
+// Event Listeners (Global)
+document.addEventListener('input', function(e) {
+  if (['m-br', 'm-ct', 'm-sa', 'm-bl'].includes(e.target.id)) applyModernFilters();
+  if (e.target.id === 'm-brush-size' && canvasV2 && canvasV2.freeDrawingBrush) {
+    canvasV2.freeDrawingBrush.width = parseInt(e.target.value);
+    document.getElementById('val-brush').textContent = e.target.value + 'px';
+  }
+});
+
+// Window resize handling
+window.addEventListener('resize', function() {
+  if (ag.step === 2 && canvasV2) {
+    var workspace = document.getElementById('canvas-workspace');
+    canvasV2.setDimensions({
+      width: workspace.clientWidth - 80,
+      height: workspace.clientHeight - 80
+    });
+    canvasV2.renderAll();
+  }
+});
+
+function setupCanvas() {
+  if (!originalImageV2) return;
+  
+  // Scale image to fit initial workspace nicely
+  var workspace = document.getElementById('canvas-workspace');
+  var maxWidth = workspace.clientWidth * 0.8;
+  var maxHeight = workspace.clientHeight * 0.8;
+  
+  var scale = Math.min(maxWidth / originalImageV2.width, maxHeight / originalImageV2.height, 1);
+  
+  canvasV2.setDimensions({
+    width: originalImageV2.width * scale,
+    height: originalImageV2.height * scale
+  });
+  
+  originalImageV2.set({
+    scaleX: scale,
+    scaleY: scale,
+    left: 0,
+    top: 0,
+    selectable: false,
+    evented: false
+  });
+  
+  canvasV2.clear();
+  canvasV2.add(originalImageV2);
+  canvasV2.centerObject(originalImageV2);
+  canvasV2.renderAll();
+  
+  // Update UI inputs
+  document.getElementById('m-width').value = Math.round(originalImageV2.width * originalImageV2.scaleX);
+  document.getElementById('m-height').value = Math.round(originalImageV2.height * originalImageV2.scaleY);
 }
-['sl-br','sl-ct','sl-sa','sl-gs','sl-bl'].forEach(function(id){document.getElementById(id).addEventListener('input',applyFilters);});
-function applyAndNext(){
-  ag.edited=document.getElementById('edit-canvas').toDataURL('image/png'); goStep(3);
+
+function setTool(tool) {
+  // UI update
+  document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-tool-' + tool).classList.add('active');
+  
+  document.querySelectorAll('.sidebar-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + tool).classList.add('active');
+  
+  // Canvas logic
+  canvasV2.isDrawingMode = (tool === 'draw');
+  if (tool === 'draw') {
+    canvasV2.freeDrawingBrush = new fabric.PencilBrush(canvasV2);
+    canvasV2.freeDrawingBrush.width = parseInt(document.getElementById('m-brush-size').value);
+    canvasV2.freeDrawingBrush.color = document.getElementById('m-brush-color').value;
+  }
+  
+  // Disable selection unless in Text or Shapes or Draw
+  canvasV2.selection = (tool === 'text' || tool === 'shapes');
+  canvasV2.forEachObject(obj => {
+    if (obj !== originalImageV2) {
+      obj.selectable = (tool === 'text' || tool === 'shapes');
+    }
+  });
+
+  // Special logic for Crop
+  if (tool === 'crop') {
+    startCropModeV2();
+  } else {
+    stopCropModeV2();
+  }
+  
+  canvasV2.renderAll();
 }
+
+// --- Filters ---
+function applyModernFilters() {
+  if (!originalImageV2) return;
+  
+  var br = parseFloat(document.getElementById('m-br').value);
+  var ct = parseFloat(document.getElementById('m-ct').value);
+  var sa = parseFloat(document.getElementById('m-sa').value);
+  var bl = parseFloat(document.getElementById('m-bl').value);
+  
+  document.getElementById('val-br').textContent = Math.round((br + 1) * 100) + '%';
+  document.getElementById('val-ct').textContent = Math.round((ct + 1) * 100) + '%';
+  document.getElementById('val-sa').textContent = Math.round(sa * 100) + '%';
+  document.getElementById('val-bl').textContent = Math.round(bl * 10) + 'px';
+
+  originalImageV2.filters = [];
+  if (br !== 0) originalImageV2.filters.push(new fabric.Image.filters.Brightness({ brightness: br }));
+  if (ct !== 0) originalImageV2.filters.push(new fabric.Image.filters.Contrast({ contrast: ct }));
+  if (sa !== 0) originalImageV2.filters.push(new fabric.Image.filters.Saturation({ saturation: sa }));
+  if (bl !== 0) originalImageV2.filters.push(new fabric.Image.filters.Blur({ blur: bl }));
+  
+  originalImageV2.applyFilters();
+  canvasV2.renderAll();
+}
+
+function resetFilters() {
+  document.getElementById('m-br').value = 0;
+  document.getElementById('m-ct').value = 0;
+  document.getElementById('m-sa').value = 0;
+  document.getElementById('m-bl').value = 0;
+  applyModernFilters();
+}
+
+// --- Resize ---
+function applyResize() {
+  var w = parseInt(document.getElementById('m-width').value);
+  var h = parseInt(document.getElementById('m-height').value);
+  
+  var scaleX = w / originalImageV2.width;
+  var scaleY = h / originalImageV2.height;
+  
+  originalImageV2.set({ scaleX: scaleX, scaleY: scaleY });
+  canvasV2.setDimensions({ width: w, height: h });
+  canvasV2.centerObject(originalImageV2);
+  canvasV2.renderAll();
+  saveStateV2();
+}
+
+// --- Crop ---
+function startCropModeV2() {
+  stopCropModeV2();
+  var ratio = parseFloat(document.getElementById('m-crop-ratio').value);
+  
+  cropRectV2 = new fabric.Rect({
+    fill: 'rgba(0,0,0,0.3)',
+    stroke: '#fe621d',
+    strokeWidth: 2,
+    strokeDashArray: [5, 5],
+    width: canvasV2.width * 0.8,
+    height: canvasV2.height * 0.8,
+    left: canvasV2.width * 0.1,
+    top: canvasV2.height * 0.1,
+    cornerColor: '#fe621d',
+    cornerSize: 10,
+    transparentCorners: false
+  });
+  
+  if (ratio > 0) {
+    if (cropRectV2.width / cropRectV2.height > ratio) {
+      cropRectV2.width = cropRectV2.height * ratio;
+    } else {
+      cropRectV2.height = cropRectV2.width / ratio;
+    }
+  }
+  
+  canvasV2.add(cropRectV2);
+  canvasV2.setActiveObject(cropRectV2);
+}
+
+function stopCropModeV2() {
+  if (cropRectV2) {
+    canvasV2.remove(cropRectV2);
+    cropRectV2 = null;
+  }
+}
+
+function applyCropV2() {
+  if (!cropRectV2) return;
+  
+  var zoom = canvasV2.getZoom();
+  var left = cropRectV2.left / zoom;
+  var top = cropRectV2.top / zoom;
+  var width = cropRectV2.width * cropRectV2.scaleX / zoom;
+  var height = cropRectV2.height * cropRectV2.scaleY / zoom;
+  
+  // Create a temporary canvas to get the cropped area
+  var tempCanvas = document.createElement('canvas');
+  tempCanvas.width = width;
+  tempCanvas.height = height;
+  var ctx = tempCanvas.getContext('2d');
+  
+  // Render the current canvas content to the temp canvas, but offset to the crop area
+  var dataUrl = canvasV2.toDataURL({
+    left: left,
+    top: top,
+    width: width,
+    height: height,
+    format: 'png'
+  });
+  
+  fabric.Image.fromURL(dataUrl, function(img) {
+    originalImageV2 = img;
+    canvasV2.clear();
+    canvasV2.setDimensions({ width: width, height: height });
+    canvasV2.add(originalImageV2);
+    canvasV2.renderAll();
+    stopCropModeV2();
+    saveStateV2();
+    setTool('filter');
+  });
+}
+
+// --- Transform ---
+function rotateCanvas(deg) {
+  var angle = originalImageV2.angle + deg;
+  originalImageV2.set('angle', angle);
+  canvasV2.renderAll();
+  saveStateV2();
+}
+
+function flipCanvas(dir) {
+  if (dir === 'h') originalImageV2.set('flipX', !originalImageV2.flipX);
+  else originalImageV2.set('flipY', !originalImageV2.flipY);
+  canvasV2.renderAll();
+  saveStateV2();
+}
+
+// --- Draw / Text / Shapes ---
+function setBrushColor(color, el) {
+  document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+  if (el) el.classList.add('active');
+  document.getElementById('m-brush-color').value = color;
+  if (canvasV2.freeDrawingBrush) canvasV2.freeDrawingBrush.color = color;
+}
+
+function addTextV2() {
+  var text = new fabric.IText('Double click to edit', {
+    left: 100,
+    top: 100,
+    fontFamily: document.getElementById('m-font-family').value,
+    fill: document.getElementById('m-brush-color').value,
+    fontSize: 30
+  });
+  canvasV2.add(text);
+  canvasV2.setActiveObject(text);
+  saveStateV2();
+}
+
+function addShape(type) {
+  var shape;
+  var color = document.getElementById('m-brush-color').value;
+  if (type === 'rect') {
+    shape = new fabric.Rect({ width: 100, height: 100, fill: color, left: 100, top: 100 });
+  } else if (type === 'circle') {
+    shape = new fabric.Circle({ radius: 50, fill: color, left: 100, top: 100 });
+  } else if (type === 'triangle') {
+    shape = new fabric.Triangle({ width: 100, height: 100, fill: color, left: 100, top: 100 });
+  }
+  canvasV2.add(shape);
+  canvasV2.setActiveObject(shape);
+  saveStateV2();
+}
+
+// --- History / State ---
+function saveStateV2() {
+  historyV2.push(JSON.stringify(canvasV2));
+  redoStackV2 = [];
+}
+
+function undoV2() {
+  if (historyV2.length <= 1) return;
+  redoStackV2.push(historyV2.pop());
+  var state = historyV2[historyV2.length - 1];
+  canvasV2.loadFromJSON(state, function() {
+    canvasV2.renderAll();
+    // Re-assign originalImageV2 reference
+    originalImageV2 = canvasV2.getObjects().find(o => o.type === 'image');
+  });
+}
+
+function redoV2() {
+  if (redoStackV2.length === 0) return;
+  var state = redoStackV2.pop();
+  historyV2.push(state);
+  canvasV2.loadFromJSON(state, function() {
+    canvasV2.renderAll();
+    originalImageV2 = canvasV2.getObjects().find(o => o.type === 'image');
+  });
+}
+
+function resetEditor() {
+  if (confirm('Reset all changes?')) initEdit();
+}
+
+// --- Zoom ---
+function zoomEditor(delta) {
+  currentZoomV2 += delta;
+  currentZoomV2 = Math.min(Math.max(0.1, currentZoomV2), 5);
+  canvasV2.setZoom(currentZoomV2);
+  document.getElementById('editor-zoom-val').textContent = Math.round(currentZoomV2 * 100) + '%';
+}
+
+// --- Next Step ---
+function applyAndNextV2() {
+  stopCropModeV2();
+  canvasV2.setZoom(1); // Reset zoom for export
+  ag.edited = canvasV2.toDataURL({ format: 'png', quality: 1.0 });
+  goStep(3);
+}
+
+// Events handled inside initEdit and global listeners above
 
 // Step 3 — Grid maker
 var gridBaseImg=null;
@@ -194,16 +592,34 @@ function drawGrid(){
   var cols=parseInt(document.getElementById('g-cols').value)||5;
   var thick=parseInt(document.getElementById('g-thick').value)||2;
   var color=document.getElementById('g-color').value;
-  ctx.clearRect(0,0,c.width,c.height); ctx.drawImage(gridBaseImg,0,0);
-  ctx.strokeStyle=color; ctx.lineWidth=thick;
+  var zm=document.getElementById('g-zm').value/100;
+  
+  ctx.save();
+  ctx.clearRect(0,0,c.width,c.height); 
+  
+  // Center Zoom
+  ctx.translate(c.width/2, c.height/2);
+  ctx.scale(zm, zm);
+  ctx.translate(-c.width/2, -c.height/2);
+  
+  ctx.drawImage(gridBaseImg,0,0);
+  
+  ctx.strokeStyle=color; ctx.lineWidth=thick/zm; // Compensate thickness for zoom
   var cw=c.width/cols,ch=c.height/rows;
   ctx.beginPath();
   for(var i=1;i<cols;i++){ctx.moveTo(i*cw,0);ctx.lineTo(i*cw,c.height);}
   for(var j=1;j<rows;j++){ctx.moveTo(0,j*ch);ctx.lineTo(c.width,j*ch);}
   ctx.stroke();
+  ctx.restore();
+  
   ag.grid=c.toDataURL('image/png');
 }
-['g-rows','g-cols','g-thick','g-color'].forEach(function(id){document.getElementById(id).addEventListener('input',drawGrid);});
+['g-rows','g-cols','g-thick','g-color','g-zm'].forEach(function(id){
+  document.getElementById(id).addEventListener('input',function(){
+    if(id==='g-zm') document.getElementById('g-zm-val').textContent=this.value+'%';
+    drawGrid();
+  });
+});
 function downloadGrid(){drawGrid();var a=document.createElement('a');a.download='sldrawing_grid.png';a.href=ag.grid;a.click();}
 
 // Step 4 — Sketch upload
