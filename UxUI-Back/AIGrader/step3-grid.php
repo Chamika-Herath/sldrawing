@@ -24,6 +24,9 @@
       </div>
     </div>
     <button class="dl-btn" onclick="downloadGrid()">📥 Download Grid Image</button>
-    <button class="next-btn" onclick="goStep(4)">Next: Upload Drawing →</button>
+    <div class="step-nav">
+      <button class="back-btn nav-btn" onclick="goStep(2)">← Back</button>
+      <button class="next-btn nav-btn" onclick="goStep(4)">Next</button>
+    </div>
   </div>
 </div>

@@ -1,11 +1,57 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="<?php echo $get_dis; ?>">
-<meta name="keywords" content="<?php echo $get_key_words; ?>">
-<title><?php echo $get_title; ?></title>
+
+<!-- SEO Meta Tags -->
+<meta name="google-site-verification" content="Hs-tKVOBACrIqt13_sVxCQRG7BaMD1QXr5wrk-bhDiE" />
+<title><?php echo isset($get_title) ? $get_title : "SLdrawing - Unlock Your Creative Potential"; ?></title>
+<meta name="description" content="<?php echo isset($get_dis) ? $get_dis : "Master digital art with expert-led tutorials. Join a community of artists and refine your vision with our AI Grid Drawing system."; ?>">
+<meta name="keywords" content="<?php echo isset($get_key_words) ? $get_key_words : "art, drawing, tutorials, portraits, grid drawing, AI grader, digital art Sri Lanka"; ?>">
+<meta name="author" content="H.M.C.D. Herath">
+<link rel="canonical" href="https://drawing.heraforce.com<?php echo $_SERVER['REQUEST_URI']; ?>">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://drawing.heraforce.com<?php echo $_SERVER['REQUEST_URI']; ?>">
+<meta property="og:title" content="<?php echo isset($get_social_title) ? $get_social_title : $get_title; ?>">
+<meta property="og:description" content="<?php echo isset($get_social_dis) ? $get_social_dis : $get_dis; ?>">
+<meta property="og:image" content="https://drawing.heraforce.com<?php echo isset($image_fb) ? $image_fb : "/assets/images/hero.png"; ?>">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://drawing.heraforce.com<?php echo $_SERVER['REQUEST_URI']; ?>">
+<meta property="twitter:title" content="<?php echo isset($get_social_title) ? $get_social_title : $get_title; ?>">
+<meta property="twitter:description" content="<?php echo isset($get_social_dis) ? $get_social_dis : $get_dis; ?>">
+<meta property="twitter:image" content="https://drawing.heraforce.com<?php echo isset($image_twitter) ? $image_twitter : "/assets/images/hero.png"; ?>">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" href="/assets/images/shark.png">
+<link rel="apple-touch-icon" href="/assets/images/shark.png">
+
+<!-- Fonts & Libraries -->
 <link rel="stylesheet" href="/assets/css/style.css">
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "SLdrawing",
+  "url": "https://drawing.heraforce.com",
+  "description": "Unlock your creative potential with AI-powered drawing tools and pro tutorials.",
+  "publisher": {
+    "@type": "Person",
+    "name": "H.M.C.D. Herath"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://drawing.heraforce.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
 <style>
     :root {
         /* Default Dark Theme (Premium Artistic) */

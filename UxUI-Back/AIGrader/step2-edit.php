@@ -212,13 +212,16 @@
         </div>
       </div>
 
-      <div class="footer-right">
-        <button class="next-step-btn" onclick="applyAndNextV2()">
-          <span>Next: Make Grid</span>
-          <i data-lucide="arrow-right"></i>
-        </button>
+      <div class="footer-right" style="display:flex; gap:12px; align-items:center; justify-content:flex-end; flex-wrap:wrap;">
+        <!-- Navigation buttons moved below for consistent placement across steps -->
       </div>
     </div>
-
+    <div class="step-nav">
+      <button class="back-btn nav-btn" onclick="goStep(1)">← Back</button>
+      <button class="next-btn nav-btn" onclick="applyAndNextV2()">
+        <span>Next</span>
+        <i data-lucide="arrow-right"></i>
+      </button>
+    </div>
   </div>
 </div>

@@ -1,0 +1,12 @@
+# robots.txt for drawing.heraforce.com
+User-agent: *
+Allow: /
+
+# Disallow private and system directories
+Disallow: /UxUI-Back/
+Disallow: /imports/
+Disallow: /api/
+Disallow: /Project/
+
+# Sitemap location
+Sitemap: https://drawing.heraforce.com/sitemap.xml

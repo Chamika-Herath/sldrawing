@@ -3,7 +3,6 @@
   <div class="panel-card reveal">
     <div class="panel-title">🤖 AI Check</div>
     <p class="panel-sub">Our CNN pipeline compares your sketch to the reference and scores proportional accuracy.</p>
-
     <!-- Processing spinner -->
     <div class="proc-view" id="proc-view" style="display:none">
       <div class="spinner2"></div>
@@ -23,6 +22,9 @@
         <div class="fb-card"><h4 style="color:#e91e8c">🎯 Suggestion</h4><p id="fb-3">Refine the nose-bridge width ratio.</p></div>
       </div>
       <button class="save-btn" onclick="saveProject()">💾 Save Project</button>
+    </div>
+    <div class="step-nav">
+      <button class="back-btn nav-btn" onclick="goStep(4)">← Back</button>
     </div>
   </div>
 </div>

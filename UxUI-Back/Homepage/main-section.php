@@ -57,7 +57,7 @@
     
     <div class="container hero-grid" style="z-index: 1;">
         <div class="hero-text-container">
-            <h1 class="hero-h1" id="hero-title" style="font-size: 5rem; font-weight: 900; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -2px; color: #fff; text-shadow: 0 10px 30px rgba(0,0,0,0.5); line-height: 0.9; transition: opacity 1s ease-in-out;"><span id="hero-top-text">Unleash Your</span> <br><span style="color: #fe621d;" id="hero-bottom-text">SLdrawing Vibe</span></h1>
+            <h1 class="hero-h1" id="hero-title" style="font-size: 5rem; font-weight: 900; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -2px; color: #fff; text-shadow: 0 10px 30px rgba(0,0,0,0.5); line-height: 0.9; transition: opacity 1s ease-in-out;"><span id="hero-top-text">Unleash Your</span> <br><span style="color: #fe621d;" id="hero-bottom-text">drawing Vibe</span></h1>
             <p class="hero-p" style="font-size: 1.4rem; color: rgba(255,255,255,0.9); margin-bottom: 40px; max-width: 500px; font-weight: 500; line-height: 1.5;">Master digital art with our expert-led tutorials. Join a community of legends and refine your vision today.</p>
             <div class="hero-btn-container">
                 <a href="/tutorials.php" class="btn" style="padding: 18px 45px; background: #fe621d; color: #fff; text-decoration: none; font-weight: 800; border-radius: 12px; text-transform: uppercase; box-shadow: 0 15px 30px rgba(254,98,29,0.4); transition: all 0.3s ease; font-size: 1.1rem;">Explore Guides</a>
@@ -133,7 +133,7 @@
         
         // Text Rotation
         const heroTexts = [
-            { top: "Unleash Your", bottom: "SLdrawing Vibe" },
+            { top: "Unleash Your", bottom: "Drawing Vibe" },
             { top: "Master Your", bottom: "Digital Art" },
             { top: "Join The", bottom: "Daily Challenge" },
             { top: "Explore Our", bottom: "Smart Studio" },

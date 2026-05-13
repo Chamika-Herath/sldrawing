@@ -1,13 +1,18 @@
 <?php
 
 // 1. Detect Protocol and Domain
-$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? "https" : "http";
-$domain   = $_SERVER['HTTP_HOST'];
+if (PHP_SAPI === 'cli') {
+    $protocol = "https";
+    $domain   = "drawing.heraforce.com";
+} else {
+    $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? "https" : "http";
+    $domain   = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : "drawing.heraforce.com";
+}
 $baseUrl  = $protocol . "://" . $domain;
 
 // 2. Define the output file path
 // CHANGED: Moves up two directories from the current script location
-$filePath = __DIR__ . '/../../../sitemap.xml';
+$filePath = __DIR__ . '/../../../../sitemap.xml';
 
 // 3. Initialize the XML string
 $xmlContent  = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
@@ -15,13 +20,23 @@ $xmlContent .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . 
 
 // --- START ADDING URLS ---
 
-// Example 1: The Homepage (Static)
-$xmlContent .= '  <url>' . PHP_EOL;
-$xmlContent .= '    <loc>' . $baseUrl . '/</loc>' . PHP_EOL;
-$xmlContent .= '    <lastmod>' . date('Y-m-d') . '</lastmod>' . PHP_EOL; // Current date
-$xmlContent .= '    <changefreq>daily</changefreq>' . PHP_EOL;
-$xmlContent .= '    <priority>1.0</priority>' . PHP_EOL;
-$xmlContent .= '  </url>' . PHP_EOL;
+$pages = [
+    '' => ['prio' => '1.0', 'freq' => 'daily'],
+    'ai-grader.php' => ['prio' => '0.9', 'freq' => 'weekly'],
+    'tutorials.php' => ['prio' => '0.8', 'freq' => 'weekly'],
+    'studio.php' => ['prio' => '0.8', 'freq' => 'weekly'],
+    'gallery.php' => ['prio' => '0.7', 'freq' => 'daily'],
+    'challenges.php' => ['prio' => '0.7', 'freq' => 'daily'],
+];
+
+foreach ($pages as $page => $meta) {
+    $xmlContent .= '  <url>' . PHP_EOL;
+    $xmlContent .= '    <loc>' . $baseUrl . '/' . $page . '</loc>' . PHP_EOL;
+    $xmlContent .= '    <lastmod>' . date('Y-m-d') . '</lastmod>' . PHP_EOL;
+    $xmlContent .= '    <changefreq>' . $meta['freq'] . '</changefreq>' . PHP_EOL;
+    $xmlContent .= '    <priority>' . $meta['prio'] . '</priority>' . PHP_EOL;
+    $xmlContent .= '  </url>' . PHP_EOL;
+}
 
 // --- END ADDING URLS ---
 

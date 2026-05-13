@@ -8,6 +8,7 @@
     <?php 
     include_once './UxUI-Back/Needs/header.php';
     include_once './UxUI-Back/Main/tutorials-content.php';
+    include_once './UxUI-Back/Needs/footer.php';
     ?>
 </body>
 </html>

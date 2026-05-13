@@ -60,7 +60,7 @@
         
         <ul class="nav-links" id="mobile-nav-links" style="display: flex; gap: 40px; list-style: none; align-items: center; margin: 0; padding: 0;">
             <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="/ai-grader.php" class="nav-link">AI Check</a></li>
+            <li><a href="/ai-grader.php" class="nav-link">Grid Art</a></li>
             <li><a href="/tutorials.php" class="nav-link">Tutorials</a></li>
             <li><a href="/studio.php" class="nav-link">Studio</a></li>
             <li><a href="/gallery.php" class="nav-link">Community</a></li>

@@ -10,6 +10,9 @@
       <input type="file" id="sketch-input" accept="image/*" style="display:none">
     </label>
     <img id="sketch-preview" class="dz-preview" alt="Sketch preview">
-    <button class="next-btn" onclick="runAICheck()">Next: AI Check →</button>
+    <div class="step-nav">
+      <button class="back-btn nav-btn" onclick="goStep(3)">← Back</button>
+      <button class="next-btn nav-btn" onclick="runAICheck()">Next</button>
+    </div>
   </div>
 </div>

@@ -12,7 +12,7 @@
                     <div style="width: 60px; height: 60px; background: var(--primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.5rem; box-shadow: 0 10px 30px rgba(254,98,29,0.3);">📧</div>
                     <div>
                         <div style="font-size: 0.9rem; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Email Us</div>
-                        <div style="font-size: 1.1rem; color: var(--text); font-weight: 700;">support@SLdrawing.com</div>
+                        <div style="font-size: 1.1rem; color: var(--text); font-weight: 700;">chamika@heradorce.com</div>
                     </div>
                 </div>
                 <div style="display: flex; gap: 20px; align-items: center;">
