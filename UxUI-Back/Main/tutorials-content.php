@@ -7,7 +7,7 @@
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;">
         <!-- Portrait -->
-        <div class="glass" style="border-radius: 30px; overflow: hidden; transition: 0.3s; cursor: pointer; background: #fff;">
+        <div class="glass" style="border-radius: 30px; overflow: hidden; transition: 0.3s; cursor: pointer; background: var(--surface);">
             <img src="/assets/images/tutorial_portrait_1773936991179.png" style="width: 100%; height: 250px; object-fit: cover;">
             <div style="padding: 30px;">
                 <h2 style="margin-bottom: 15px; color: var(--text);">Portrait Anatomy</h2>
@@ -19,11 +19,11 @@
             </div>
         </div>
         <!-- Coloring -->
-        <div class="glass" style="border-radius: 30px; overflow: hidden; transition: 0.3s; cursor: pointer;">
+        <div class="glass" style="border-radius: 30px; overflow: hidden; transition: 0.3s; cursor: pointer; background: var(--surface);">
             <img src="/assets/images/tutorial_coloring_1773937010332.png" style="width: 100%; height: 250px; object-fit: cover;">
             <div style="padding: 30px;">
-                <h2 style="margin-bottom: 15px;">Color Mastery</h2>
-                <p style="color: #888; margin-bottom: 25px;">Learn advanced blending, color theory, and digital rendering techniques.</p>
+                <h2 style="margin-bottom: 15px; color: var(--text);">Color Mastery</h2>
+                <p style="color: var(--text-dim); margin-bottom: 25px;">Learn advanced blending, color theory, and digital rendering techniques.</p>
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <span style="color: #00f3ff; font-weight: 700;">ALL LEVELS</span>
                     <button class="btn" style="padding: 10px 20px; background: rgba(0,243,255,0.1); border: 1px solid #00f3ff; color: #00f3ff; border-radius: 5px;">View</button>

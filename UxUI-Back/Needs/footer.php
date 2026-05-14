@@ -4,7 +4,7 @@
     <div style="position: absolute; top: -50px; right: -50px; width: 250px; height: 250px; background: radial-gradient(circle, rgba(254, 98, 29, 0.05) 0%, transparent 70%); filter: blur(50px); pointer-events: none;"></div>
 
     <div class="container">
-        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 80px;">
+        <div class="footer-grid">
             <!-- Column 1: Brand & About -->
             <div>
                 <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 25px; display: flex; align-items: center; gap: 18px;">
@@ -69,11 +69,11 @@
         <div style="height: 1px; background: linear-gradient(to right, transparent, var(--glass-border), transparent); margin-bottom: 40px;"></div>
 
         <!-- Bottom Footer -->
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
-            <div style="color: var(--text-dim); font-size: 0.9rem; font-weight: 500;">
-                &copy; 2026 SLdrawing. All Rights Reserved. Designed by <a href="https://www.heraforce.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); text-decoration: none;">HeraForce</a>
+        <div class="footer-bottom">
+            <div class="footer-copy">
+                &copy; 2026 SLdrawing. All Rights Reserved. Designed by <a href="https://www.heraforce.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); font-weight: 700; text-decoration: none;">HeraForce</a>
             </div>
-            <div style="display: flex; gap: 30px;">
+            <div class="footer-links">
                 <a href="#" style="color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: 0.3s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-dim)'">Privacy Policy</a>
                 <a href="#" style="color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: 0.3s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-dim)'">Terms of Service</a>
                 <a href="#" style="color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: 0.3s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-dim)'">Cookie Policy</a>
@@ -90,11 +90,17 @@
 </script>
 
 <style>
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 80px; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-copy { color: var(--text-dim); font-size: 0.9rem; font-weight: 500; }
+    .footer-links { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; }
+    
     @media (max-width: 992px) {
-        .main-footer .container > div:first-child { grid-template-columns: 1fr 1fr; gap: 40px; }
+        .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
     @media (max-width: 600px) {
-        .main-footer .container > div:first-child { grid-template-columns: 1fr; }
-        .main-footer .container > div:last-child { justify-content: center; text-align: center; }
+        .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+        .footer-bottom { justify-content: center; flex-direction: column; text-align: center; gap: 15px; }
+        .footer-links { gap: 15px; }
     }
 </style>
