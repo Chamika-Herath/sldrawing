@@ -51,7 +51,7 @@
     .card-4 { animation: fan-pattern-4 8s infinite ease-in-out; z-index: 4; }
 </style>
 
-<section class="hero hero-section" style="min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: url('/assets/images/hero.png') center / cover no-repeat; filter: saturate(1.4) contrast(1.15) brightness(1.1);">
+<section class="hero hero-section" style="min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: url('/assets/images/portrait_hero.png') center / cover no-repeat; filter: saturate(1.4) contrast(1.15) brightness(1.1);">
     <!-- Dark Gradient Overlay for text readability -->
     <div class="hero-overlay"></div>
     

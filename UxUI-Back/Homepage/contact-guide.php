@@ -1,8 +1,11 @@
-<section class="contact-guide" style="padding: 120px 0; background: var(--secondary); position: relative; overflow: hidden;">
-    <!-- Abstract Artistic Background Element -->
-    <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(254, 98, 29, 0.15) 0%, transparent 70%); filter: blur(60px); pointer-events: none;"></div>
+<section class="contact-guide" style="padding: 120px 0; background: url('/assets/images/museum_bg_4.png') center / cover fixed no-repeat; position: relative; overflow: hidden;">
+    <!-- Overlay for text readability -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 11, 15, 0.7); z-index: 0; pointer-events: none;"></div>
     
-    <div class="container glass reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding: 80px; border-radius: 50px; align-items: center; position: relative; z-index: 1;">
+    <!-- Abstract Artistic Background Element -->
+    <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(254, 98, 29, 0.15) 0%, transparent 70%); filter: blur(60px); pointer-events: none; z-index: 1;"></div>
+    
+    <div class="container glass reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding: 80px; border-radius: 50px; align-items: center; position: relative; z-index: 2;">
         <div>
             <h2 style="font-size: 3.5rem; margin-bottom: 25px; font-weight: 800; letter-spacing: -2px; color: var(--text);">Let's <span style="color: var(--primary);">Talk Art</span></h2>
             <p style="color: var(--text-dim); margin-bottom: 45px; font-size: 1.2rem; line-height: 1.6;">Have questions about our tutorials or need help with the Studio? Our support artists are ready to help you thrive.</p>

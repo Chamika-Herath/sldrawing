@@ -1,6 +1,6 @@
 <style>
     .video-section-vibrant {
-        background: #0b0b0f;
+        background: url('/assets/images/museum_bg_1.png') center / cover fixed no-repeat;
         padding: 120px 0;
         position: relative;
         overflow: hidden;
@@ -164,6 +164,8 @@
 </style>
 
 <section class="video-section-vibrant">
+    <!-- Overlay for text readability -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 11, 15, 0.7); z-index: 0; pointer-events: none;"></div>
     <div class="container video-grid">
         <div class="video-text-container content-fade reveal" id="video-content-area">
             <h2 id="video-title" style="font-size: 3.8rem; line-height: 1.1; margin-bottom: 25px; color: #fff; font-weight: 900; letter-spacing: -2px;">

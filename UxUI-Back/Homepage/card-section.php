@@ -39,8 +39,10 @@
     }
 </style>
 
-<section class="card-section" style="padding: 120px 0; background: var(--background);">
-    <div class="container card-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px;">
+<section class="card-section" style="padding: 120px 0; background: url('/assets/images/museum_bg_3.png') center / cover fixed no-repeat; position: relative;">
+    <!-- Overlay for text readability -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 11, 15, 0.7); z-index: 0; pointer-events: none;"></div>
+    <div class="container card-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; position: relative; z-index: 1;">
         <div class="feature-card reveal" style="background: var(--surface); border-color: rgba(255,255,255,0.05);">
             <div class="icon-box" style="background: rgba(255,255,255,0.05); color: var(--text);">🖌️</div>
             <h2 style="font-size: 2.2rem; margin-bottom: 15px; font-weight: 800; color: var(--text);">Smart Studio</h2>

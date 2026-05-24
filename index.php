@@ -4,6 +4,15 @@
 <html lang="en">
     <head>
         <?php include_once './Meta_Tag/Meta_Tag.php'; ?>
+        <style>
+            body {
+                background-image: url('/assets/images/portrait_background.png') !important;
+                background-size: cover !important;
+                background-position: center !important;
+                background-attachment: fixed !important;
+                background-repeat: no-repeat !important;
+            }
+        </style>
     </head>
     <body>
         <?php

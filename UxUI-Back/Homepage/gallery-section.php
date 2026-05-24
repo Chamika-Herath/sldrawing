@@ -30,8 +30,10 @@
     }
 </style>
 
-<section class="gallery-section" style="padding: 120px 0; background: var(--background);">
-    <div class="container">
+<section class="gallery-section" style="padding: 120px 0; background: url('/assets/images/gallery_background_new.png') center / cover fixed no-repeat; position: relative;">
+    <!-- Overlay for text readability -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 11, 15, 0.7); z-index: 0; pointer-events: none;"></div>
+    <div class="container" style="position: relative; z-index: 1;">
         <h2 class="gallery-title reveal" style="font-size: 3.5rem; margin-bottom: 60px; text-align: center; font-weight: 800; letter-spacing: -2px;">Community <span style="color: var(--primary);">Masterpieces</span></h2>
         
         <div class="gallery-grid">
@@ -51,7 +53,7 @@
                 <img src="/assets/images/tutorial_coloring_1773937010332.png">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.6s;">
-                <img src="/assets/images/shark.png">
+                <img src="/assets/images/gallery_item_new.png">
             </div>
         </div>
     </div>

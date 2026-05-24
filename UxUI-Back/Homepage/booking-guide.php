@@ -1,5 +1,7 @@
-<section class="booking-guide" style="padding: 120px 0; background: linear-gradient(to bottom, var(--background), var(--secondary)); position: relative;">
-    <div class="container" style="text-align: center;">
+<section class="booking-guide" style="padding: 120px 0; background: url('/assets/images/museum_bg_2.png') center / cover fixed no-repeat; position: relative;">
+    <!-- Overlay for text readability -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 11, 15, 0.75); z-index: 0; pointer-events: none;"></div>
+    <div class="container" style="text-align: center; position: relative; z-index: 1;">
         <h2 class="reveal" style="font-size: 3.5rem; margin-bottom: 20px; font-weight: 800; letter-spacing: -2px; color: var(--text);">Join the <span style="color: var(--primary);">Elite</span></h2>
         <p class="reveal" style="color: var(--text-dim); margin-bottom: 60px; font-size: 1.2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Unlock your creative potential with our world-class guided curriculum.</p>
         
