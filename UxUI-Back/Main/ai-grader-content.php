@@ -91,10 +91,36 @@
 .save-btn{background:linear-gradient(45deg,#00c853,#00e676);margin-top:28px;display:block;width:100%;max-width:340px;margin-left:auto;margin-right:auto;padding:16px;border-radius:50px;color:#fff;border:none;font-size:1.05rem;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(0,200,83,.3);transition:all .3s}
 .save-btn:hover{transform:scale(1.04)}
 @media(max-width:640px){.fb-grid,.g-controls{grid-template-columns:1fr}.st-lbl{display:none}.panel-card{padding:24px}}
+/* Photoshop-like Pro Grid Maker */
+.grid-split-wrap { display: flex; gap: 0; min-height: 700px; align-items: stretch; background: #1a1a1a; border-radius: 24px; overflow: hidden; border: 1px solid #333; }
+.grid-workspace { flex: 1; background: #0f0f0f; position: relative; display: flex; align-items: center; justify-content:center; overflow: hidden; min-height: 600px; }
+.grid-sidebar { flex: 0 0 280px; background: #252525; border-left: 1px solid #333; display: flex; flex-direction: column; }
+.grid-sidebar-card { padding: 20px; color: #ccc; }
+.grid-sidebar-card label { color: #888; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.5px; }
+.grid-sidebar-card input[type="number"], .grid-sidebar-card input[type="text"] { background: #333; border: 1px solid #444; color: #fff; padding: 8px; border-radius: 6px; }
+.grid-tool-overlay { top: 15px; background: rgba(30, 30, 30, 0.9); border: 1px solid #444; }
+.gt-btn { padding: 8px 12px; font-size: 0.75rem; }
+.grid-canvas { cursor: grab; box-shadow: 0 0 40px rgba(0,0,0,0.5); }
+.g-controls { gap: 10px; margin: 15px 0; }
+@media (max-width: 992px) { 
+  .grid-split-wrap { flex-direction: column; height: auto; min-height: none; gap: 0; }
+  .grid-workspace { height: 60vh; min-height: 400px; order: 1; border-radius: 0; }
+  .grid-sidebar { order: 2; flex: none; width: 100%; border-left: none; border-top: 1px solid #333; }
+  .grid-sidebar-card { padding: 15px; }
+  .grid-tool-overlay { top: auto !important; bottom: 20px !important; left: 50%; transform: translateX(-50%); width: auto; max-width: 95%; background: rgba(0,0,0,0.85); padding: 5px; border-radius: 12px; }
+  .gt-btn { flex-direction: row !important; padding: 10px 15px !important; min-width: 0; height: auto !important; font-size: 0.8rem; }
+  .g-controls { grid-template-columns: repeat(4, 1fr) !important; gap: 8px !important; margin: 10px 0 !important; }
+  .g-grp label { font-size: 0.6rem; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+  .g-grp input { padding: 8px 4px !important; font-size: 0.7rem !important; text-align: center; }
+  .grid-sidebar-card hr, .grid-sidebar-card p, .grid-sidebar-card > div:first-child { display: none !important; }
+}
 /* Modern Editor Styles */
 .modern-editor-wrap { background: var(--surface); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--glass-border); display: flex; flex-direction: column; min-height: 80vh; }
 .editor-toolbar { background: var(--secondary); padding: 12px 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--glass-border); }
 .tool-group { display: flex; gap: 8px; }
+.tool.gt-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 10px 16px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.85rem; transition: all 0.2s; }
+.gt-btn:hover { background: rgba(255,255,255,0.1); }
+.gt-btn.active { background: var(--primary) !important; color: #fff !important; border-color: var(--primary) !important; box-shadow: 0 4px 15px rgba(0,132,255,0.4); }
 .tool-btn { background: none; border: none; padding: 10px 15px; border-radius: 12px; color: var(--text-dim); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 5px; transition: all 0.2s; min-width: 80px; }
 .tool-btn i { width: 22px; height: 22px; }
 .tool-btn span { font-size: 0.75rem; font-weight: 700; }
@@ -335,6 +361,52 @@ function initEdit() {
   canvasV2.on('object:modified', saveStateV2);
   canvasV2.on('object:added', function(e) {
     if (originalImageV2 && e.target !== originalImageV2 && e.target !== cropRectV2 && !canvasV2._loading) saveStateV2();
+  });
+
+  // Mouse wheel zoom to cursor
+  canvasV2.on('mouse:wheel', function(opt) {
+    var delta = opt.e.deltaY;
+    var zoom = canvasV2.getZoom();
+    zoom *= 0.999 ** delta;
+    if (zoom > 5) zoom = 5;
+    if (zoom < 0.1) zoom = 0.1;
+    
+    // Zoom to cursor point
+    canvasV2.zoomToPoint({ x: opt.e.offsetX, y: opt.e.offsetY }, zoom);
+    
+    opt.e.preventDefault();
+    opt.e.stopPropagation();
+    
+    currentZoomV2 = zoom;
+    var zVal = document.getElementById('editor-zoom-val');
+    if (zVal) zVal.textContent = Math.round(zoom * 100) + '%';
+  });
+
+  canvasV2.on('mouse:down', function(opt) {
+    var evt = opt.e;
+    if (evt.altKey === true) {
+      this.isDragging = true;
+      this.selection = false;
+      this.lastPosX = evt.clientX;
+      this.lastPosY = evt.clientY;
+    }
+  });
+
+  canvasV2.on('mouse:move', function(opt) {
+    if (this.isDragging) {
+      var e = opt.e;
+      var vpt = this.viewportTransform;
+      vpt[4] += e.clientX - this.lastPosX;
+      vpt[5] += e.clientY - this.lastPosY;
+      this.requestRenderAll();
+      this.lastPosX = e.clientX;
+      this.lastPosY = e.clientY;
+    }
+  });
+
+  canvasV2.on('mouse:up', function(opt) {
+    this.isDragging = false;
+    this.selection = true;
   });
 
   // Initialize Lucide icons
@@ -652,7 +724,8 @@ function resetEditor() {
 function zoomEditor(delta) {
   currentZoomV2 += delta;
   currentZoomV2 = Math.min(Math.max(0.1, currentZoomV2), 5);
-  canvasV2.setZoom(currentZoomV2);
+  // Zoom to center of the canvas
+  canvasV2.zoomToPoint({ x: canvasV2.width / 2, y: canvasV2.height / 2 }, currentZoomV2);
   document.getElementById('editor-zoom-val').textContent = Math.round(currentZoomV2 * 100) + '%';
 }
 
@@ -668,47 +741,288 @@ function applyAndNextV2() {
 
 // Step 3 — Grid maker
 var gridBaseImg=null;
+var gridPanX = 0, gridPanY = 0, isDraggingGrid = false, lastGridX, lastGridY;
+var gridTool = 'pan';
+var gridSnappedLines = []; // Format: {c1, r1, c2, r2, color}
+var dragStartPoint = null; // {c, r}
+var currentMousePos = null; // {x, y}
+
+function setGridTool(tool){
+  gridTool = tool;
+  var panBtn = document.getElementById('gt-pan');
+  var drawBtn = document.getElementById('gt-draw');
+  var eraseBtn = document.getElementById('gt-erase');
+  
+  if(panBtn && drawBtn && eraseBtn){
+    [panBtn, drawBtn, eraseBtn].forEach(btn => btn.classList.remove('active'));
+    var active = (tool === 'pan') ? panBtn : (tool === 'draw' ? drawBtn : eraseBtn);
+    active.classList.add('active');
+  }
+
+  var c = document.getElementById('grid-canvas');
+  if(c) {
+    if(tool === 'pan') c.style.cursor = 'grab';
+    else if(tool === 'draw') c.style.cursor = 'crosshair';
+    else c.style.cursor = 'no-drop';
+  }
+  drawGrid();
+}
+
+function clearGridDrawings(){
+  gridSnappedLines = [];
+  drawGrid();
+}
+
+// Helper for Eraser tool
+function distToSegment(px, py, x1, y1, x2, y2) {
+  var l2 = Math.hypot(x1 - x2, y1 - y2)**2;
+  if (l2 == 0) return Math.hypot(px - x1, py - y1);
+  var t = ((px - x1) * (x2 - x1) + (py - y1) * (y2 - y1)) / l2;
+  t = Math.max(0, Math.min(1, t));
+  return Math.hypot(px - (x1 + t * (x2 - x1)), py - (y1 + t * (y2 - y1)));
+}
+
+function getClosestIntersection(sx, sy, c){
+  var rect = c.getBoundingClientRect();
+  var cw_int = c.width, ch_int = c.height;
+  var s = Math.min(rect.width / cw_int, rect.height / ch_int);
+  var ox = (rect.width - cw_int * s) / 2, oy = (rect.height - ch_int * s) / 2;
+  var cx = (sx - ox) / s, cy = (sy - oy) / s;
+
+  var zm = document.getElementById('g-zm').value/100;
+  var cols=parseInt(document.getElementById('g-cols').value)||8;
+  var rows=parseInt(document.getElementById('g-rows').value)||8;
+  var margin=parseInt(document.getElementById('g-margin').value)||0;
+  var isSquare=document.getElementById('g-square').checked;
+
+  var availableWidth = cw_int - (margin * 2);
+  var availableHeight = ch_int - (margin * 2);
+  var cw = availableWidth / cols;
+  var ch = availableHeight / rows;
+  if(isSquare) ch = cw;
+
+  var ix = (cx - gridPanX - cw_int/2) / zm + cw_int/2;
+  var iy = (cy - gridPanY - ch_int/2) / zm + ch_int/2;
+
+  var c_idx = Math.round((ix - margin) / cw);
+  var r_idx = Math.round((iy - margin) / ch);
+
+  if(c_idx >= 0 && c_idx <= cols && r_idx >= 0 && r_idx <= rows){
+    var tx = margin + c_idx * cw, ty = margin + r_idx * ch;
+    if(Math.hypot(ix - tx, iy - ty) < 30 / zm) return {c: c_idx, r: r_idx, x: tx, y: ty, ix: ix, iy: iy};
+  }
+  return {ix: ix, iy: iy}; 
+}
+
 function initGrid(){
   var c=document.getElementById('grid-canvas');
   gridBaseImg=new Image();
-  gridBaseImg.onload=function(){c.width=gridBaseImg.width;c.height=gridBaseImg.height;drawGrid();};
+  gridBaseImg.onload=function(){
+    c.width=gridBaseImg.width;
+    c.height=gridBaseImg.height;
+    gridPanX = 0; gridPanY = 0; 
+    gridSnappedLines = [];
+    drawGrid();
+  };
   gridBaseImg.src=ag.edited||ag.ref;
+
+  var lastPinchDist = null;
+
+  function handleDown(e, isTouch){
+    var rect = c.getBoundingClientRect();
+    if(isTouch && e.touches.length === 2){
+      lastPinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      return;
+    }
+    var clientX = isTouch ? e.touches[0].clientX : e.clientX;
+    var clientY = isTouch ? e.touches[0].clientY : e.clientY;
+    var inter = getClosestIntersection(clientX - rect.left, clientY - rect.top, c);
+
+    if(gridTool === 'pan'){
+      isDraggingGrid = true;
+      lastGridX = clientX; lastGridY = clientY;
+      c.style.cursor = 'grabbing';
+    } else if(gridTool === 'draw'){
+      if(inter.c !== undefined) dragStartPoint = inter;
+    } else if(gridTool === 'erase'){
+      var threshold = 15 / (document.getElementById('g-zm').value/100);
+      var cols=parseInt(document.getElementById('g-cols').value)||8, rows=parseInt(document.getElementById('g-rows').value)||8;
+      var margin=parseInt(document.getElementById('g-margin').value)||0, isSquare=document.getElementById('g-square').checked;
+      var cw = (c.width - margin*2)/cols, ch = (isSquare ? cw : (c.height - margin*2)/rows);
+      var idxToRemove = -1;
+      for(var i=gridSnappedLines.length-1; i>=0; i--){
+        var l = gridSnappedLines[i];
+        var d = distToSegment(inter.ix, inter.iy, margin+l.c1*cw, margin+l.r1*ch, margin+l.c2*cw, margin+l.r2*ch);
+        if(d < threshold) { idxToRemove = i; break; }
+      }
+      if(idxToRemove > -1) { gridSnappedLines.splice(idxToRemove, 1); drawGrid(); }
+    }
+    if(isTouch) e.preventDefault();
+  }
+
+  function handleMove(e, isTouch){
+    var rect = c.getBoundingClientRect();
+    if(isTouch && e.touches.length === 2 && lastPinchDist){
+      var dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      var zmInput = document.getElementById('g-zm');
+      var delta = (dist - lastPinchDist) * 0.5;
+      var newVal = Math.min(Math.max(50, parseInt(zmInput.value) + delta), 300);
+      zmInput.value = newVal;
+      lastPinchDist = dist;
+      drawGrid();
+      e.preventDefault();
+      return;
+    }
+
+    var clientX = isTouch ? e.touches[0].clientX : e.clientX;
+    var clientY = isTouch ? e.touches[0].clientY : e.clientY;
+
+    if(isDraggingGrid && gridTool === 'pan'){
+      var canvasScale = c.width / rect.width;
+      gridPanX += (clientX - lastGridX) * canvasScale;
+      gridPanY += (clientY - lastGridY) * canvasScale;
+      lastGridX = clientX; lastGridY = clientY;
+      drawGrid();
+    } else if(dragStartPoint && gridTool === 'draw'){
+      var s = Math.min(rect.width/c.width, rect.height/c.height);
+      var ox = (rect.width - c.width*s)/2, oy = (rect.height - c.height*s)/2;
+      var cx = (clientX - rect.left - ox)/s, cy = (clientY - rect.top - oy)/s;
+      var zm = document.getElementById('g-zm').value/100;
+      currentMousePos = {x: (cx - gridPanX - c.width/2)/zm + c.width/2, y: (cy - gridPanY - c.height/2)/zm + c.height/2};
+      drawGrid();
+    }
+    if(isTouch && (isDraggingGrid || dragStartPoint)) e.preventDefault();
+  }
+
+  function handleUp(e, isTouch){
+    lastPinchDist = null;
+    if(dragStartPoint && gridTool === 'draw'){
+      var rect = c.getBoundingClientRect();
+      var clientX = isTouch ? (e.changedTouches ? e.changedTouches[0].clientX : 0) : e.clientX;
+      var clientY = isTouch ? (e.changedTouches ? e.changedTouches[0].clientY : 0) : e.clientY;
+      var inter = getClosestIntersection(clientX - rect.left, clientY - rect.top, c);
+      if(inter.c !== undefined && (inter.c !== dragStartPoint.c || inter.r !== dragStartPoint.r)){
+        gridSnappedLines.push({c1: dragStartPoint.c, r1: dragStartPoint.r, c2: inter.c, r2: inter.r});
+      }
+    }
+    isDraggingGrid = false; dragStartPoint = null; currentMousePos = null;
+    if(c) c.style.cursor = (gridTool === 'pan' ? 'grab' : (gridTool === 'draw' ? 'crosshair' : 'no-drop'));
+    drawGrid();
+  }
+
+  c.onmousedown = function(e){ handleDown(e, false); };
+  c.ontouchstart = function(e){ handleDown(e, true); };
+
+  if(!window.gridEventsBound){
+    window.addEventListener('mousemove', function(e){ handleMove(e, false); });
+    window.addEventListener('touchmove', function(e){ handleMove(e, true); }, {passive: false});
+    window.addEventListener('mouseup', function(e){ handleUp(e, false); });
+    window.addEventListener('touchend', function(e){ handleUp(e, true); });
+    window.gridEventsBound = true;
+  }
+
+  c.onwheel = function(e){
+    e.preventDefault();
+    var zmInput = document.getElementById('g-zm');
+    var val = parseInt(zmInput.value);
+    if(e.deltaY < 0) val += 10; else val -= 10;
+    zmInput.value = Math.min(Math.max(50, val), 300);
+    zmInput.dispatchEvent(new Event('input'));
+  };
 }
+
 function drawGrid(){
   var c=document.getElementById('grid-canvas'),ctx=c.getContext('2d');
-  var rows=parseInt(document.getElementById('g-rows').value)||5;
-  var cols=parseInt(document.getElementById('g-cols').value)||5;
-  var thick=parseInt(document.getElementById('g-thick').value)||2;
-  var color=document.getElementById('g-color').value;
+  var cols=parseInt(document.getElementById('g-cols').value)||8, rows=parseInt(document.getElementById('g-rows').value)||8;
+  var margin=parseInt(document.getElementById('g-margin').value)||0, isSquare=document.getElementById('g-square').checked;
+  var thick=parseFloat(document.getElementById('g-thick').value)||2, color=document.getElementById('g-color').value;
   var zm=document.getElementById('g-zm').value/100;
   
   ctx.save();
   ctx.clearRect(0,0,c.width,c.height); 
-  
-  // Center Zoom
-  ctx.translate(c.width/2, c.height/2);
-  ctx.scale(zm, zm);
-  ctx.translate(-c.width/2, -c.height/2);
-  
+  ctx.translate(gridPanX, gridPanY);
+  ctx.translate(c.width/2, c.height/2); ctx.scale(zm, zm); ctx.translate(-c.width/2, -c.height/2);
   ctx.drawImage(gridBaseImg,0,0);
   
-  ctx.strokeStyle=color; ctx.lineWidth=thick/zm; // Compensate thickness for zoom
-  var cw=c.width/cols,ch=c.height/rows;
-  ctx.beginPath();
-  for(var i=1;i<cols;i++){ctx.moveTo(i*cw,0);ctx.lineTo(i*cw,c.height);}
-  for(var j=1;j<rows;j++){ctx.moveTo(0,j*ch);ctx.lineTo(c.width,j*ch);}
+  var cw = (c.width - margin*2)/cols, ch = (isSquare ? cw : (c.height - margin*2)/rows);
+  if(isSquare) { rows = Math.floor((c.height - margin*2)/ch); document.getElementById('g-rows').value = rows; }
+
+  // Draw Snapped Lines (using Grid Color)
+  ctx.strokeStyle = color; ctx.lineWidth = (thick * 1.5) / zm;
+  gridSnappedLines.forEach(l => {
+    ctx.beginPath(); ctx.moveTo(margin + l.c1 * cw, margin + l.r1 * ch); ctx.lineTo(margin + l.c2 * cw, margin + l.r2 * ch); ctx.stroke();
+  });
+
+  // Preview Line
+  if(dragStartPoint && currentMousePos){
+    ctx.setLineDash([5, 5]); ctx.beginPath(); ctx.moveTo(margin + dragStartPoint.c * cw, margin + dragStartPoint.r * ch);
+    ctx.lineTo(currentMousePos.x, currentMousePos.y); ctx.stroke(); ctx.setLineDash([]);
+  }
+
+  // Grid Lines
+  ctx.lineWidth=thick/zm; ctx.beginPath();
+  for(var i=0; i<=cols; i++){ var x = margin + i*cw; ctx.moveTo(x, margin); ctx.lineTo(x, margin + rows*ch); }
+  for(var j=0; j<=rows; j++){ var y = margin + j*ch; ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); }
   ctx.stroke();
+
+  // Intersection Dots (only in Draw/Erase mode)
+  if(gridTool === 'draw' || gridTool === 'erase'){
+    ctx.fillStyle = color;
+    for(var i=0; i<=cols; i++) for(var j=0; j<=rows; j++){
+      ctx.beginPath(); ctx.arc(margin + i*cw, margin + j*ch, 4/zm, 0, Math.PI*2); ctx.fill();
+    }
+  }
   ctx.restore();
-  
+  var zVal = Math.round(zm * 100) + '%';
+  document.getElementById('g-zm-val').textContent = zVal;
+  var zi = document.getElementById('g-zm-indicator'); if(zi) zi.textContent = zVal;
   ag.grid=c.toDataURL('image/png');
 }
-['g-rows','g-cols','g-thick','g-color','g-zm'].forEach(function(id){
-  document.getElementById(id).addEventListener('input',function(){
-    if(id==='g-zm') document.getElementById('g-zm-val').textContent=this.value+'%';
-    drawGrid();
-  });
+['g-rows','g-cols','g-thick','g-color','g-zm','g-margin','g-square'].forEach(function(id){
+  var el = document.getElementById(id);
+  if(el) {
+    el.addEventListener('input',function(){
+      drawGrid();
+    });
+  }
 });
-function downloadGrid(){drawGrid();var a=document.createElement('a');a.download='sldrawing_grid.png';a.href=ag.grid;a.click();}
+function downloadGrid(){
+  var tempC = document.createElement('canvas');
+  tempC.width = gridBaseImg.width;
+  tempC.height = gridBaseImg.height;
+  var ctx = tempC.getContext('2d');
+  
+  var cols=parseInt(document.getElementById('g-cols').value)||8;
+  var rows=parseInt(document.getElementById('g-rows').value)||8;
+  var margin=parseInt(document.getElementById('g-margin').value)||0;
+  var isSquare=document.getElementById('g-square').checked;
+  var thick=parseFloat(document.getElementById('g-thick').value)||2;
+  var color=document.getElementById('g-color').value;
+  
+  ctx.drawImage(gridBaseImg, 0, 0);
+  
+  var cw = (tempC.width - margin*2)/cols;
+  var ch = (isSquare ? cw : (tempC.height - margin*2)/rows);
+  var actualRows = isSquare ? Math.floor((tempC.height - margin*2)/ch) : rows;
+
+  // Snapped Lines
+  ctx.strokeStyle = color; ctx.lineWidth = thick * 1.5;
+  gridSnappedLines.forEach(l => {
+    ctx.beginPath(); ctx.moveTo(margin + l.c1 * cw, margin + l.r1 * ch); ctx.lineTo(margin + l.c2 * cw, margin + l.r2 * ch); ctx.stroke();
+  });
+
+  // Grid Lines
+  ctx.strokeStyle = color; ctx.lineWidth = thick;
+  ctx.beginPath();
+  for(var i=0; i<=cols; i++){ var x = margin + i*cw; ctx.moveTo(x, margin); ctx.lineTo(x, margin + actualRows*ch); }
+  for(var j=0; j<=actualRows; j++){ var y = margin + j*ch; ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); }
+  ctx.stroke();
+
+  var a = document.createElement('a');
+  a.download = 'high_quality_grid.png';
+  a.href = tempC.toDataURL('image/png', 1.0);
+  a.click();
+}
 
 // Step 4 — Sketch upload
 document.getElementById('sketch-input').addEventListener('change',function(){
