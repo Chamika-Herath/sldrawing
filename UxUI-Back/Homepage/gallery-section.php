@@ -38,22 +38,22 @@
         
         <div class="gallery-grid">
             <div class="gallery-item reveal" style="transition-delay: 0.1s;">
-                <img src="/assets/images/gallery_item_1_1773937144132.png">
+                <img src="/assets/images/booking_card_1.png">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.2s;">
-                <img src="/assets/images/gallery_item_2_1773937165255.png">
+                <img src="/assets/images/booking_card_2.png">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.3s;">
-                <img src="/assets/images/gallery_item_3_1773937185116.png">
+                <img src="/assets/images/booking_card_3.png">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.4s;">
-                <img src="/assets/images/tutorial_portrait_1773936991179.png">
+                <img src="/assets/images/feature_card_1.png">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.5s;">
-                <img src="/assets/images/tutorial_coloring_1773937010332.png">
+                <img src="/assets/images/feature_card_2.png">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.6s;">
-                <img src="/assets/images/gallery_item_new.png">
+                <img src="/assets/images/feature_card_3.png">
             </div>
         </div>
     </div>
