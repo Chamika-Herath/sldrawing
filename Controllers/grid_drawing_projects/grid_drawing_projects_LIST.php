@@ -1,0 +1,34 @@
+<?php
+class grid_drawing_projects_LIST{
+    private $sql_seach_data = "";
+    private $sql_process_data = "*";
+    private $pagination_data_result;
+    private $ast = "1";
+
+    public function get_all_data()
+    {
+        $this->sql_process_data = "*";
+    }   
+    public function get_count_report()
+    {
+        $this->sql_process_data = " count(id) ";
+    }
+    public function get_average_report()
+    {
+        $this->sql_process_data = " AVG(rate) as avg_rate, count(id) as total_count ";
+    }
+    public function set_data_limits($start_point, $per_page_data_count)
+    {
+        $this->pagination_data_result = " ORDER BY id DESC LIMIT " . $start_point . ", " . $per_page_data_count . " ";
+    }
+    public function remove_list()
+    {
+        $this->ast = "0";
+    }
+
+    public function filter_by_user_id($get_user_id)
+    {
+        $this->sql_seach_data .= " AND r.main_user_login_id='" . $get_user_id . "'";
+    }
+
+}

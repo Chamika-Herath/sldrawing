@@ -8,13 +8,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Portal | Login</title>
-        <link rel="icon" type="image/png" href="https://www.svgrepo.com/show/373594/favicon.svg">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <title>ERP Admin Portal | Change Password</title>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-
+        <link rel="icon" type="image/png" href="https://www.svgrepo.com/show/373594/favicon.svg">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <style>
             /* ===== GLOBAL COLOR SYSTEM ===== ---------------------------------------------------colors and spacing*/
             :root {
@@ -38,11 +36,6 @@
                 --erp-accent-warning: #d69e2e;
                 --erp-accent-error: #e53e3e;
                 --erp-accent-info: #3182ce;
-
-                /* Social Brand Colors */
-                --erp-google: #db4437;
-                --erp-microsoft: #00a4ef;
-                --erp-facebook: #1877f2;
 
                 /* Shadows */
                 --erp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -84,7 +77,6 @@
 
             /* ===== LAYOUT CONTAINERS ===== */
             .erp-container {
-
                 width: 100%;
                 max-width: 1200px;
                 margin: 0 auto;
@@ -251,101 +243,9 @@
                 box-shadow: 0 0 0 3px var(--erp-primary-subtle);
             }
 
-            .erp-btn--secondary {
-                background-color: transparent;
-                color: var(--erp-text-secondary);
-                border: 1px solid var(--erp-border);
-            }
-
-            .erp-btn--secondary:hover {
-                background-color: var(--erp-surface-alt);
-                border-color: var(--erp-border-dark);
-            }
-
-            .erp-btn--google {
-                background-color: white;
-                color: var(--erp-text-primary);
-                border: 1px solid var(--erp-border);
-            }
-
-            .erp-btn--google:hover {
-                background-color: var(--erp-surface-alt);
-                border-color: var(--erp-google);
-            }
-
-            .erp-btn--microsoft {
-                background-color: white;
-                color: var(--erp-text-primary);
-                border: 1px solid var(--erp-border);
-            }
-
-            .erp-btn--microsoft:hover {
-                background-color: var(--erp-surface-alt);
-                border-color: var(--erp-microsoft);
-            }
-
-            .erp-btn--facebook {
-                background-color: white;
-                color: var(--erp-text-primary);
-                border: 1px solid var(--erp-border);
-            }
-
-            .erp-btn--facebook:hover {
-                background-color: var(--erp-surface-alt);
-                border-color: var(--erp-facebook);
-            }
-
             .erp-btn--block {
                 display: flex;
                 width: 100%;
-            }
-
-            /* ===== SOCIAL LOGIN GRID ===== */
-            .erp-social-login {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: var(--erp-space-sm);
-                margin-bottom: var(--erp-space-xl);
-            }
-
-            .erp-social-login__item {
-                text-align: center;
-            }
-
-            .erp-social-login__icon {
-                font-size: 18px;
-            }
-
-            .erp-social-login__icon--google {
-                color: var(--erp-google);
-            }
-
-            .erp-social-login__icon--microsoft {
-                color: var(--erp-microsoft);
-            }
-
-            .erp-social-login__icon--facebook {
-                color: var(--erp-facebook);
-            }
-
-            /* ===== DIVIDER ===== */
-            .erp-divider {
-                display: flex;
-                align-items: center;
-                margin: var(--erp-space-lg) 0;
-            }
-
-            .erp-divider__line {
-                flex: 1;
-                height: 1px;
-                background-color: var(--erp-border);
-            }
-
-            .erp-divider__text {
-                padding: 0 var(--erp-space-md);
-                color: var(--erp-text-tertiary);
-                font-size: 14px;
-                font-weight: 500;
             }
 
             /* ===== UTILITY CLASSES ===== */
@@ -445,11 +345,6 @@
                     padding: var(--erp-space-md) var(--erp-space-lg);
                 }
 
-                .erp-social-login {
-                    grid-template-columns: 1fr;
-                    gap: var(--erp-space-xs);
-                }
-
                 body {
                     padding: var(--erp-space-sm);
                 }
@@ -458,20 +353,14 @@
     </head>
 
     <body>
+        <?php include_once '../../UxUI-Back/Common/header.php'; ?>
 
-        <!-- DB included part  -->
         <?php
-        include_once '../../imports/Company_Info/Company_Info_Variable_List.php';
-        include_once '../../View-List/Main/Google-Login/Main_User_Google_Login_Config.php';
-        include_once '../../View-List/Main/Microsoft-Login/Main_User_Microsoft_Login_Config.php';
-        include_once '../../UxUI-Back/Common/header.php';
+        include_once '../../UxUI-Back/Main/Change-Password/change_password.php';
+        include_once '../../UxUI-Back/Main/Change-Password/JS/change_password_JS.php';
         ?>
 
 
-        <?php
-        include_once '../../UxUI-Back/Main/Main_User_Login/JS/User_Login_A_01_JS.php';
-        include_once '../../UxUI-Back/Main/Main_User_Login/User_Login_A_01.php';
-        ?>
         <?php include_once '../../UxUI-Back/Common/footer.php'; ?>
     </body>
 
