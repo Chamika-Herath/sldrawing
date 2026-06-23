@@ -13,27 +13,27 @@ include_once '../../imports/need/session_setup.php';
     <style>
         /* ===== GLOBAL COLOR SYSTEM ===== */
         :root {
-            /* Primary ERP Brand Colors - Updated to Green Theme */
-            --erp-primary: #2d8556;
-            --erp-primary-dark: #1e5b37;
-            --erp-primary-light: #48bb78;
-            --erp-primary-subtle: #f0fff4;
+            /* Vibrant Artistic Primary Colors */
+            --erp-primary: #fe621d;
+            --erp-primary-dark: #d94b0f;
+            --erp-primary-light: #ff874f;
+            --erp-primary-subtle: rgba(254, 98, 29, 0.25);
 
-            /* Success Colors */
-            --erp-success-light: #c6f6d5;
-            --erp-success-medium: #9ae6b4;
-            --erp-success-dark: #38a169;
-            --erp-success-darker: #276749;
-            --erp-success-glow: rgba(72, 187, 120, 0.3);
+            /* Success Colors (Warm Orange Theme) */
+            --erp-success-light: #ffb74d;
+            --erp-success-medium: #ff9800;
+            --erp-success-dark: #fe621d;
+            --erp-success-darker: #d94b0f;
+            --erp-success-glow: rgba(254, 98, 29, 0.4);
 
             /* Neutral Colors */
-            --erp-surface: #ffffff;
-            --erp-surface-alt: #f7fafc;
-            --erp-border: #e2e8f0;
-            --erp-border-dark: #cbd5e0;
-            --erp-text-primary: #2d3748;
-            --erp-text-secondary: #4a5568;
-            --erp-text-tertiary: #718096;
+            --erp-surface: rgba(25, 25, 35, 0.55);
+            --erp-surface-alt: rgba(25, 25, 35, 0.35);
+            --erp-border: rgba(255, 255, 255, 0.15);
+            --erp-border-dark: rgba(255, 255, 255, 0.3);
+            --erp-text-primary: #ffffff;
+            --erp-text-secondary: rgba(255, 255, 255, 0.85);
+            --erp-text-tertiary: rgba(255, 255, 255, 0.6);
 
             /* Accent Colors */
             --erp-accent-success: #38a169;
@@ -42,10 +42,10 @@ include_once '../../imports/need/session_setup.php';
             --erp-accent-info: #3182ce;
 
             /* Shadows */
-            --erp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --erp-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --erp-shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            --erp-shadow-glow: 0 0 20px rgba(72, 187, 120, 0.4);
+            --erp-shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --erp-shadow-md: 0 8px 25px rgba(0, 0, 0, 0.2);
+            --erp-shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.4);
+            --erp-shadow-glow: 0 0 20px rgba(254, 98, 29, 0.4);
 
             /* Border Radius */
             --erp-radius-sm: 4px;
@@ -70,8 +70,12 @@ include_once '../../imports/need/session_setup.php';
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+            font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+            background-image: url('/assets/images/portrait_background.png') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            background-repeat: no-repeat !important;
             color: var(--erp-text-primary);
             line-height: 1.5;
             min-height: 100vh;
@@ -79,6 +83,7 @@ include_once '../../imports/need/session_setup.php';
             align-items: center;
             justify-content: center;
             padding: var(--erp-space-xl);
+            position: relative;
             overflow-x: hidden;
         }
 
@@ -99,19 +104,22 @@ include_once '../../imports/need/session_setup.php';
         /* ===== LOGIN CARD ===== */
         .erp-login-card {
             width: 100%;
-            background-color: var(--erp-surface);
+            background: var(--erp-surface);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--erp-border);
             border-radius: var(--erp-radius-lg);
             box-shadow: var(--erp-shadow-lg);
             overflow: hidden;
             min-height: auto;
             position: relative;
             z-index: 1;
-            border-top: 4px solid var(--erp-success-dark);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .erp-login-card__header {
-            background: linear-gradient(90deg, var(--erp-success-dark) 0%, var(--erp-success-darker) 100%);
-            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--erp-border);
             padding: var(--erp-space-xl) var(--erp-space-xl) var(--erp-space-lg);
             text-align: center;
             position: relative;
@@ -523,12 +531,13 @@ include_once '../../imports/need/session_setup.php';
 
         /* ===== FOOTER ===== */
         .erp-login-card__footer {
-            padding: var(--erp-space-lg) var(--erp-space-xl);
-            background-color: var(--erp-surface-alt);
+            padding: var(--erp-space-md) var(--erp-space-xl);
+            background: rgba(0, 0, 0, 0.2);
             border-top: 1px solid var(--erp-border);
             text-align: center;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
         .erp-footer__copyright {
@@ -605,12 +614,12 @@ include_once '../../imports/need/session_setup.php';
 </head>
 
 <body>
-    <?php include_once '../../UxUI-Back/Common/header.php'; ?>
+    
     <?php
     include_once '../../UxUI-Back/Main/Successful-Page/Successful-Page.php';
     ?>
 
-    <?php include_once '../../UxUI-Back/Common/footer.php'; ?>
+    
 </body>
 
 </html>

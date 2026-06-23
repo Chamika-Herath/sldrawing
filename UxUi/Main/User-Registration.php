@@ -12,43 +12,45 @@ include_once '../../imports/need/session_setup.php';
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ===== GLOBAL COLOR SYSTEM ===== ---------------------------------------------------colors and spacing*/
-        :root {
-            /* Primary ERP Brand Colors */
-            --erp-primary: #2c5282;
-            --erp-primary-dark: #1a365d;
-            --erp-primary-light: #4299e1;
-            --erp-primary-subtle: #ebf8ff;
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
-            /* Neutral Colors */
-            --erp-surface: #ffffff;
-            --erp-surface-alt: #f7fafc;
-            --erp-border: #e2e8f0;
-            --erp-border-dark: #cbd5e0;
-            --erp-text-primary: #2d3748;
-            --erp-text-secondary: #4a5568;
-            --erp-text-tertiary: #718096;
+        /* ===== GLOBAL COLOR SYSTEM (ARTISTIC & GLASSMORPHISM) ===== */
+        :root {
+            /* Vibrant Artistic Primary Colors */
+            --erp-primary: #fe621d;
+            --erp-primary-dark: #d94b0f;
+            --erp-primary-light: #ff874f;
+            --erp-primary-subtle: rgba(254, 98, 29, 0.25);
+
+            /* Glassmorphism Neutral Colors */
+            --erp-surface: rgba(25, 25, 35, 0.55);
+            --erp-surface-alt: rgba(25, 25, 35, 0.35);
+            --erp-border: rgba(255, 255, 255, 0.15);
+            --erp-border-dark: rgba(255, 255, 255, 0.3);
+            --erp-text-primary: #ffffff;
+            --erp-text-secondary: rgba(255, 255, 255, 0.85);
+            --erp-text-tertiary: rgba(255, 255, 255, 0.6);
 
             /* Accent Colors */
-            --erp-accent-success: #38a169;
-            --erp-accent-warning: #d69e2e;
-            --erp-accent-error: #e53e3e;
-            --erp-accent-info: #3182ce;
+            --erp-accent-success: #00e676;
+            --erp-accent-warning: #ffd600;
+            --erp-accent-error: #ff1744;
+            --erp-accent-info: #00e5ff;
 
             /* Social Brand Colors */
-            --erp-google: #db4437;
+            --erp-google: #ea4335;
             --erp-microsoft: #00a4ef;
             --erp-facebook: #1877f2;
 
             /* Shadows */
-            --erp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --erp-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --erp-shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --erp-shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --erp-shadow-md: 0 8px 25px rgba(0, 0, 0, 0.2);
+            --erp-shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.4);
 
             /* Border Radius */
-            --erp-radius-sm: 4px;
-            --erp-radius-md: 8px;
-            --erp-radius-lg: 12px;
+            --erp-radius-sm: 8px;
+            --erp-radius-md: 12px;
+            --erp-radius-lg: 20px;
 
             /* Spacing Scale */
             --erp-space-xs: 8px;
@@ -67,8 +69,12 @@ include_once '../../imports/need/session_setup.php';
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+            font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+            background-image: url('/assets/images/portrait_background.png') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            background-repeat: no-repeat !important;
             color: var(--erp-text-primary);
             line-height: 1.5;
             min-height: 100vh;
@@ -76,16 +82,20 @@ include_once '../../imports/need/session_setup.php';
             align-items: center;
             justify-content: center;
             padding: var(--erp-space-xl);
+            position: relative;
+            overflow-x: hidden;
         }
 
         /* ===== LAYOUT CONTAINERS ===== */
         .erp-container {
             width: 100%;
             max-width: 1200px;
-            /*            margin: 0 auto;*/
+            margin: 0 auto;
             padding: 0 var(--erp-space-md);
-            margin-top: 100px;
-            margin-bottom: 100px;
+            position: relative;
+            z-index: 1;
+            margin-top: 50px;
+            margin-bottom: 50px;
         }
 
         .erp-container--registration {
@@ -95,37 +105,51 @@ include_once '../../imports/need/session_setup.php';
         /* ===== REGISTRATION CARD ===== */
         .erp-registration-card {
             width: 100%;
-            background-color: var(--erp-surface);
+            background: var(--erp-surface);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--erp-border);
             border-radius: var(--erp-radius-lg);
             box-shadow: var(--erp-shadow-lg);
             overflow: hidden;
-            min-height: auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .erp-registration-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
 
         .erp-registration-card__header {
-            background: linear-gradient(90deg, var(--erp-primary) 0%, var(--erp-primary-dark) 100%);
-            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--erp-border);
             padding: var(--erp-space-xl) var(--erp-space-xl) var(--erp-space-lg);
             text-align: center;
             position: relative;
         }
 
         .erp-registration-card__logo {
-            font-size: 40px;
+            font-size: 48px;
             margin-bottom: var(--erp-space-sm);
-            color: white;
+            color: var(--erp-primary-light);
+            text-shadow: 0 0 20px var(--erp-primary-subtle);
         }
 
         .erp-registration-card__title {
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
             margin-bottom: var(--erp-space-xs);
+            background: linear-gradient(135deg, #fff, #e2e2e2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .erp-registration-card__subtitle {
-            font-size: 14px;
-            opacity: 0.9;
-            font-weight: 400;
+            font-size: 15px;
+            opacity: 0.8;
+            font-weight: 300;
+            color: var(--erp-text-secondary);
         }
 
         .erp-registration-card__body {
@@ -139,73 +163,90 @@ include_once '../../imports/need/session_setup.php';
 
         .erp-form__group {
             margin-bottom: var(--erp-space-lg);
+            position: relative;
         }
 
         .erp-form__label {
             display: block;
             margin-bottom: var(--erp-space-xs);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             color: var(--erp-text-secondary);
         }
 
         .erp-form__control {
             width: 100%;
-            padding: var(--erp-space-sm) var(--erp-space-md);
+            padding: 14px var(--erp-space-md);
             border: 1px solid var(--erp-border);
             border-radius: var(--erp-radius-md);
-            font-size: 15px;
-            transition: all 0.2s ease;
-            background-color: white;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: rgba(0, 0, 0, 0.2);
             color: var(--erp-text-primary);
+        }
+
+        .erp-form__control::placeholder {
+            color: var(--erp-text-tertiary);
         }
 
         .erp-form__control:hover {
             border-color: var(--erp-border-dark);
+            background-color: rgba(0, 0, 0, 0.3);
         }
 
         .erp-form__control:focus {
             outline: none;
             border-color: var(--erp-primary-light);
-            box-shadow: 0 0 0 3px var(--erp-primary-subtle);
+            background-color: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 0 4px var(--erp-primary-subtle);
+            transform: translateY(-2px);
         }
 
         .erp-form__control--with-icon {
-            padding-left: 44px;
+            padding-left: 48px;
         }
 
         .erp-form__control--with-toggle {
-            padding-right: 44px;
+            padding-right: 48px;
         }
 
         .erp-form__icon {
             position: absolute;
-            left: var(--erp-space-md);
+            left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--erp-text-tertiary);
-            font-size: 16px;
+            color: var(--erp-primary-light);
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .erp-form__control:focus ~ .erp-form__icon {
+            color: #fff;
         }
 
         .erp-form__toggle {
             position: absolute;
-            right: var(--erp-space-md);
+            right: 18px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--erp-text-tertiary);
-            font-size: 16px;
+            font-size: 18px;
             cursor: pointer;
-            transition: color 0.2s;
+            transition: all 0.2s ease;
         }
 
         .erp-form__toggle:hover {
-            color: var(--erp-text-secondary);
+            color: #fff;
+            transform: translateY(-50%) scale(1.1);
         }
 
         .erp-form__hint {
             display: block;
-            margin-top: 6px;
-            font-size: 12px;
+            margin-top: 8px;
+            font-size: 13px;
             color: var(--erp-text-tertiary);
         }
 
@@ -231,41 +272,40 @@ include_once '../../imports/need/session_setup.php';
 
         /* ===== PASSWORD STRENGTH INDICATOR ===== */
         .erp-password-strength {
-            margin-top: var(--erp-space-xs);
+            margin-top: var(--erp-space-sm);
         }
 
         .erp-password-strength__bar {
-            height: 4px;
-            background-color: var(--erp-border);
-            border-radius: 2px;
-            margin-bottom: 6px;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-bottom: 8px;
             overflow: hidden;
         }
 
         .erp-password-strength__fill {
             height: 100%;
             width: 0%;
-            transition: width 0.3s ease, background-color 0.3s ease;
-            border-radius: 2px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
+            border-radius: 3px;
+            box-shadow: 0 0 10px currentColor;
         }
 
         .erp-password-strength__fill--weak {
             background-color: var(--erp-accent-error);
-            width: 33%;
         }
 
         .erp-password-strength__fill--fair {
             background-color: var(--erp-accent-warning);
-            width: 66%;
         }
 
         .erp-password-strength__fill--strong {
             background-color: var(--erp-accent-success);
-            width: 100%;
         }
 
         .erp-password-strength__text {
-            font-size: 12px;
+            font-size: 13px;
+            font-weight: 500;
             color: var(--erp-text-tertiary);
         }
 
@@ -278,14 +318,18 @@ include_once '../../imports/need/session_setup.php';
         }
 
         .erp-terms__checkbox {
-            margin-top: 2px;
-            accent-color: var(--erp-primary);
+            margin-top: 4px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--erp-primary-light);
+            cursor: pointer;
         }
 
         .erp-terms__label {
             font-size: 14px;
             color: var(--erp-text-secondary);
-            line-height: 1.4;
+            line-height: 1.5;
+            cursor: pointer;
         }
 
         /* ===== BUTTON SYSTEM ===== */
@@ -293,41 +337,62 @@ include_once '../../imports/need/session_setup.php';
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: var(--erp-space-sm) var(--erp-space-md);
+            padding: var(--erp-space-sm) var(--erp-space-lg);
             border: none;
             border-radius: var(--erp-radius-md);
-            font-size: 15px;
-            font-weight: 500;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
-            gap: 8px;
-            height: 44px;
+            gap: 10px;
+            height: 52px;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .erp-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .erp-btn:hover::after {
+            left: 100%;
         }
 
         .erp-btn--primary {
-            background-color: var(--erp-primary);
+            background: linear-gradient(135deg, var(--erp-primary), var(--erp-primary-dark));
             color: white;
+            box-shadow: 0 4px 15px rgba(254, 98, 29, 0.4);
         }
 
         .erp-btn--primary:hover {
-            background-color: var(--erp-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(254, 98, 29, 0.6);
         }
 
-        .erp-btn--primary:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px var(--erp-primary-subtle);
+        .erp-btn--primary:active {
+            transform: translateY(0);
         }
 
         .erp-btn--secondary {
-            background-color: transparent;
-            color: var(--erp-text-secondary);
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #fff;
             border: 1px solid var(--erp-border);
+            backdrop-filter: blur(10px);
         }
 
         .erp-btn--secondary:hover {
-            background-color: var(--erp-surface-alt);
+            background-color: rgba(255, 255, 255, 0.15);
             border-color: var(--erp-border-dark);
+            transform: translateY(-2px);
         }
 
         .erp-btn--block {
@@ -339,105 +404,94 @@ include_once '../../imports/need/session_setup.php';
         .erp-divider {
             display: flex;
             align-items: center;
-            margin: var(--erp-space-lg) 0;
+            margin: var(--erp-space-xl) 0;
         }
 
         .erp-divider__line {
             flex: 1;
             height: 1px;
-            background-color: var(--erp-border);
+            background: linear-gradient(90deg, transparent, var(--erp-border-dark), transparent);
         }
 
         .erp-divider__text {
             padding: 0 var(--erp-space-md);
             color: var(--erp-text-tertiary);
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* ===== UTILITY CLASSES ===== */
-        .erp-text-center {
-            text-align: center;
-        }
-
-        .erp-mt-xs {
-            margin-top: var(--erp-space-xs);
-        }
-
-        .erp-mt-sm {
-            margin-top: var(--erp-space-sm);
-        }
-
-        .erp-mt-md {
-            margin-top: var(--erp-space-md);
-        }
-
-        .erp-mt-lg {
-            margin-top: var(--erp-space-lg);
-        }
-
-        .erp-mt-xl {
-            margin-top: var(--erp-space-xl);
-        }
-
-        .erp-mb-xs {
-            margin-bottom: var(--erp-space-xs);
-        }
-
-        .erp-mb-sm {
-            margin-bottom: var(--erp-space-sm);
-        }
-
-        .erp-mb-md {
-            margin-bottom: var(--erp-space-md);
-        }
-
-        .erp-mb-lg {
-            margin-bottom: var(--erp-space-lg);
-        }
-
-        .erp-mb-xl {
-            margin-bottom: var(--erp-space-xl);
-        }
-
-        .erp-text-sm {
-            font-size: 14px;
-        }
-
-        .erp-text-tertiary {
-            color: var(--erp-text-tertiary);
-        }
-
+        .erp-text-center { text-align: center; }
+        .erp-mt-xs { margin-top: var(--erp-space-xs); }
+        .erp-mt-sm { margin-top: var(--erp-space-sm); }
+        .erp-mt-md { margin-top: var(--erp-space-md); }
+        .erp-mt-lg { margin-top: var(--erp-space-lg); }
+        .erp-mt-xl { margin-top: var(--erp-space-xl); }
+        .erp-mb-xs { margin-bottom: var(--erp-space-xs); }
+        .erp-mb-sm { margin-bottom: var(--erp-space-sm); }
+        .erp-mb-md { margin-bottom: var(--erp-space-md); }
+        .erp-mb-lg { margin-bottom: var(--erp-space-lg); }
+        .erp-mb-xl { margin-bottom: var(--erp-space-xl); }
+        
+        .erp-text-sm { font-size: 14px; }
+        .erp-text-tertiary { color: var(--erp-text-tertiary); }
+        
         .erp-link {
-            color: var(--erp-primary);
+            color: var(--erp-primary-light);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.2s;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .erp-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--erp-primary-light);
+            transition: width 0.3s ease;
         }
 
         .erp-link:hover {
-            color: var(--erp-primary-dark);
-            text-decoration: underline;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .erp-link:hover::after {
+            width: 100%;
+            background-color: #fff;
         }
 
         /* ===== FOOTER ===== */
         .erp-registration-card__footer {
-            padding: var(--erp-space-lg) var(--erp-space-xl);
-            background-color: var(--erp-surface-alt);
+            padding: var(--erp-space-md) var(--erp-space-xl);
+            background: rgba(0, 0, 0, 0.2);
             border-top: 1px solid var(--erp-border);
             text-align: center;
+            backdrop-filter: blur(10px);
         }
 
         .erp-footer__copyright {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--erp-text-tertiary);
-            margin-bottom: var(--erp-space-xs);
+            margin-bottom: 2px;
         }
 
         .erp-footer__version {
             font-size: 11px;
             color: var(--erp-text-tertiary);
-            opacity: 0.8;
+            opacity: 0.6;
+        }
+
+        /* Option styling for selects in registration */
+        select.erp-form__control option {
+            background-color: #24243e;
+            color: #fff;
         }
 
         /* ===== RESPONSIVE ADJUSTMENTS ===== */
@@ -457,7 +511,7 @@ include_once '../../imports/need/session_setup.php';
             }
 
             body {
-                padding: var(--erp-space-sm);
+                padding: var(--erp-space-md);
             }
         }
 
@@ -465,13 +519,15 @@ include_once '../../imports/need/session_setup.php';
             .erp-container--registration {
                 max-width: 100%;
             }
+            .erp-registration-card__title {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 
 <body>
     <?php
-    include_once '../../UxUI-Back/Common/header.php';
     include_once '../../imports/Company_Info/Company_Info_Variable_List.php';
 
     $company_obj = new Company_Info_Variable_List();
@@ -485,7 +541,7 @@ include_once '../../imports/need/session_setup.php';
 
     ?>
 
-    <?php include_once '../../UxUI-Back/Common/footer.php'; ?>
+    
 </body>
 
 </html>

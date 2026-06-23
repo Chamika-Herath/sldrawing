@@ -1,17 +1,69 @@
 <?php
-/**
- * SLdrawing Session and Environment Setup
- */
-if (session_status() == PHP_SESSION_NONE) {
+
+if (session_status() === PHP_SESSION_NONE) {
+    $timeout_duration = 3600 * 24; // 24 hours
+    ini_set('session.gc_maxlifetime', $timeout_duration);
     session_start();
 }
 
-$get_title = "SLdrawing - Unlock Your Creative Potential";
-$get_dis = "Learn portrait drawing, coloring, and grid techniques.";
-$get_key_words = "art, drawing, tutorials, portraits, grid drawing";
-$get_social_title = "SLdrawing - Express Yourself";
-$get_social_dis = "The ultimate creative hub for artists.";
-$image_fb = "/assets/images/shark.png";
-$image_twitter = "/assets/images/shark.png";
-$get_url = "http://localhost:8000";
-?>
+
+$time = $_SERVER['REQUEST_TIME'];
+$_SESSION['LAST_ACTIVITY'] = $time;
+
+
+// $pth = "https://fawaji.infortech.lk/";
+$online_state = false;
+$online_exnction = ".php";
+$online_offline_extention = ".php";
+
+
+
+
+//server
+// $home_page_url="https://fawaji.infortech.lk";
+// $home_page ="https://fawaji.infortech.lk/";
+
+
+
+//localhost
+$home_page_url = "http://localhost:3000/";
+$home_page = "http://localhost:3000/";
+
+// $home_page_url = "https://fawaji.infortech.lk/";
+// $home_page = "https://fawaji.infortech.lk/";
+$User_login_url = "UxUi/Main/";
+
+
+//---------------local host-------------------------------------
+$total_url = $_SERVER['REQUEST_URI']; // e.g.  /folder/sub/page.php
+
+$pth = "";
+
+// split the path into parts
+$parts = explode("/", trim($total_url, "/")); // ["folder", "sub", "page.php"]
+
+// remove the last element (the file itself)
+array_pop($parts);
+
+// count how many folders deep
+$count = count($parts);
+
+// buil$home_page_urld ../
+for ($i = 0; $i < $count; $i++) {
+    $pth .= "../";
+}
+
+//-------------------online-------------------------------
+
+
+$pth_php = dirname(__FILE__);
+
+//---------------local host-------------------------------------
+$_SESSION['pth'] = $pth;
+
+$_SESSION['pth_php'] = $pth_php;
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "0";
+$user_main_cook_id = isset($_SESSION['user_main_cook_id']) ? $_SESSION['user_main_cook_id'] : "0";
+
+//----------------------company data--------------------------------
