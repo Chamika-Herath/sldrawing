@@ -13,7 +13,7 @@ include_once '../../Controllers/Main/main_user_login_device/main_user_login_devi
 include_once '../../Controllers/Main/Cook_Managment/Cook_Createing.php';
 include_once '../../Controllers/Main/User_Accout_Check_Device.php';
 include_once '../../Controllers/Main/User_Accout_Check.php';
-include_once '../../imports/sms/SMS_Sending.php';
+// include_once '../../imports/sms/SMS_Sending.php'; // SMS disabled
 
 
 $get_user_name = isset($_POST['val_01']) ? $_POST['val_01'] : "";
@@ -72,8 +72,8 @@ if ($User_Account_Check_obj->check_user_name()) {
                 $otp = random_int(100000, 999999);
                 $message = "Your OTP code is: $otp. Do not share this code.";
 
-                $sms_obj = new SMS_Sending($phone_number, $message);
-                $sms_obj->send_message();
+                // $sms_obj = new SMS_Sending($phone_number, $message);
+                // $sms_obj->send_message();
 
                 $Advance_Security_Key_List_obj = new Advance_Security_Key_List();
                 $Advance_Security_obj = new Advance_Security();

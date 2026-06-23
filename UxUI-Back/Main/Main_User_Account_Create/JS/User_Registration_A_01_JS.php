@@ -39,7 +39,7 @@
             "&val_02=" + encodeURIComponent(val_02.value) +
             "&val_03=" + "user" +
             "&val_04=" + encodeURIComponent(val_04_child_01.value) +
-            "&val_05=" + "1" + "&val_06=" + "user" +
+            "&val_05=" + "2" + "&val_06=" + "user" +
             "&val_07=" + encodeURIComponent(val_01_child_01.value) +
             "&val_08=" + encodeURIComponent(val_01_child_02.value);
 

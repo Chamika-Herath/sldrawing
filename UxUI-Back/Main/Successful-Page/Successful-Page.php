@@ -264,7 +264,7 @@
                   'Welcome back to the ERP System',
                   'Authentication successful. You are now logged in and your dashboard is loading.',
                   'Go to Dashboard',
-                  '<?php echo $home_page ?>/UxUi/Item-Service/Item-Service-Settings.php',
+                  '<?php echo $home_page ?>',
                   3000,
                   true,
                   'Back to Home',
