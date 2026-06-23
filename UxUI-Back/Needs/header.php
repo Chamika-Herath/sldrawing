@@ -35,6 +35,24 @@
     }
     .nav-link:hover::after, .nav-link.active::after { width: 100%; }
     .nav-link:hover, .nav-link.active { color: var(--primary); transform: translateY(-2px); }
+    .profile-btn {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary) !important;
+        text-decoration: none !important;
+        font-size: 24px !important;
+        padding: 0 10px !important;
+        transition: transform 0.3s ease !important;
+    }
+    .profile-btn:hover {
+        transform: scale(1.1) !important;
+    }
+    @media (max-width: 992px) {
+        .profile-btn {
+            margin: 0 auto;
+        }
+    }
 </style>
 
 <div class="nav-container" style="position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; pointer-events: none;">
@@ -64,18 +82,27 @@
             <li><a href="/tutorials.php" class="nav-link">Tutorials</a></li>
             <li><a href="/studio.php" class="nav-link">Studio</a></li>
             <li><a href="/gallery.php" class="nav-link">Community</a></li>
-            <li><a href="/UxUi/Main/User-Login.php" class="btn btn-primary join-btn" style="
-                padding: 10px 30px; 
-                border-radius: 50px; 
-                background: linear-gradient(45deg, var(--primary), #00d2ff); 
-                border: none; 
-                color: #fff; 
-                font-weight: 800; 
-                text-decoration: none; 
-                display: inline-block; 
-                box-shadow: 0 5px 15px rgba(0, 132, 255, 0.3);
-                transition: transform 0.3s;
-            ">Join Now</a></li>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <li><a href="/UxUi/Main/User-Profile-New.php" class="profile-btn" aria-label="User Profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </a></li>
+            <?php else: ?>
+                <li><a href="/UxUi/Main/User-Login.php" class="btn btn-primary join-btn" style="
+                    padding: 10px 30px; 
+                    border-radius: 50px; 
+                    background: linear-gradient(45deg, var(--primary), #00d2ff); 
+                    border: none; 
+                    color: #fff; 
+                    font-weight: 800; 
+                    text-decoration: none; 
+                    display: inline-block; 
+                    box-shadow: 0 5px 15px rgba(0, 132, 255, 0.3);
+                    transition: transform 0.3s;
+                ">Join Now</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 </div>
