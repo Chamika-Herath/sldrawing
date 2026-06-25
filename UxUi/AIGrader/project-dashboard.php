@@ -1,18 +1,15 @@
-﻿<?php include_once './imports/need/session_setup.php'; ?>
+<?php 
+include_once '../../imports/need/session_setup.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <?php include_once './Meta_Tag/Meta_Tag.php'; ?>
-    <title>AI Grid Drawing System | H.M.C.D. Herath</title>
-</head>
-<body>
-    <?php 
-    include_once './UxUI-Back/Needs/header.php';
-    //include_once './UxUI-Back/Main/ai-grader-content.php';
-    ?>
-    
 
-    <style>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+</head>
+
+<style>
 .ag-wrap{padding:120px 0 80px}
 .dash-hero{text-align:center;margin-bottom:40px}
 .dash-hero h1{font-size:3rem;font-weight:900;letter-spacing:-1px}
@@ -219,46 +216,93 @@ body.dark-theme .editor-main { background: #0f0f14; }
     </div>
   </div>
 
-  <!-- ===== WIZARD ===== -->
-  <div id="wizard-view" class="wizard-view">
-    <button class="back-btn reveal" onclick="showDashboard()">← Back to Projects</button>
-    <div class="stepper reveal" id="stepper"></div>
+<body>
 
 
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            Ai_grader_close_all();
+            alert ("fn");
+            Ai_grader_step_01_OPEN();
+            alert ("fn");
 
-     <?php 
-    include_once './UxUI-Back/Needs/header.php';
+        });
+
+        function main_user_dashboard_close_all() {
+
+            //invoice btn content close
+           //Register_step_close_all();
+            
+
+        }
+
+
+        //invoice managment button open
+        // function step_01_OPEN() {
+
+        //     Register_process_close_all();
+
+        //     Register_process_step_01_OPEN();
+
+        // }
+
+        
+
+
+    </script>
+<!-- 
+    <div class="erp-page-container"> -->
+        
+        <?php 
+        include_once '../../imports/need/DB.php';
+       // include_once '../imports/header/basic_header.php';
+        include_once '../../Controllers/Main/Cook_Managment/Cook_Managing.php';
+
+        include_once '../../UxUI-Back/Needs/Check_User_Login.php';
+        include_once '../../UxUI-Back/Needs/Admin_pannel_Pre_loader.php';
+        ?>
+        
+
     
-    ?>
+   
+    
+
+   
 
 
-    <!--  -->
-     <?php
+
+        <!-- <div class="erp-main-wrapper"> -->
+            <?php
+
+            include_once '../../UxUI-Back/AIGrader/JS/AIGrader_JS.php';
+            include_once '../../UxUI-Back\AIGrader/JS/step1-JS.php';
+            include_once '../../UxUI-Back\AIGrader/JS/step2-JS.php';
+            include_once '../../UxUI-Back\AIGrader/JS/step3-JS.php';
+            include_once '../../UxUI-Back\AIGrader/JS/step4-JS.php';
+            include_once '../../UxUI-Back\AIGrader/JS/step5-JS.php';
 
 
-
-            include_once './UxUI-Back/AIGrader/step1-upload.php';
-            include_once './UxUI-Back/AIGrader/step2-edit.php';
-            include_once './UxUI-Back/AIGrader/step3-grid.php';
-            include_once './UxUI-Back/AIGrader/step4-drawing.php';
-            include_once './UxUI-Back/AIGrader/step5-ai-check.php';
+            include_once '../../UxUI-Back/AIGrader/step1-upload.php';
+            include_once '../../UxUI-Back/AIGrader/step2-edit.php';
+            include_once '../../UxUI-Back/AIGrader/step3-grid.php';
+            include_once '../../UxUI-Back/AIGrader/step4-drawing.php';
+            include_once '../../UxUI-Back/AIGrader/step5-ai-check.php';
 
 
 
 
             ?>
             
+            
+            
 
-  </div><!-- /wizard -->
-</div><!-- /container -->
-<?php
-include_once './UxUI-Back/AIGrader/JS/AIGrader_JS.php';
-include_once './UxUI-Back/AIGrader/JS/step1-JS.php';
-include_once './UxUI-Back/AIGrader/JS/step2-JS.php';
-include_once './UxUI-Back/AIGrader/JS/step3-JS.php';
-include_once './UxUI-Back/AIGrader/JS/step4-JS.php';
-include_once './UxUI-Back/AIGrader/JS/step5-JS.php';
-?>
-<?php include_once './UxUI-Back/Needs/footer.php'; ?>
+        <?php 
+        
+        //include_once '../includes/footer2.php'; 
+        
+        ?>
+
+    <!-- </div> -->
 </body>
+
 </html>

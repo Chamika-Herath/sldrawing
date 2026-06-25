@@ -210,12 +210,36 @@ body.dark-theme .editor-main { background: #0f0f14; }
     <button class="back-btn reveal" onclick="showDashboard()">← Back to Projects</button>
     <div class="stepper reveal" id="stepper"></div>
 
-    <?php include_once __DIR__ . '/../AIGrader/step1-upload.php'; ?>
-    <?php include_once __DIR__ . '/../AIGrader/step2-edit.php'; ?>
-    <?php include_once __DIR__ . '/../AIGrader/step3-grid.php'; ?>
-    <?php include_once __DIR__ . '/../AIGrader/step4-drawing.php'; ?>
-    <?php include_once __DIR__ . '/../AIGrader/step5-ai-check.php'; ?>
 
+
+     <?php 
+    include_once '../../UxUI-Back/Needs/header.php';
+    
+    ?>
+
+
+    <!--  -->
+     <?php
+
+            include_once '../../UxUI-Back/AIGrader/JS/AIGrader_JS.php';
+            include_once '../../UxUI-Back\AIGrader/JS/step1-JS.php';
+            include_once '../../UxUI-Back\AIGrader/JS/step2-JS.php';
+            include_once '../../UxUI-Back\AIGrader/JS/step3-JS.php';
+            include_once '../../UxUI-Back\AIGrader/JS/step4-JS.php';
+            include_once '../../UxUI-Back\AIGrader/JS/step5-JS.php';
+
+
+            include_once '../../UxUI-Back/AIGrader/step1-upload.php';
+            include_once '../../UxUI-Back/AIGrader/step2-edit.php';
+            include_once '../../UxUI-Back/AIGrader/step3-grid.php';
+            include_once '../../UxUI-Back/AIGrader/step4-drawing.php';
+            include_once '../../UxUI-Back/AIGrader/step5-ai-check.php';
+
+
+
+
+            ?>
+<?php include_once './UxUI-Back/Needs/footer.php'; ?>
   </div><!-- /wizard -->
 </div><!-- /container -->
 
