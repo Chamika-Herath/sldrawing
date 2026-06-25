@@ -14,11 +14,21 @@
 .dropzone2.has-image p { display: none; }
 .dropzone2.has-image { padding: 12px 10px; }
 .dz-preview { display: none; max-width: 100%; max-height: 100%; width: auto; height: auto; border-radius: 20px; object-fit: contain; }
+.project-input-wrapper { margin-bottom: 24px; text-align: left; }
+.project-input-label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 0.95rem; }
+.project-input { width: 100%; padding: 14px 18px; border: 2px solid rgba(0,0,0,0.08); border-radius: 12px; font-size: 1rem; transition: all 0.3s; background: rgba(255,255,255,0.8); box-sizing: border-box; }
+.project-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(0, 132, 255, 0.1); }
 </style>
 <div class="step-panel active" id="panel-1">
   <div class="panel-card reveal">
     <div class="panel-title">📸 Upload Reference Image</div>
     <p class="panel-sub">Upload a portrait photo to use as your drawing reference.</p>
+    
+    <div class="project-input-wrapper">
+      <label class="project-input-label" for="project-name">Project Name</label>
+      <input type="text" id="project-name" class="project-input" placeholder="e.g. My Awesome Drawing">
+    </div>
+
     <label class="dropzone2" for="ref-input" id="ref-dz">
       <span class="dz-icon">📷</span>
       <h3>Drop your reference photo here</h3>

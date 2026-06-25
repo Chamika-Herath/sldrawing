@@ -44,7 +44,7 @@ class DataBase
 
         //$this->dbname = "infortech_favaji";
         //$this->dbname = "item_service_managment";
-        $this->dbname = "infirtech_fawaji";
+        $this->dbname = "user_login_db_new";
         //$this->dbname = "mwoa_ecommers_erp";
 
         //  $this->dbname = "item_service_managment";
