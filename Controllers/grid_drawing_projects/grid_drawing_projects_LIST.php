@@ -28,7 +28,13 @@ class grid_drawing_projects_LIST{
 
     public function filter_by_user_id($get_user_id)
     {
-        $this->sql_seach_data .= " AND r.main_user_login_id='" . $get_user_id . "'";
+        $this->sql_seach_data .= " AND main_user_login_id='" . $get_user_id . "'";
     }
 
+    public function get_result()
+    {
+        $data_base_obj = new DataBase();
+        $get_sql_query = "SELECT " . $this->sql_process_data . " FROM grid_drawing_projects WHERE ast='" . $this->ast . "' " . $this->sql_seach_data . " " . $this->pagination_data_result;
+        return $data_base_obj->get_result($get_sql_query);
+    }
 }

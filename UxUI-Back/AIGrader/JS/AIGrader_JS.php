@@ -1,4 +1,4 @@
-﻿<script type="text/javascript">
+<script type="text/javascript">
     function Ai_grader_close_all() {
         document.getElementById("panel-1").style.display = "none";
         document.getElementById("panel-2").style.display = "none";
@@ -165,16 +165,34 @@ function saveProject(){
 }
 
 function loadProjects(){
-  var projects=JSON.parse(localStorage.getItem('ag_projects')||'[]');
-  var grid=document.getElementById('projects-grid');
-  var empty=document.getElementById('empty-state');
-  if(!projects.length){grid.innerHTML='';empty.style.display='block';return;}
-  empty.style.display='none';
-  grid.innerHTML=projects.map(function(p){
-    return '<div class="proj-card">'+
-      (p.thumb?'<img class="proj-thumb" src="'+p.thumb+'" alt="'+p.name+'">':'<div class="proj-thumb-placeholder">🎨</div>')+
-      '<div class="proj-body"><div class="proj-name">'+p.name+'</div><div class="proj-meta"><span>'+p.date+'</span><span class="proj-score">'+p.score+'%</span></div></div></div>';
-  }).join('');
+  fetch("View-List/AIGrader/grid_drawing_projects_GET.php", {
+      method: "POST"
+  })
+  .then(response => response.json())
+  .then(res => {
+      var grid = document.getElementById('projects-grid');
+      var empty = document.getElementById('empty-state');
+      if (res.status === 'success' && res.data.length > 0) {
+          empty.style.display = 'none';
+          grid.innerHTML = res.data.map(function(p){
+              var thumb = p.reference_img_url ? p.reference_img_url : (p.grid_img_url ? p.grid_img_url : null);
+              var dateStr = p.sdt ? new Date(p.sdt).toLocaleDateString() : '';
+              return '<div class="proj-card">'+
+                (thumb ? '<img class="proj-thumb" src="'+thumb+'" alt="'+p.project_name+'">' : '<div class="proj-thumb-placeholder">🎨</div>')+
+                '<div class="proj-body"><div class="proj-name">'+p.project_name+'</div><div class="proj-meta"><span>'+dateStr+'</span><span class="proj-score"></span></div></div></div>';
+          }).join('');
+      } else {
+          grid.innerHTML = '';
+          empty.style.display = 'block';
+      }
+  })
+  .catch(err => {
+      console.error(err);
+      var grid = document.getElementById('projects-grid');
+      var empty = document.getElementById('empty-state');
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+  });
 }
 
 document.addEventListener('DOMContentLoaded', loadProjects);
