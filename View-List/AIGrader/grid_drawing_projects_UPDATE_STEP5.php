@@ -145,6 +145,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $json['score'] = $score;
         $json['feedback'] = $api_data['feedback'];
         $json['heatmap_url'] = $heatmap_url;
+        
+        if (isset($api_data['ref_eyes'])) {
+            $json['ref_eyes'] = $api_data['ref_eyes'];
+        }
+        if (isset($api_data['sketch_eyes'])) {
+            $json['sketch_eyes'] = $api_data['sketch_eyes'];
+        }
+        
         $json['message'] = 'AI Check complete!';
     } else {
         $json['status'] = 'error';

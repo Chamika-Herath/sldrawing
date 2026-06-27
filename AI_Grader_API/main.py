@@ -52,7 +52,9 @@ async def grade_sketch(reference_image: UploadFile = File(...), sketch_image: Up
             "status": "success",
             "score": result["score"],
             "feedback": result["feedback"],
-            "heatmap_url": heatmap_data_url
+            "heatmap_url": heatmap_data_url,
+            "ref_eyes": result.get("ref_eyes"),
+            "sketch_eyes": result.get("sketch_eyes")
         }
 
     except Exception as e:

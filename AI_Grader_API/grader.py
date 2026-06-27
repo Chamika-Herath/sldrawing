@@ -133,8 +133,8 @@ def process_images(ref_img_path, sketch_img_path):
         
     avg_error = total_error / 5.0
     
-    # Score formula
-    score = int(max(0, 100 - (avg_error * 300))) 
+    # Score formula: Harsher penalty (500 multiplier instead of 300)
+    score = int(max(0, 100 - (avg_error * 500))) 
     
     # --- Advanced Visual Feedback ---
     feedback_img = sketch_img.copy()
@@ -174,5 +174,17 @@ def process_images(ref_img_path, sketch_img_path):
     return {
         "score": score,
         "feedback": feedback,
-        "heatmap_bytes": buffer.tobytes()
+        "heatmap_bytes": buffer.tobytes(),
+        "ref_eyes": {
+            "left": ref_points[CONTOURS['left_eye'][0]], 
+            "right": ref_points[CONTOURS['right_eye'][0]],
+            "img_width": ref_img.shape[1],
+            "img_height": ref_img.shape[0]
+        },
+        "sketch_eyes": {
+            "left": sketch_points[CONTOURS['left_eye'][0]],
+            "right": sketch_points[CONTOURS['right_eye'][0]],
+            "img_width": sketch_img.shape[1],
+            "img_height": sketch_img.shape[0]
+        }
     }

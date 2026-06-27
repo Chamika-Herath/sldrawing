@@ -86,11 +86,11 @@ function runAICheck(){
                   onionWrap.innerHTML = `
                     <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:10px;">Onion Skin Comparison</h3>
                     <p style="font-size:0.85rem; color:var(--text-dim); margin-bottom:15px;">Use the slider to overlap your sketch and the reference image.</p>
-                    <div style="position:relative; width:100%; max-height:450px; border-radius:12px; border:2px solid #333; overflow:hidden; background:#111; display:flex; align-items:center; justify-content:center;">
+                    <div id="onion-container" style="position:relative; width:100%; max-width:500px; margin: 0 auto; border-radius:12px; border:2px solid #333; overflow:hidden; background:#111;">
                        <!-- Sketch layer (bottom) -->
-                       <img id="onion-sketch" style="width:100%; max-height:450px; display:block; object-fit:contain;" />
+                       <img id="onion-sketch" style="width:100%; height:auto; display:block;" />
                        <!-- Reference layer (top) -->
-                       <img id="onion-ref" style="position:absolute; top:0; left:0; width:100%; height:100%; max-height:450px; object-fit:contain; opacity: 0.5;" />
+                       <img id="onion-ref" style="position:absolute; top:0; left:0; width:100%; height:auto; opacity: 0.5; transform-origin: 0 0;" />
                     </div>
                     <div style="margin-top:15px; text-align:center; padding-bottom:30px;">
                        <span style="font-size:0.8rem; font-weight:700; color:var(--text-dim);">Sketch</span>
@@ -109,7 +109,46 @@ function runAICheck(){
               
               // Set the images for the onion skin
               document.getElementById('onion-sketch').src = ag.sketch;
-              document.getElementById('onion-ref').src = ag.edited || ag.ref; // Use edited reference if available
+              document.getElementById('onion-ref').src = ag.edited || ag.ref;
+              
+              // Apply Auto-Alignment using Affine CSS Transform if eye data is available
+              if (res.ref_eyes && res.sketch_eyes) {
+                  setTimeout(function() {
+                      var sketchImg = document.getElementById('onion-sketch');
+                      var refImg = document.getElementById('onion-ref');
+                      var domW = sketchImg.clientWidth;
+                      
+                      var Ks = domW / res.sketch_eyes.img_width;
+                      var Kr = domW / res.ref_eyes.img_width;
+
+                      // DOM Coordinates for Sketch Eyes
+                      var sLx = res.sketch_eyes.left[0] * Ks;
+                      var sLy = res.sketch_eyes.left[1] * Ks;
+                      var sRx = res.sketch_eyes.right[0] * Ks;
+                      var sRy = res.sketch_eyes.right[1] * Ks;
+
+                      // DOM Coordinates for Reference Eyes
+                      var rLx = res.ref_eyes.left[0] * Kr;
+                      var rLy = res.ref_eyes.left[1] * Kr;
+                      var rRx = res.ref_eyes.right[0] * Kr;
+                      var rRy = res.ref_eyes.right[1] * Kr;
+
+                      // Scale (S) and Rotation (R)
+                      var ds = Math.hypot(sRx - sLx, sRy - sLy);
+                      var dr = Math.hypot(rRx - rLx, rRy - rLy);
+                      var S = ds / dr;
+
+                      var as = Math.atan2(sRy - sLy, sRx - sLx);
+                      var ar = Math.atan2(rRy - rLy, rRx - rLx);
+                      var R = as - ar;
+
+                      // CSS Transform: Translate Ref Left Eye to (0,0), Scale/Rotate, Translate to Sketch Left Eye
+                      refImg.style.transform = "translate(" + sLx + "px, " + sLy + "px) " + 
+                                               "rotate(" + R + "rad) " + 
+                                               "scale(" + S + ") " + 
+                                               "translate(" + (-rLx) + "px, " + (-rLy) + "px)";
+                  }, 150); // wait briefly for image layout
+              }
           }
 
       } else {
