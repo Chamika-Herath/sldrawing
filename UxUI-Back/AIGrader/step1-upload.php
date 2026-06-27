@@ -37,7 +37,7 @@
       <img id="ref-preview" class="dz-preview" alt="Reference preview" style="display:none">
     </label>
     <div class="step-nav">
-      <button class="next-btn nav-btn" onclick="goStep(2)">Next</button>
+      <button class="next-btn nav-btn" onclick="Prject_process_step_01_submit()">Next</button>
     </div>
   </div>
 </div>

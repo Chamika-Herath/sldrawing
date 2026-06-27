@@ -9,7 +9,7 @@ class Company_Info_Variable_List
     private $company_logo_icon = "https://";
     private $company_logo_url = "https://";
     private $footer_txt = "I";
-    private $company_name = "I";
+    private $company_name = "SL DRAWING";
     private $company_web = "I";
     private $full_company_web = "http://localhost:3000/";
     private $default_sending_email = "info@";
