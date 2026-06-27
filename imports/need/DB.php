@@ -37,8 +37,8 @@ class DataBase
         // $this->password = "K^Q!&[#@0Kb=";
 
         // $this->servername = "127.0.0.1";
-        // $this->username = "infortech_root";
-        // $this->password = "^o4n)_45aY.o";
+        // $this->username = "root";
+        // $this->password = "@5Ej=sbAWui";
 
 
 
@@ -47,7 +47,7 @@ class DataBase
         $this->dbname = "user_login_db_new";
         //$this->dbname = "mwoa_ecommers_erp";
 
-        //  $this->dbname = "item_service_managment";
+        //  $this->dbname = "u511731669_heraforce";
     }
 
     public function __destruct()
