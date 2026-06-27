@@ -24,8 +24,7 @@
       .then(res => {
           console.log(res);
           if (res.status === 'success') {
-              // Optionally store project ID somewhere if needed later
-              // e.g., window.currentProjectId = res.id;
+              ag.projectId = res.id;
               goStep(2);
           } else {
               alert('Error: ' + res.message);

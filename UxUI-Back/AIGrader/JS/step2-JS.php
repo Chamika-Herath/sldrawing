@@ -1,4 +1,4 @@
-﻿<script>
+<script>
 // Step 2 — Modern Image Editor (Fabric.js)
 var canvasV2 = null, originalImageV2 = null, historyV2 = [], redoStackV2 = [], currentZoomV2 = 1;
 var isDrawingV2 = false, cropRectV2 = null;
@@ -391,12 +391,41 @@ function zoomEditor(delta) {
   document.getElementById('editor-zoom-val').textContent = Math.round(currentZoomV2 * 100) + '%';
 }
 
-// --- Next Step ---
 function applyAndNextV2() {
   stopCropModeV2();
   canvasV2.setZoom(1); // Reset zoom for export
   ag.edited = canvasV2.toDataURL({ format: 'png', quality: 1.0 });
-  goStep(3);
+  
+  if (!ag.projectId) {
+      alert("Error: Project ID is missing. Please start over.");
+      return;
+  }
+
+  var formData = new FormData();
+  formData.append('project_id', ag.projectId);
+  formData.append('edited_image', ag.edited);
+
+  // Replace this placeholder with appropriate loading UI if desired
+  document.querySelector('.next-btn').disabled = true;
+
+  fetch("View-List/AIGrader/grid_drawing_projects_UPDATE_STEP2.php", {
+      method: "POST",
+      body: formData
+  })
+  .then(response => response.json())
+  .then(res => {
+      document.querySelector('.next-btn').disabled = false;
+      if (res.status === 'success') {
+          goStep(3);
+      } else {
+          alert('Error: ' + res.message);
+      }
+  })
+  .catch(err => {
+      document.querySelector('.next-btn').disabled = false;
+      console.error(err);
+      alert('Network or server error occurred.');
+  });
 }
 
 // Events handled inside initEdit and global listeners above
