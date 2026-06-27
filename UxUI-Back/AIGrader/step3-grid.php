@@ -64,7 +64,7 @@
       <!-- Footer Navigation -->
       <div style="margin-top:auto; padding:15px; border-top:1px solid #333; display:flex; gap:10px; background:#1e1e1e;">
         <button class="back-btn nav-btn" onclick="goStep(2)" style="flex:1; height:40px; font-size:0.8rem; background:#333;">Back</button>
-        <button class="next-btn nav-btn" onclick="goStep(4)" style="flex:1.5; height:40px; font-size:0.8rem;">Confirm & Next</button>
+        <button id="btn-next-step3" class="next-btn nav-btn" onclick="applyAndNextStep3()" style="flex:1.5; height:40px; font-size:0.8rem;">Confirm & Next</button>
       </div>
     </div>
 

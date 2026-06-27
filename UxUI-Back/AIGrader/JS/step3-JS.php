@@ -1,4 +1,4 @@
-﻿<script>
+<script>
 // Step 3 — Grid maker
 var gridBaseImg=null;
 var gridPanX = 0, gridPanY = 0, isDraggingGrid = false, lastGridX, lastGridY;
@@ -284,4 +284,41 @@ function downloadGrid(){
   a.click();
 }
 
+function applyAndNextStep3() {
+    if (!ag.projectId) {
+        alert("Error: Project ID is missing. Please start over.");
+        return;
+    }
+
+    if (!ag.grid) {
+        alert("Error: Grid image is not generated yet.");
+        return;
+    }
+
+    var btn = document.getElementById('btn-next-step3');
+    if(btn) btn.disabled = true;
+
+    var formData = new FormData();
+    formData.append('project_id', ag.projectId);
+    formData.append('grid_image', ag.grid);
+
+    fetch("View-List/AIGrader/grid_drawing_projects_UPDATE_STEP3.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(res => {
+        if(btn) btn.disabled = false;
+        if (res.status === 'success') {
+            goStep(4);
+        } else {
+            alert('Error: ' + res.message);
+        }
+    })
+    .catch(err => {
+        if(btn) btn.disabled = false;
+        console.error(err);
+        alert('Network or server error occurred.');
+    });
+}
 </script>
