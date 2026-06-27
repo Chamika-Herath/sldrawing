@@ -12,7 +12,7 @@
     <img id="sketch-preview" class="dz-preview" alt="Sketch preview">
     <div class="step-nav">
       <button class="back-btn nav-btn" onclick="goStep(3)">← Back</button>
-      <button class="next-btn nav-btn" onclick="runAICheck()">Next</button>
+      <button id="btn-next-step4" class="next-btn nav-btn" onclick="applyAndNextStep4()">Next</button>
     </div>
   </div>
 </div>

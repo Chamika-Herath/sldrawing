@@ -2,7 +2,7 @@
 class project_score_histry_ADD_UPDATE{
 
     private $id;
-    private $ast;
+    private $ast= "1";
     private $sdt;
     private $atempt;
     private $score;
