@@ -164,6 +164,8 @@ function saveProject(){
   showMessage('Project saved! ✅', 'success'); showDashboard();
 }
 
+window.ag_projects_data = [];
+
 function loadProjects(){
   fetch("View-List/AIGrader/grid_drawing_projects_GET.php", {
       method: "POST"
@@ -173,26 +175,63 @@ function loadProjects(){
       var grid = document.getElementById('projects-grid');
       var empty = document.getElementById('empty-state');
       if (res.status === 'success' && res.data.length > 0) {
+          window.ag_projects_data = res.data;
           empty.style.display = 'none';
           grid.innerHTML = res.data.map(function(p){
               var thumb = p.reference_img_url ? p.reference_img_url : (p.grid_img_url ? p.grid_img_url : null);
               var dateStr = p.sdt ? new Date(p.sdt).toLocaleDateString() : '';
-              return '<div class="proj-card">'+
+              return '<div class="proj-card" onclick="resumeProject('+p.id+')">'+
                 (thumb ? '<img class="proj-thumb" src="'+thumb+'" alt="'+p.project_name+'">' : '<div class="proj-thumb-placeholder">🎨</div>')+
                 '<div class="proj-body"><div class="proj-name">'+p.project_name+'</div><div class="proj-meta"><span>'+dateStr+'</span><span class="proj-score"></span></div></div></div>';
           }).join('');
       } else {
+          window.ag_projects_data = [];
           grid.innerHTML = '';
           empty.style.display = 'block';
       }
   })
   .catch(err => {
       console.error(err);
+      window.ag_projects_data = [];
       var grid = document.getElementById('projects-grid');
       var empty = document.getElementById('empty-state');
       grid.innerHTML = '';
       empty.style.display = 'block';
   });
+}
+
+function resumeProject(id) {
+    var p = window.ag_projects_data.find(x => x.id == id);
+    if (!p) return;
+
+    ag = { step: 1, ref: null, edited: null, grid: null, sketch: null, score: 0, projectId: p.id };
+    
+    if (p.reference_img_url) {
+        ag.ref = p.reference_img_url;
+        ag.edited = p.reference_img_url; 
+    }
+    if (p.grid_img_url) {
+        ag.grid = p.grid_img_url;
+    }
+
+    var targetStep = 1;
+    if (p.step_05_complete == 1) {
+        targetStep = 5;
+    } else if (p.step_04_complete == 1) {
+        targetStep = 5;
+    } else if (p.step_03_complete == 1) {
+        targetStep = 4;
+    } else if (p.step_02_complete == 1) {
+        targetStep = 3;
+    } else if (p.step_01_complete == 1) {
+        targetStep = 2;
+    }
+
+    document.getElementById('dashboard-view').style.display = 'none';
+    var wiz = document.getElementById('wizard-view'); 
+    wiz.classList.add('active');
+    
+    navigateStep(targetStep);
 }
 
 document.addEventListener('DOMContentLoaded', loadProjects);
