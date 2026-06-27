@@ -63,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $obj = new grid_drawing_projects_ADD_UPDATE($main_user_login_id);
     $obj->set_data($project_name, $reference_img_url, '', 0, 0, 0);
+    $obj->is_step_01_complete();
     $result = $obj->process_new_record();
 
     if ($result) {
