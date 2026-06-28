@@ -28,24 +28,24 @@ class DataBase
 
 
         //        --------------------------
-        $this->servername = "localhost";
+        $this->servername = "srv1777.hstgr.io";
         // $this->servername = "127.0.0.1";
-        $this->username = "root";
-        $this->password = "";
+        $this->username = "u511731669_root";
+        $this->password = "@5Ej=sbAWui";
 
         // $this->username = "infortech_root";
         // $this->password = "K^Q!&[#@0Kb=";
 
         // $this->servername = "127.0.0.1";
-        // $this->username = "root";
+        // $this->username = "u511731669_root";
         // $this->password = "@5Ej=sbAWui";
 
 
 
         //$this->dbname = "infortech_favaji";
         //$this->dbname = "item_service_managment";
-        $this->dbname = "user_login_db_new";
-        //$this->dbname = "mwoa_ecommers_erp";
+        //$this->dbname = "user_login_db_new";
+        $this->dbname = "u511731669_sl_drawing";
 
         //  $this->dbname = "u511731669_heraforce";
     }
