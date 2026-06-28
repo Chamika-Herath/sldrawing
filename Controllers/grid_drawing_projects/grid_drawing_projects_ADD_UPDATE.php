@@ -10,6 +10,11 @@ class grid_drawing_projects_ADD_UPDATE{
     private $is_draft = 0;
     private $is_save = 0;
     private $main_user_login_id;
+    private $step_01_complete = 0;
+    private $step_02_complete = 0;
+    private $step_03_complete = 0;
+    private $step_04_complete = 0;
+    private $step_05_complete = 0;
     private $sql_update_query;
 
     public function __construct($get_main_user_login_id){
@@ -82,7 +87,57 @@ class grid_drawing_projects_ADD_UPDATE{
         $this->sql_update_query =$this->sql_update_query . ", grid_img_url='" . $this->grid_img_url . "'";
     }
 
-        public function remove()
+    public function is_step_01_complete() {
+        $this->step_01_complete = 1;
+        $this->sql_update_query .= ", step_01_complete='" . $this->step_01_complete . "'";
+    }
+
+    public function is_not_step_01_complete() {
+        $this->step_01_complete = 0;
+        $this->sql_update_query .= ", step_01_complete='" . $this->step_01_complete . "'";
+    }
+
+    public function is_step_02_complete() {
+        $this->step_02_complete = 1;
+        $this->sql_update_query .= ", step_02_complete='" . $this->step_02_complete . "'";
+    }
+
+    public function is_not_step_02_complete() {
+        $this->step_02_complete = 0;
+        $this->sql_update_query .= ", step_02_complete='" . $this->step_02_complete . "'";
+    }
+
+    public function is_step_03_complete() {
+        $this->step_03_complete = 1;
+        $this->sql_update_query .= ", step_03_complete='" . $this->step_03_complete . "'";
+    }
+
+    public function is_not_step_03_complete() {
+        $this->step_03_complete = 0;
+        $this->sql_update_query .= ", step_03_complete='" . $this->step_03_complete . "'";
+    }
+
+    public function is_step_04_complete() {
+        $this->step_04_complete = 1;
+        $this->sql_update_query .= ", step_04_complete='" . $this->step_04_complete . "'";
+    }
+
+    public function is_not_step_04_complete() {
+        $this->step_04_complete = 0;
+        $this->sql_update_query .= ", step_04_complete='" . $this->step_04_complete . "'";
+    }
+
+    public function is_step_05_complete() {
+        $this->step_05_complete = 1;
+        $this->sql_update_query .= ", step_05_complete='" . $this->step_05_complete . "'";
+    }
+
+    public function is_not_step_05_complete() {
+        $this->step_05_complete = 0;
+        $this->sql_update_query .= ", step_05_complete='" . $this->step_05_complete . "'";
+    }   
+
+    public function remove()
     {
         $this->ast = "0";
     }
@@ -108,7 +163,7 @@ class grid_drawing_projects_ADD_UPDATE{
     public function process_new_record()
     {
         $data_base_obj = new DataBase();
-        $get_sql_query = "INSERT INTO grid_drawing_projects (ast, sdt, project_name, reference_img_url, grid_img_url, is_download, is_draft, is_save, main_user_login_id) 
+        $get_sql_query = "INSERT INTO grid_drawing_projects (ast, sdt, project_name, reference_img_url, grid_img_url, is_download, is_draft, is_save, main_user_login_id, step_01_complete, step_02_complete, step_03_complete, step_04_complete, step_05_complete) 
                  VALUES (
                  '" . $this->ast . "',
                  '" . $this->sdt . "',
@@ -118,7 +173,12 @@ class grid_drawing_projects_ADD_UPDATE{
                  '" . $this->is_download . "',
                  '" . $this->is_draft . "',
                  '" . $this->is_save . "',
-                 '" . $this->main_user_login_id . "')";
+                 '" . $this->main_user_login_id . "',
+                 '" . $this->step_01_complete . "',
+                 '" . $this->step_02_complete . "',
+                 '" . $this->step_03_complete . "',
+                 '" . $this->step_04_complete . "',
+                 '" . $this->step_05_complete . "')";
 
                   $data_base_obj->get_result($get_sql_query);
         $get_bool = $data_base_obj->get_error_state_boolean();
