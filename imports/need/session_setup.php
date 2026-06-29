@@ -19,18 +19,41 @@ $online_offline_extention = ".php";
 
 
 
-//server
-// $home_page_url="https://fawaji.infortech.lk";
-// $home_page ="https://fawaji.infortech.lk/";
+
+
+
+
+
+
+$home_page_url = "http://localhost:3000/";
+$home_page = "http://localhost:3000/";
 
 
 
 //localhost
-$home_page_url = "http://localhost:3000/";
-$home_page = "http://localhost:3000/";
+// $home_page_url = "https://drawing.heraforce.com/";
+// $home_page = "https://drawing.heraforce.com/";
 
-// $home_page_url = "https://fawaji.infortech.lk/";
-// $home_page = "https://fawaji.infortech.lk/";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $User_login_url = "UxUi/Main/";
 
 

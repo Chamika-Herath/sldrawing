@@ -71,7 +71,7 @@
         <!-- Bottom Footer -->
         <div class="footer-bottom">
             <div class="footer-copy">
-                &copy; 2026 SLdrawing. All Rights Reserved. Designed by <a href="https://www.heraforce.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); font-weight: 700; text-decoration: none;">HeraForce</a>
+                &copy; 2026 SLdrawing. All Rights Reserved. Designed by <a href="https://www.heraforce.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); font-weight: 700; text-decoration: none;">Chamika Herath</a>
             </div>
             <div class="footer-links">
                 <a href="#" style="color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: 0.3s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-dim)'">Privacy Policy</a>

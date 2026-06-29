@@ -22,32 +22,26 @@ class DataBase
 
     public function __construct()
     {
-        //        $this->servername = "localhost";
-        //        $this->username = "root";
-        //        $this->password = "!1m3t4y5@p8kyH";
+               $this->servername = "localhost";
+               $this->username = "root";
+               $this->password = "";
 
 
-        //        --------------------------
-        $this->servername = "srv1777.hstgr.io";
-        // $this->servername = "127.0.0.1";
-        $this->username = "u511731669_root";
-        $this->password = "@5Ej=sbAWui";
 
-        // $this->username = "infortech_root";
-        // $this->password = "K^Q!&[#@0Kb=";
 
-        // $this->servername = "127.0.0.1";
+
+
+      
+        // $this->servername = "srv1777.hstgr.io";
         // $this->username = "u511731669_root";
         // $this->password = "@5Ej=sbAWui";
 
+    
+        
+        $this->dbname = "user_login_db_new";
+       // $this->dbname = "u511731669_sl_drawing";
 
-
-        //$this->dbname = "infortech_favaji";
-        //$this->dbname = "item_service_managment";
-        //$this->dbname = "user_login_db_new";
-        $this->dbname = "u511731669_sl_drawing";
-
-        //  $this->dbname = "u511731669_heraforce";
+       
     }
 
     public function __destruct()

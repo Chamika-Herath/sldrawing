@@ -1,3 +1,28 @@
+    <?php
+    include_once '../../imports/need/DB.php';
+    include_once '../../Controllers/Main/main_user_login/main_user_login_SINGLE_DATA.php';
+    include_once '../../Controllers/Main/main_user_account_access_level_list/main_user_account_access_level_list_SINGLE_DATA.php';
+
+    $current_user_id_profile = $_SESSION['user_id'] ?? 0;
+    $user_data_obj_profile = new main_user_login_SINGLE_DATA($current_user_id_profile);
+
+    $u_first_name = $user_data_obj_profile->get_first_name();
+    $u_last_name = $user_data_obj_profile->get_last_name();
+    $u_name = trim($u_first_name . ' ' . $u_last_name);
+    if ($u_name == "") {
+        $u_name = $user_data_obj_profile->get_user_name();
+    }
+    $u_email = $user_data_obj_profile->get_user_name();
+    $u_phone = $user_data_obj_profile->get_phone_number();
+    $u_bio = $user_data_obj_profile->get_dis();
+    $u_sdt_raw = $user_data_obj_profile->get_sdt();
+    $u_joined = ($u_sdt_raw != null && $u_sdt_raw != "") ? date("F j, Y", strtotime($u_sdt_raw)) : "N/A";
+
+    $user_access_level_id = $user_data_obj_profile->get_main_user_account_access_level_list_id();
+    $access_obj_profile = new main_user_account_access_level_list_SINGLE_DATA($user_access_level_id);
+    $u_role = $access_obj_profile->get_job_role() ? $access_obj_profile->get_job_role() : "User";
+    $u_department = $access_obj_profile->get_type_of_access() ? $access_obj_profile->get_type_of_access() : "General";
+    ?>
     <div class="erp-container erp-container--profile">
         <input type="hidden" id="User_Profile_A_01_val_17" value="">
         <input type="hidden" id="User_Profile_A_01_val_18" value="">
@@ -5,9 +30,15 @@
         <input type="hidden" id="User_Profile_A_01_val_20" value="">
         <div class="erp-profile-card">
             <!-- Header Section: Displays page title -->
-            <div class="erp-profile-card__header">
-                <h1 class="erp-profile-card__title">User Profile</h1>
-                <p class="erp-profile-card__subtitle">Manage your account settings and preferences</p>
+            <div class="erp-profile-card__header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                <div>
+                    <h1 class="erp-profile-card__title">User Profile</h1>
+                    <p class="erp-profile-card__subtitle">Manage your account settings and preferences</p>
+                </div>
+                <button class="erp-btn erp-btn--secondary" type="button" onclick="window.location.href='<?php echo $home_page ?? '/'; ?>'">
+                    <i class="fas fa-home"></i>
+                    <span>Back to Home</span>
+                </button>
             </div>
 
             <!-- Main Body: Contains the profile content -->
@@ -52,31 +83,30 @@
 
 
                         <div class="erp-profile-info">
-                            <h2 class="erp-profile-info__name" id="User_Profile_A_01_val_02">Alex Johnson</h2>
-                            <p class="erp-profile-info__role" id="User_Profile_A_01_val_03">Senior System Administrator</p>
+                            <h2 class="erp-profile-info__name" id="User_Profile_A_01_val_02"><?php echo htmlspecialchars($u_name); ?></h2>
+                            <p class="erp-profile-info__role" id="User_Profile_A_01_val_03"><?php echo htmlspecialchars($u_role); ?></p>
 
                             <div class="erp-profile-info__meta">
                                 <div class="erp-profile-info__meta-item">
                                     <i class="fas fa-envelope erp-profile-info__meta-icon"></i>
-                                    <span id="User_Profile_A_01_val_04">alex.johnson@company.com</span>
+                                    <span id="User_Profile_A_01_val_04"><?php echo htmlspecialchars($u_email); ?></span>
                                 </div>
                                 <div class="erp-profile-info__meta-item">
                                     <i class="fas fa-building erp-profile-info__meta-icon"></i>
-                                    <span>Department:<span id="User_Profile_A_01_val_05"> IT</span></span>
+                                    <span>Department:<span id="User_Profile_A_01_val_05"> <?php echo htmlspecialchars($u_department); ?></span></span>
                                 </div>
                                 <div class="erp-profile-info__meta-item">
                                     <i class="fas fa-id-badge erp-profile-info__meta-icon"></i>
-                                    <span>Employee ID: <span id="User_Profile_A_01_val_06">EMP-2023-0456</span></span>
+                                    <span>Employee ID: <span id="User_Profile_A_01_val_06">EMP-<?php echo $current_user_id_profile; ?></span></span>
                                 </div>
                                 <div class="erp-profile-info__meta-item">
                                     <i class="fas fa-calendar-alt erp-profile-info__meta-icon"></i>
-                                    <span>Joined:<span id="User_Profile_A_01_val_07"> AprilMarch 15, 2021</span></span>
+                                    <span>Joined:<span id="User_Profile_A_01_val_07"> <?php echo htmlspecialchars($u_joined); ?></span></span>
                                 </div>
                             </div>
 
                             <p class="erp-profile-info__bio" id="User_Profile_A_01_val_08">
-                                Responsible for system administration, user management, and security protocols.
-                                Oversees ERP implementation and provides technical support to all departments.
+                                <?php echo htmlspecialchars($u_bio); ?>
                             </p>
                         </div>
                     </div>
@@ -93,7 +123,7 @@
                                     <input
                                         type="text"
                                         class="erp-form__control erp-form__control--with-icon"
-                                        value="Alex"
+                                        value="<?php echo htmlspecialchars($u_first_name); ?>"
                                         id="User_Profile_A_01_val_09"
                                         aria-label="First Name">
                                 </div>
@@ -106,7 +136,7 @@
                                     <input
                                         type="text"
                                         class="erp-form__control erp-form__control--with-icon"
-                                        value="Johnson"
+                                        value="<?php echo htmlspecialchars($u_last_name); ?>"
                                         id="User_Profile_A_01_val_10"
                                         aria-label="Last Name">
                                 </div>
@@ -119,7 +149,7 @@
                                     <input
                                         type="email"
                                         class="erp-form__control erp-form__control--with-icon"
-                                        value="alex.johnson@company.com"
+                                        value="<?php echo htmlspecialchars($u_email); ?>"
                                         id="User_Profile_A_01_val_11"
                                         disabled
                                         aria-label="Email Address">
@@ -133,7 +163,7 @@
                                     <input
                                         type="tel"
                                         class="erp-form__control erp-form__control--with-icon"
-                                        value="+1 (555) 123-4567"
+                                        value="<?php echo htmlspecialchars($u_phone); ?>"
                                         id="User_Profile_A_01_val_12"
                                         aria-label="Phone Number">
                                 </div>
@@ -147,10 +177,10 @@
                                     <input
                                         type="text"
                                         class="erp-form__control erp-form__control--with-icon"
-                                        value="alex.johnson@company.com"
+                                        value="<?php echo htmlspecialchars($u_department); ?>"
                                         id="User_Profile_A_01_val_13"
                                         disabled
-                                        aria-label="Email Address">
+                                        aria-label="Department">
                                 </div>
                             </div>
 
@@ -159,11 +189,12 @@
                                 <div class="erp-input-wrapper">
                                     <i class="fas fa-briefcase erp-form__icon"></i>
                                     <input
-                                        type="email"
+                                        type="text"
                                         class="erp-form__control erp-form__control--with-icon"
+                                        value="<?php echo htmlspecialchars($u_role); ?>"
                                         id="User_Profile_A_01_val_14"
                                         disabled
-                                        aria-label="Email Address">
+                                        aria-label="Job Title">
                                 </div>
                             </div>
 
@@ -181,7 +212,7 @@
                             class="erp-form__control"
                             rows="4"
                             id="User_Profile_A_01_val_15"
-                            aria-label="Bio / Description">Responsible for system administration, user management, and security protocols. Oversees ERP implementation and provides technical support to all departments.</textarea>
+                            aria-label="Bio / Description"><?php echo htmlspecialchars($u_bio); ?></textarea>
                     </div>
 
 
@@ -230,6 +261,7 @@
                                                 type="tel"
                                                 class="erp-form__control erp-form__control--with-icon"
                                                 placeholder="Enter phone number"
+                                                value="<?php echo htmlspecialchars($u_phone); ?>"
                                                 id="two-factor-phone-number"
                                                 disabled
                                                 aria-label="Phone Number for Two-Factor Authentication">
