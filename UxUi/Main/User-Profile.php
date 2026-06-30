@@ -754,7 +754,7 @@ include_once '../../imports/need/session_setup.php'
     <input type="hidden" id="check_user_profile_page_val_01" value="0">
 
     <?php
-    include_once '../../UxUI-Back/Main/User_profile/User-Profile.php';
+    include_once '../../UxUI-Back/Main/User_profile/User-Profile-New.php';
     include_once '../../UxUI-Back/Main/User_profile/JS/User-Profile_JS.php';
     ?>
 

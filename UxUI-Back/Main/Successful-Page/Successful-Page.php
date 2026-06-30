@@ -284,7 +284,7 @@
                   'Your action has been completed successfully',
                   '<?php echo htmlspecialchars($message_content) ?>', // <-- your dynamic message here
                   'Continue to Dashboard',
-                  '<?php echo $home_page ?><?php echo $User_login_url ?>User-Profile<?php echo $online_offline_extention ?>',
+                  '<?php echo $home_page ?><?php echo $User_login_url ?>User-Profile-New<?php echo $online_offline_extention ?>',
                   5000,
                   null,
                   '',
