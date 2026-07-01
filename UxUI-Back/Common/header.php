@@ -8,7 +8,10 @@
        ========================================================= */
     .erp-header {
         height: 50px;
-        background: var(--erp-primary-dark);
+        background: rgba(20, 20, 28, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(254, 98, 29, 0.3);
         color: #fff;
         display: flex;
         align-items: center;
@@ -112,7 +115,7 @@
 
 <!-- ================= TOP BAR ================= -->
 <header class="erp-header">
-    <div class="erp-header__title">Welcome To sldrawing Dashboard</div>
+    <div class="erp-header__title" style="color: #fe621d;">Welcome To sldrawing Dashboard</div>
     <div class="erp-header__icons">
         <span class="erp-header__icon" title="Notifications">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="white">

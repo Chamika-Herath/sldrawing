@@ -8,7 +8,10 @@
        ========================================================= */
     .erp-footer {
         height: 32px;
-        background: var(--erp-primary-dark);
+        background: rgba(20, 20, 28, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(254, 98, 29, 0.3);
         color: #fff;
         font-size: 12px;
         display: flex;

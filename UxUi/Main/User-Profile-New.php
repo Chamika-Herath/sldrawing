@@ -18,7 +18,9 @@ include_once '../../imports/need/session_setup.php'
     $company_obj = new Company_Info_Variable_List();
     ?>
     <style>
-        /* ===== GLOBAL COLOR SYSTEM ===== */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+        /* ===== GLOBAL COLOR SYSTEM (ARTISTIC & GLASSMORPHISM) ===== */
         :root {
             /* Vibrant Artistic Primary Colors */
             --erp-primary: #fe621d;
@@ -26,7 +28,7 @@ include_once '../../imports/need/session_setup.php'
             --erp-primary-light: #ff874f;
             --erp-primary-subtle: rgba(254, 98, 29, 0.25);
 
-            /* Neutral Colors */
+            /* Glassmorphism Neutral Colors */
             --erp-surface: rgba(25, 25, 35, 0.55);
             --erp-surface-alt: rgba(25, 25, 35, 0.35);
             --erp-border: rgba(255, 255, 255, 0.15);
@@ -36,35 +38,32 @@ include_once '../../imports/need/session_setup.php'
             --erp-text-tertiary: rgba(255, 255, 255, 0.6);
 
             /* Accent Colors */
-            --erp-accent-success: #38a169;
-            --erp-accent-warning: #d69e2e;
-            --erp-accent-error: #e53e3e;
-            --erp-accent-info: #3182ce;
+            --erp-accent-success: #00e676;
+            --erp-accent-warning: #ffd600;
+            --erp-accent-error: #ff1744;
+            --erp-accent-info: #00e5ff;
 
             /* Social Brand Colors */
-            --erp-google: #db4437;
-            --erp-microsoft: #00a4ef;
-            --erp-facebook: #1877f2;
+            --erp-google: #ea4335;
 
             /* Shadows */
             --erp-shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.1);
             --erp-shadow-md: 0 8px 25px rgba(0, 0, 0, 0.2);
             --erp-shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.4);
-            --erp-shadow-glow: 0 0 20px rgba(254, 98, 29, 0.4);
+            
+            --erp-gradient-primary: linear-gradient(135deg, var(--erp-primary) 0%, var(--erp-primary-dark) 100%);
 
-            /* Border Radius */
-            --erp-radius-sm: 4px;
-            --erp-radius-md: 8px;
-            --erp-radius-lg: 12px;
+            /* Border Radius & Spacing */
+            --erp-radius-sm: 8px;
+            --erp-radius-md: 12px;
+            --erp-radius-lg: 20px;
             --erp-radius-full: 9999px;
-
-            /* Spacing Scale */
+            
             --erp-space-xs: 8px;
             --erp-space-sm: 12px;
             --erp-space-md: 16px;
             --erp-space-lg: 24px;
             --erp-space-xl: 32px;
-            --erp-space-2xl: 48px;
         }
 
         /* ===== BASE RESET & GLOBAL STYLES ===== */
@@ -88,6 +87,12 @@ include_once '../../imports/need/session_setup.php'
             overflow-x: hidden;
         }
 
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* ===== LAYOUT CONTAINERS ===== */
         .erp-container {
             width: 100%;
@@ -96,18 +101,24 @@ include_once '../../imports/need/session_setup.php'
             padding: 0 var(--erp-space-md);
             margin-top: 100px;
             margin-bottom: 100px;
+            animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .erp-container--profile {
-            max-width: 1000px;
-            padding-top: 30px;
-            padding-bottom: 50px;
+            max-width: 900px;
         }
 
-        /* ===== PROFILE CARD ===== */
+        /* ===== PROFILE CARD (GLASSMORPHISM) ===== */
         .erp-profile-card {
+            /* Force variables for this card specifically */
+            --erp-text-primary: #ffffff;
+            --erp-text-secondary: rgba(255, 255, 255, 0.85);
+            --erp-text-tertiary: rgba(255, 255, 255, 0.6);
+            --erp-border: rgba(255, 255, 255, 0.15);
+            --erp-border-dark: rgba(255, 255, 255, 0.3);
+            
             width: 100%;
-            background: var(--erp-surface);
+            background: rgba(20, 20, 28, 0.45) !important;
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid var(--erp-border);
@@ -115,126 +126,115 @@ include_once '../../imports/need/session_setup.php'
             box-shadow: var(--erp-shadow-lg);
             overflow: hidden;
             margin-bottom: var(--erp-space-xl);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: var(--erp-text-primary) !important;
         }
 
         .erp-profile-card__header {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.15) !important;
             border-bottom: 1px solid var(--erp-border);
             padding: var(--erp-space-xl) var(--erp-space-xl) var(--erp-space-lg);
             position: relative;
-            min-height: 180px;
+            z-index: 1;
         }
 
         .erp-profile-card__title {
             font-size: 28px;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: -0.5px;
             margin-bottom: var(--erp-space-xs);
+            color: var(--erp-text-primary) !important;
         }
 
         .erp-profile-card__subtitle {
-            font-size: 16px;
-            opacity: 0.9;
-            font-weight: 400;
+            font-size: 15px;
+            opacity: 0.8;
+            font-weight: 300;
+            color: var(--erp-text-secondary) !important;
         }
 
         .erp-profile-card__body {
             padding: var(--erp-space-xl);
+            background: rgba(0, 0, 0, 0.25) !important;
+            border-bottom-left-radius: var(--erp-radius-lg);
+            border-bottom-right-radius: var(--erp-radius-lg);
         }
 
         /* ===== PROFILE HEADER CONTENT ===== */
         .erp-profile-header {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: var(--erp-space-xl);
             margin-bottom: var(--erp-space-xl);
+            padding-bottom: var(--erp-space-xl);
+            border-bottom: 1px dashed var(--erp-border);
         }
 
         /* ===== PROFILE PICTURE SECTION ===== */
         .erp-profile-picture {
             position: relative;
             flex-shrink: 0;
+            border-radius: 50%;
         }
-
-        /* .erp-profile-picture__wrapper {
-            position: relative;
-            width: 160px;
-            height: 160px;
-            border-radius: var(--erp-radius-full);
-            border: 5px solid white;
-            box-shadow: var(--erp-shadow-md);
-            overflow: hidden;
-            background-color: var(--erp-surface-alt);
-        } */
 
         .erp-profile-picture__wrapper {
-            width: 96px;
-            height: 96px;
+            width: 120px;
+            height: 120px;
             position: relative;
+            background: rgba(25, 25, 35, 0.8);
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--erp-border-dark);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
-
-        /* .erp-profile-picture__img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        } */
 
         .erp-profile-picture__img {
-            width: 96px;
-            height: 96px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-        }
-
-
-        /* .erp-profile-picture__default {
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--erp-primary-light);
-            color: white;
-            font-size: 60px;
-        } */
+            object-fit: cover;
+            display: block;
+            border-radius: 50%;
+        }
 
         .erp-profile-picture__default {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(90deg,
-                    var(--erp-primary) 0%,
-                    var(--erp-primary-dark) 100%);
+            background: rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 50%;
         }
-
+        .erp-profile-picture__default i {
+            font-size: 50px;
+            color: rgba(255, 255, 255, 0.5);
+        }
 
         .erp-profile-picture__upload {
             position: absolute;
-            bottom: 0;
-            right: 0;
-            background-color: var(--erp-primary);
-            color: white;
-            border-radius: var(--erp-radius-full);
-            width: 44px;
-            height: 44px;
+            bottom: 0px;
+            right: 0px;
+            background: var(--erp-primary);
+            color: #ffffff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            border: 3px solid white;
-            transition: background-color 0.2s;
+            border: 2px solid rgba(25, 25, 35, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(254, 98, 29, 0.4);
+            z-index: 2;
         }
-
         .erp-profile-picture__upload:hover {
-            background-color: var(--erp-primary-dark);
+            transform: scale(1.1) rotate(10deg);
+            background: var(--erp-primary-dark);
         }
 
-        .erp-profile-picture__upload-input {
-            display: none;
-        }
+        .erp-profile-picture__upload-input { display: none; }
 
         /* ===== PROFILE INFO SECTION ===== */
         .erp-profile-info {
@@ -244,121 +244,143 @@ include_once '../../imports/need/session_setup.php'
         .erp-profile-info__name {
             font-size: 32px;
             font-weight: 700;
-            margin-bottom: var(--erp-space-xs);
+            margin-bottom: 6px;
             color: var(--erp-text-primary);
+            letter-spacing: -0.5px;
         }
 
         .erp-profile-info__role {
-            font-size: 18px;
-            color: var(--erp-primary);
+            font-size: 14px;
+            color: var(--erp-primary-light);
             font-weight: 600;
-            margin-bottom: var(--erp-space-sm);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: var(--erp-space-md);
+            display: inline-block;
+            background: var(--erp-primary-subtle);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(254, 98, 29, 0.2);
         }
 
         .erp-profile-info__meta {
             display: flex;
             flex-wrap: wrap;
-            gap: var(--erp-space-md);
+            gap: 20px;
             margin-bottom: var(--erp-space-md);
         }
 
         .erp-profile-info__meta-item {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            font-size: 14px;
             color: var(--erp-text-secondary);
+            font-weight: 500;
         }
 
         .erp-profile-info__meta-icon {
             color: var(--erp-primary-light);
+            font-size: 16px;
         }
 
         .erp-profile-info__bio {
             color: var(--erp-text-secondary);
             line-height: 1.6;
-            margin-top: var(--erp-space-md);
+            margin-top: var(--erp-space-sm);
+            font-size: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: var(--erp-radius-md);
+            border-left: 3px solid var(--erp-primary-light);
         }
 
         /* ===== FORM COMPONENTS ===== */
-        .erp-form {
-            width: 100%;
-        }
+        .erp-form { width: 100%; }
 
-        .erp-form__section {
-            margin-bottom: var(--erp-space-2xl);
-        }
+        .erp-form__section { margin-bottom: var(--erp-space-2xl); }
 
         .erp-form__section-title {
             font-size: 20px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--erp-text-primary);
-            padding-bottom: var(--erp-space-sm);
+            padding-bottom: 12px;
             margin-bottom: var(--erp-space-lg);
             border-bottom: 1px solid var(--erp-border);
+            display: inline-block;
         }
 
         .erp-form__grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: var(--erp-space-lg);
+            gap: var(--erp-space-md);
         }
 
-        .erp-form__group {
-            margin-bottom: var(--erp-space-lg);
-        }
+        .erp-form__group { margin-bottom: var(--erp-space-lg); position: relative; }
 
         .erp-form__label {
             display: block;
             margin-bottom: var(--erp-space-xs);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             color: var(--erp-text-secondary);
         }
 
+        .erp-input-wrapper { position: relative; }
+
         .erp-form__control {
             width: 100%;
-            padding: var(--erp-space-sm) var(--erp-space-md);
+            padding: 14px var(--erp-space-md);
             border: 1px solid var(--erp-border);
             border-radius: var(--erp-radius-md);
-            font-size: 15px;
-            transition: all 0.2s ease;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             background-color: rgba(0, 0, 0, 0.2);
             color: var(--erp-text-primary);
         }
 
-        .erp-form__control:hover {
+        .erp-form__control:hover { 
             border-color: var(--erp-border-dark);
+            background-color: rgba(0, 0, 0, 0.3);
         }
 
         .erp-form__control:focus {
             outline: none;
             border-color: var(--erp-primary-light);
-            box-shadow: 0 0 0 3px var(--erp-primary-subtle);
+            background-color: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 0 4px var(--erp-primary-subtle);
+            transform: translateY(-2px);
         }
 
-        .erp-form__control--with-icon {
-            padding-left: 44px;
+        .erp-form__control:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background: rgba(0, 0, 0, 0.1);
         }
+
+        .erp-form__control--with-icon { padding-left: 48px; }
 
         .erp-form__icon {
             position: absolute;
-            left: var(--erp-space-md);
+            left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--erp-text-tertiary);
-            font-size: 16px;
+            color: var(--erp-primary-light);
+            font-size: 18px;
+            transition: color 0.3s ease;
         }
 
-        .erp-form__hint {
-            display: block;
-            margin-top: 6px;
-            font-size: 12px;
-            color: var(--erp-text-tertiary);
+        .erp-form__control:focus + .erp-form__icon,
+        .erp-input-wrapper:focus-within .erp-form__icon {
+            color: #fff;
         }
 
-        /* ===== INPUT WRAPPER ===== */
-        .erp-input-wrapper {
-            position: relative;
+        textarea.erp-form__control {
+            resize: vertical;
+            min-height: 100px;
         }
 
         /* ===== BUTTON SYSTEM ===== */
@@ -366,281 +388,140 @@ include_once '../../imports/need/session_setup.php'
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: var(--erp-space-sm) var(--erp-space-md);
+            padding: var(--erp-space-sm) var(--erp-space-lg);
             border: none;
             border-radius: var(--erp-radius-md);
-            font-size: 15px;
-            font-weight: 500;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
-            gap: 8px;
-            height: 44px;
+            gap: 10px;
+            height: 52px;
+            position: relative;
+            overflow: hidden;
+            font-family: inherit;
         }
+
+        .erp-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        .erp-btn:hover::after { left: 100%; }
 
         .erp-btn--primary {
-            background-color: var(--erp-primary);
+            background: var(--erp-gradient-primary);
             color: white;
+            box-shadow: 0 4px 15px rgba(254, 98, 29, 0.4);
         }
-
         .erp-btn--primary:hover {
-            background-color: var(--erp-primary-dark);
-        }
-
-        .erp-btn--primary:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px var(--erp-primary-subtle);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(254, 98, 29, 0.6);
         }
 
         .erp-btn--secondary {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: transparent;
             color: var(--erp-text-primary);
-            border: 1px solid var(--erp-border);
+            border: 2px solid var(--erp-border);
+            backdrop-filter: blur(10px);
         }
-
         .erp-btn--secondary:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: var(--erp-border-dark);
-        }
-
-        .erp-btn--success {
-            background-color: var(--erp-accent-success);
-            color: white;
-        }
-
-        .erp-btn--success:hover {
-            background-color: #2f855a;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-color: var(--erp-text-secondary);
+            transform: translateY(-2px);
         }
 
         .erp-btn--google {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--erp-text-primary);
-            border: 1px solid var(--erp-border);
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #333;
+            border: none;
         }
-
         .erp-btn--google:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: var(--erp-google);
+            background-color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .erp-btn--block {
-            display: flex;
-            width: 100%;
-        }
-
-        /* ===== SECURITY SECTION ===== */
+        /* ===== SECURITY SECTION (MODERN WIDGETS) ===== */
         .erp-security-settings {
-            background-color: rgba(0, 0, 0, 0.2);
-            border-radius: var(--erp-radius-md);
-            border: 1px solid var(--erp-border);
-            padding: var(--erp-space-lg);
-            margin-top: var(--erp-space-xl);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
         .erp-security-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: var(--erp-space-md) 0;
-            border-bottom: 1px solid var(--erp-border);
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--erp-border);
+            border-radius: var(--erp-radius-md);
+            transition: all 0.3s ease;
         }
 
-        .erp-security-item:last-child {
-            border-bottom: none;
+        .erp-security-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--erp-border-dark);
+            transform: translateX(5px);
         }
 
-        .erp-security-item__info {
-            flex: 1;
-        }
+        .erp-security-item__info { flex: 1; }
 
         .erp-security-item__title {
             font-weight: 600;
+            font-size: 16px;
             margin-bottom: 4px;
+            color: var(--erp-text-primary);
         }
 
         .erp-security-item__description {
-            font-size: 14px;
-            color: var(--erp-text-tertiary);
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--erp-text-secondary);
         }
 
         .erp-security-item__status {
             display: flex;
             align-items: center;
-            gap: var(--erp-space-sm);
+            gap: 16px;
         }
 
         .erp-status-badge {
-            padding: 4px 10px;
-            border-radius: var(--erp-radius-full);
-            font-size: 12px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             font-weight: 600;
         }
 
         .erp-status-badge--enabled {
-            background-color: rgba(56, 161, 105, 0.1);
+            background-color: rgba(0, 230, 118, 0.15);
             color: var(--erp-accent-success);
         }
 
         .erp-status-badge--disabled {
-            background-color: rgba(229, 62, 62, 0.1);
+            background-color: rgba(255, 23, 68, 0.15);
             color: var(--erp-accent-error);
         }
 
-        /* ===== NOTIFICATION SETTINGS ===== */
-        .erp-notification-settings {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--erp-space-md);
-        }
-
-        .erp-notification-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: var(--erp-space-sm);
-            border: 1px solid var(--erp-border);
-            border-radius: var(--erp-radius-md);
-            transition: border-color 0.2s;
-        }
-
-        .erp-notification-item:hover {
-            border-color: var(--erp-border-dark);
-        }
-
-        .erp-notification-item__info {
-            display: flex;
-            align-items: center;
-            gap: var(--erp-space-sm);
-        }
-
-        /* ===== SWITCH TOGGLE ===== */
-        .erp-switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 26px;
-        }
-
-        .erp-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .erp-switch__slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--erp-border);
-            transition: .3s;
-            border-radius: 34px;
-        }
-
-        .erp-switch__slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .3s;
-            border-radius: 50%;
-        }
-
-        .erp-switch input:checked+.erp-switch__slider {
-            background-color: var(--erp-accent-success);
-        }
-
-        .erp-switch input:checked+.erp-switch__slider:before {
-            transform: translateX(24px);
-        }
-
-        /* ===== ACTION BUTTONS ===== */
+        /* ===== ACTION BUTTONS ROW ===== */
         .erp-profile-actions {
             display: flex;
             justify-content: flex-end;
-            gap: var(--erp-space-md);
+            gap: 16px;
             margin-top: var(--erp-space-xl);
             padding-top: var(--erp-space-lg);
             border-top: 1px solid var(--erp-border);
         }
 
-        /* ===== UTILITY CLASSES ===== */
-        .erp-text-center {
-            text-align: center;
-        }
-
-        .erp-mt-xs {
-            margin-top: var(--erp-space-xs);
-        }
-
-        .erp-mt-sm {
-            margin-top: var(--erp-space-sm);
-        }
-
-        .erp-mt-md {
-            margin-top: var(--erp-space-md);
-        }
-
-        .erp-mt-lg {
-            margin-top: var(--erp-space-lg);
-        }
-
-        .erp-mt-xl {
-            margin-top: var(--erp-space-xl);
-        }
-
-        .erp-mt-2xl {
-            margin-top: var(--erp-space-2xl);
-        }
-
-        .erp-mb-xs {
-            margin-bottom: var(--erp-space-xs);
-        }
-
-        .erp-mb-sm {
-            margin-bottom: var(--erp-space-sm);
-        }
-
-        .erp-mb-md {
-            margin-bottom: var(--erp-space-md);
-        }
-
-        .erp-mb-lg {
-            margin-bottom: var(--erp-space-lg);
-        }
-
-        .erp-mb-xl {
-            margin-bottom: var(--erp-space-xl);
-        }
-
-        .erp-text-sm {
-            font-size: 14px;
-        }
-
-        .erp-text-tertiary {
-            color: var(--erp-text-tertiary);
-        }
-
-        .erp-link {
-            color: var(--erp-primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .erp-link:hover {
-            color: var(--erp-primary-dark);
-            text-decoration: underline;
-        }
-
         /* ===== FOOTER ===== */
         .erp-profile-card__footer {
-            padding: var(--erp-space-lg) var(--erp-space-xl);
+            padding: var(--erp-space-md) var(--erp-space-xl);
             background: rgba(0, 0, 0, 0.2);
             border-top: 1px solid var(--erp-border);
             text-align: center;
@@ -648,41 +529,9 @@ include_once '../../imports/need/session_setup.php'
         }
 
         .erp-footer__copyright {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--erp-text-tertiary);
-            margin-bottom: var(--erp-space-xs);
-        }
-
-
-        /* DEFAULT USER ICON (ROUND) */
-        .erp-profile-picture__default {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background-color: linear-gradient(90deg, var(--erp-primary) 0%, var(--erp-primary-dark) 100%);
-            /* light gray */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .erp-profile-picture__default i {
-            font-size: 36px;
-            color: #6b7280;
-        }
-
-        /* Camera button */
-        .erp-profile-picture__upload {
-            margin-top: 8px;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: #111827;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            margin-bottom: 2px;
         }
 
         /* ===== RESPONSIVE ADJUSTMENTS ===== */
@@ -691,59 +540,14 @@ include_once '../../imports/need/session_setup.php'
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                gap: var(--erp-space-lg);
+                border-bottom: none;
             }
-
-            .erp-profile-info__meta {
-                justify-content: center;
-            }
-
-            .erp-form__grid {
-                grid-template-columns: 1fr;
-                gap: var(--erp-space-md);
-            }
-
-            .erp-notification-settings {
-                grid-template-columns: 1fr;
-            }
-
-            .erp-profile-actions {
-                flex-direction: column;
-            }
-
-            .erp-btn--block-mobile {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 640px) {
-
-            .erp-profile-card__header,
-            .erp-profile-card__body {
-                padding: var(--erp-space-lg);
-            }
-
-            .erp-profile-card__footer {
-                padding: var(--erp-space-md) var(--erp-space-lg);
-            }
-
-            /* .erp-profile-picture__wrapper {
-                width: 140px;
-                height: 140px;
-            } */
-
-
-
-            .erp-profile-picture__wrapper {
-                width: 96px;
-                height: 96px;
-                position: relative;
-            }
-
-
-            .erp-profile-info__name {
-                font-size: 28px;
-            }
+            .erp-profile-info__meta { justify-content: center; }
+            .erp-form__grid { grid-template-columns: 1fr; }
+            .erp-security-item { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .erp-security-item__status { width: 100%; justify-content: space-between; }
+            .erp-profile-actions { flex-direction: column-reverse; }
+            .erp-profile-actions .erp-btn { width: 100%; }
         }
     </style>
 </head>

@@ -92,14 +92,6 @@
                                     <span id="User_Profile_A_01_val_04"><?php echo htmlspecialchars($u_email); ?></span>
                                 </div>
                                 <div class="erp-profile-info__meta-item">
-                                    <i class="fas fa-building erp-profile-info__meta-icon"></i>
-                                    <span>Department:<span id="User_Profile_A_01_val_05"> <?php echo htmlspecialchars($u_department); ?></span></span>
-                                </div>
-                                <div class="erp-profile-info__meta-item">
-                                    <i class="fas fa-id-badge erp-profile-info__meta-icon"></i>
-                                    <span>Employee ID: <span id="User_Profile_A_01_val_06">EMP-<?php echo $current_user_id_profile; ?></span></span>
-                                </div>
-                                <div class="erp-profile-info__meta-item">
                                     <i class="fas fa-calendar-alt erp-profile-info__meta-icon"></i>
                                     <span>Joined:<span id="User_Profile_A_01_val_07"> <?php echo htmlspecialchars($u_joined); ?></span></span>
                                 </div>
@@ -170,33 +162,9 @@
                             </div>
 
 
-                            <div class="erp-form__group">
-                                <label class="erp-form__label">Department</label>
-                                <div class="erp-input-wrapper">
-                                    <i class="fas fa-building erp-form__icon"></i>
-                                    <input
-                                        type="text"
-                                        class="erp-form__control erp-form__control--with-icon"
-                                        value="<?php echo htmlspecialchars($u_department); ?>"
-                                        id="User_Profile_A_01_val_13"
-                                        disabled
-                                        aria-label="Department">
-                                </div>
-                            </div>
 
-                            <div class="erp-form__group">
-                                <label class="erp-form__label">Job Title</label>
-                                <div class="erp-input-wrapper">
-                                    <i class="fas fa-briefcase erp-form__icon"></i>
-                                    <input
-                                        type="text"
-                                        class="erp-form__control erp-form__control--with-icon"
-                                        value="<?php echo htmlspecialchars($u_role); ?>"
-                                        id="User_Profile_A_01_val_14"
-                                        disabled
-                                        aria-label="Job Title">
-                                </div>
-                            </div>
+
+
 
 
 
@@ -206,14 +174,7 @@
 
                     </div>
 
-                    <div class="erp-form__group">
-                        <label class="erp-form__label">Bio / Description</label>
-                        <textarea
-                            class="erp-form__control"
-                            rows="4"
-                            id="User_Profile_A_01_val_15"
-                            aria-label="Bio / Description"><?php echo htmlspecialchars($u_bio); ?></textarea>
-                    </div>
+
 
 
                     <!-- Security Settings Section -->
