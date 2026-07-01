@@ -20,12 +20,16 @@ function runAICheck(){
   // Ensure we pass the score_histry_id that was generated in Step 4
   formData.append('score_histry_id', ag.scoreHistryId);
 
+  // Show the full-screen preloader overlay while hitting the AI API
+  showSubmitPreloader();
+
   fetch("View-List/AIGrader/grid_drawing_projects_UPDATE_STEP5.php", {
       method: "POST",
       body: formData
   })
   .then(response => response.json())
   .then(res => {
+      hideSubmitPreloader();
       procView.style.display = 'none';
       
       if (res.status === 'success') {
@@ -158,6 +162,7 @@ function runAICheck(){
       }
   })
   .catch(err => {
+      hideSubmitPreloader();
       procView.style.display = 'none';
       console.error(err);
       alert('Network or server error occurred during AI evaluation.');

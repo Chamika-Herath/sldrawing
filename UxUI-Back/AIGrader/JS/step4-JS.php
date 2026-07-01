@@ -29,12 +29,15 @@ function applyAndNextStep4() {
     formData.append('project_id', ag.projectId);
     formData.append('sketch_image', ag.sketch);
 
+    showSubmitPreloader();
+
     fetch("View-List/AIGrader/grid_drawing_projects_UPDATE_STEP4.php", {
         method: "POST",
         body: formData
     })
     .then(response => response.json())
     .then(res => {
+        hideSubmitPreloader();
         if(btn) btn.disabled = false;
         if (res.status === 'success') {
             // Save the newly created project_score_histry id so step 5 can update it if needed
@@ -47,6 +50,7 @@ function applyAndNextStep4() {
         }
     })
     .catch(err => {
+        hideSubmitPreloader();
         if(btn) btn.disabled = false;
         console.error(err);
         alert('Network or server error occurred.');

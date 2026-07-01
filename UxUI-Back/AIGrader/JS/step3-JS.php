@@ -302,12 +302,15 @@ function applyAndNextStep3() {
     formData.append('project_id', ag.projectId);
     formData.append('grid_image', ag.grid);
 
+    showSubmitPreloader();
+
     fetch("View-List/AIGrader/grid_drawing_projects_UPDATE_STEP3.php", {
         method: "POST",
         body: formData
     })
     .then(response => response.json())
     .then(res => {
+        hideSubmitPreloader();
         if(btn) btn.disabled = false;
         if (res.status === 'success') {
             goStep(4);
@@ -316,6 +319,7 @@ function applyAndNextStep3() {
         }
     })
     .catch(err => {
+        hideSubmitPreloader();
         if(btn) btn.disabled = false;
         console.error(err);
         alert('Network or server error occurred.');

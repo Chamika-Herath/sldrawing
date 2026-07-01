@@ -407,6 +407,7 @@ function applyAndNextV2() {
 
   // Replace this placeholder with appropriate loading UI if desired
   document.querySelector('.next-btn').disabled = true;
+  showSubmitPreloader();
 
   fetch("View-List/AIGrader/grid_drawing_projects_UPDATE_STEP2.php", {
       method: "POST",
@@ -414,6 +415,7 @@ function applyAndNextV2() {
   })
   .then(response => response.json())
   .then(res => {
+      hideSubmitPreloader();
       document.querySelector('.next-btn').disabled = false;
       if (res.status === 'success') {
           goStep(3);
@@ -422,6 +424,7 @@ function applyAndNextV2() {
       }
   })
   .catch(err => {
+      hideSubmitPreloader();
       document.querySelector('.next-btn').disabled = false;
       console.error(err);
       alert('Network or server error occurred.');

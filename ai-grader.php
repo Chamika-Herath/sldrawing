@@ -1,4 +1,4 @@
-﻿<?php include_once './imports/need/session_setup.php'; ?>
+<?php include_once './imports/need/session_setup.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +9,7 @@
     <?php 
     include_once './UxUI-Back/Needs/header.php';
     //include_once './UxUI-Back/Main/ai-grader-content.php';
+    include_once './UxUI-Back/Needs/Submit_Pre_loader.php';
     ?>
     
 

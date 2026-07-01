@@ -16,12 +16,15 @@
       formData.append('project_name', projectName);
       formData.append('reference_img', fileInput.files[0]);
 
+      showSubmitPreloader();
+
       fetch("<?php echo $pth; ?>View-List/AIGrader/grid_drawing_projects_ADD_UPDATE.php", {
           method: "POST",
           body: formData
       })
       .then(response => response.json())
       .then(res => {
+          hideSubmitPreloader();
           console.log(res);
           if (res.status === 'success') {
               ag.projectId = res.id;
@@ -31,6 +34,7 @@
           }
       })
       .catch(err => {
+          hideSubmitPreloader();
           console.error(err);
           alert('An error occurred while saving the project.');
       });
