@@ -6,3 +6,4 @@ scikit-image
 python-multipart
 pydantic
 flask-cors
+mediapipe
