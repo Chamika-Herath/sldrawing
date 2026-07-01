@@ -25,13 +25,13 @@ include_once '../../imports/need/session_setup.php';
             --erp-primary-subtle: #ebf8ff;
 
             /* Neutral Colors */
-            --erp-surface: #ffffff;
-            --erp-surface-alt: #f7fafc;
-            --erp-border: #e2e8f0;
-            --erp-border-dark: #cbd5e0;
-            --erp-text-primary: #2d3748;
-            --erp-text-secondary: #4a5568;
-            --erp-text-tertiary: #718096;
+            --erp-surface: rgba(25, 25, 35, 0.55);
+            --erp-surface-alt: rgba(25, 25, 35, 0.35);
+            --erp-border: rgba(255, 255, 255, 0.15);
+            --erp-border-dark: rgba(255, 255, 255, 0.3);
+            --erp-text-primary: #ffffff;
+            --erp-text-secondary: rgba(255, 255, 255, 0.85);
+            --erp-text-tertiary: rgba(255, 255, 255, 0.6);
 
             /* Error Colors */
             --erp-error-light: #fed7d7;
@@ -79,8 +79,12 @@ include_once '../../imports/need/session_setup.php';
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #fdf2f2 0%, #fed7d7 100%);
+            font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+            background-image: url('/assets/images/portrait_background.png') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            background-repeat: no-repeat !important;
             color: var(--erp-text-primary);
             line-height: 1.5;
             min-height: 100vh;
@@ -105,10 +109,12 @@ include_once '../../imports/need/session_setup.php';
             max-width: 600px;
         }
 
-        /* ===== ERROR CARD ===== */
         .erp-error-card {
             width: 100%;
-            background-color: var(--erp-surface);
+            background: var(--erp-surface);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--erp-border);
             border-radius: var(--erp-radius-lg);
             box-shadow: var(--erp-shadow-lg);
             overflow: hidden;
@@ -143,7 +149,8 @@ include_once '../../imports/need/session_setup.php';
         }
 
         .erp-error-card__header {
-            background: linear-gradient(90deg, var(--erp-error-dark) 0%, var(--erp-error-darker) 100%);
+            background: rgba(229, 62, 62, 0.15);
+            border-bottom: 1px solid var(--erp-border);
             color: white;
             padding: var(--erp-space-xl) var(--erp-space-xl) var(--erp-space-lg);
             text-align: center;
@@ -349,7 +356,9 @@ include_once '../../imports/need/session_setup.php';
 
         /* Error details box */
         .erp-error-details {
-            background-color: var(--erp-error-light);
+            background-color: rgba(229, 62, 62, 0.1);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(229, 62, 62, 0.3);
             border-left: 4px solid var(--erp-error-dark);
             padding: var(--erp-space-md);
             border-radius: var(--erp-radius-md);
@@ -439,15 +448,16 @@ include_once '../../imports/need/session_setup.php';
         }
 
         .erp-btn--secondary {
-            background-color: var(--erp-surface);
-            color: var(--erp-error-dark);
-            border: 2px solid var(--erp-error-medium);
+            background-color: transparent;
+            color: #ffffff;
+            border: 2px solid rgba(229, 62, 62, 0.5);
             box-shadow: var(--erp-shadow-sm);
         }
 
         .erp-btn--secondary:hover {
-            background-color: var(--erp-error-light);
+            background-color: rgba(229, 62, 62, 0.15);
             transform: translateY(-2px);
+            border-color: var(--erp-error-medium);
         }
 
         /* Button ripple effect */

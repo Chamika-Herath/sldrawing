@@ -95,7 +95,7 @@
          backUrl = 'javascript:history.back()',
          showHelp = true,
          helpText = 'Need help? Contact Support',
-         helpUrl = 'https://www.neosolution.lk/Contact-Us'
+         helpUrl = 'https://heraforce.com/'
      ) {
          // Set titles and messages
          document.getElementById('error-title').textContent = title;
