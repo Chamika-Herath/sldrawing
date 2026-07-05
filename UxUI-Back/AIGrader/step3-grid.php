@@ -7,6 +7,7 @@
       <!-- Toolbar Overlay -->
       <div class="grid-tool-overlay" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 4px; padding: 4px; border-radius: 12px; z-index: 100;">
         <button id="gt-pan" onclick="setGridTool('pan')" class="gt-btn active" style="border-radius: 8px;">✋ Pan</button>
+        <button id="gt-move-img" onclick="setGridTool('move-img')" class="gt-btn" style="border-radius: 8px;">🖼️ Move Image</button>
         <button id="gt-draw" onclick="setGridTool('draw')" class="gt-btn" style="border-radius: 8px;">📍 Connect</button>
         <button id="gt-erase" onclick="setGridTool('erase')" class="gt-btn" style="border-radius: 8px;">🧹 Eraser</button>
         <button id="gt-toggle-sidebar" onclick="toggleGridSidebar()" class="gt-btn" style="border-radius: 8px; margin-left: 10px; background: rgba(0, 132, 255, 0.15); border: 1px solid rgba(0,132,255,0.4); color: #00d2ff;">▶ Hide Sidebar</button>

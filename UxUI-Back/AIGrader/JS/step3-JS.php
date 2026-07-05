@@ -2,6 +2,7 @@
 // Step 3 — Grid maker
 var gridBaseImg=null;
 var gridPanX = 0, gridPanY = 0, isDraggingGrid = false, lastGridX, lastGridY;
+var imgOffsetX = 0, imgOffsetY = 0, isDraggingImg = false;
 var gridTool = 'pan';
 var gridSnappedLines = []; // Format: {c1, r1, c2, r2, color}
 var dragStartPoint = null; // {c, r}
@@ -10,18 +11,19 @@ var currentMousePos = null; // {x, y}
 function setGridTool(tool){
   gridTool = tool;
   var panBtn = document.getElementById('gt-pan');
+  var moveImgBtn = document.getElementById('gt-move-img');
   var drawBtn = document.getElementById('gt-draw');
   var eraseBtn = document.getElementById('gt-erase');
   
-  if(panBtn && drawBtn && eraseBtn){
-    [panBtn, drawBtn, eraseBtn].forEach(btn => btn.classList.remove('active'));
-    var active = (tool === 'pan') ? panBtn : (tool === 'draw' ? drawBtn : eraseBtn);
+  if(panBtn && moveImgBtn && drawBtn && eraseBtn){
+    [panBtn, moveImgBtn, drawBtn, eraseBtn].forEach(btn => btn.classList.remove('active'));
+    var active = (tool === 'pan') ? panBtn : (tool === 'move-img' ? moveImgBtn : (tool === 'draw' ? drawBtn : eraseBtn));
     active.classList.add('active');
   }
 
   var c = document.getElementById('grid-canvas');
   if(c) {
-    if(tool === 'pan') c.style.cursor = 'grab';
+    if(tool === 'pan' || tool === 'move-img') c.style.cursor = 'grab';
     else if(tool === 'draw') c.style.cursor = 'crosshair';
     else c.style.cursor = 'no-drop';
   }
@@ -96,6 +98,7 @@ function initGrid(){
     c.width=gridBaseImg.width;
     c.height=gridBaseImg.height;
     gridPanX = 0; gridPanY = 0; 
+    imgOffsetX = 0; imgOffsetY = 0;
     gridSnappedLines = [];
     drawGrid();
   };
@@ -115,6 +118,10 @@ function initGrid(){
 
     if(gridTool === 'pan'){
       isDraggingGrid = true;
+      lastGridX = clientX; lastGridY = clientY;
+      c.style.cursor = 'grabbing';
+    } else if(gridTool === 'move-img'){
+      isDraggingImg = true;
       lastGridX = clientX; lastGridY = clientY;
       c.style.cursor = 'grabbing';
     } else if(gridTool === 'draw'){
@@ -158,6 +165,12 @@ function initGrid(){
       gridPanY += (clientY - lastGridY) * canvasScale;
       lastGridX = clientX; lastGridY = clientY;
       drawGrid();
+    } else if(isDraggingImg && gridTool === 'move-img'){
+      var canvasScale = c.width / rect.width;
+      imgOffsetX += (clientX - lastGridX) * canvasScale;
+      imgOffsetY += (clientY - lastGridY) * canvasScale;
+      lastGridX = clientX; lastGridY = clientY;
+      drawGrid();
     } else if(dragStartPoint && gridTool === 'draw'){
       var s = Math.min(rect.width/c.width, rect.height/c.height);
       var ox = (rect.width - c.width*s)/2, oy = (rect.height - c.height*s)/2;
@@ -180,8 +193,8 @@ function initGrid(){
         gridSnappedLines.push({c1: dragStartPoint.c, r1: dragStartPoint.r, c2: inter.c, r2: inter.r});
       }
     }
-    isDraggingGrid = false; dragStartPoint = null; currentMousePos = null;
-    if(c) c.style.cursor = (gridTool === 'pan' ? 'grab' : (gridTool === 'draw' ? 'crosshair' : 'no-drop'));
+    isDraggingGrid = false; isDraggingImg = false; dragStartPoint = null; currentMousePos = null;
+    if(c) c.style.cursor = ((gridTool === 'pan' || gridTool === 'move-img') ? 'grab' : (gridTool === 'draw' ? 'crosshair' : 'no-drop'));
     drawGrid();
   }
 
@@ -217,7 +230,7 @@ function drawGrid(){
   ctx.clearRect(0,0,c.width,c.height); 
   ctx.translate(gridPanX, gridPanY);
   ctx.translate(c.width/2, c.height/2); ctx.scale(zm, zm); ctx.translate(-c.width/2, -c.height/2);
-  ctx.drawImage(gridBaseImg,0,0);
+  ctx.drawImage(gridBaseImg, imgOffsetX, imgOffsetY);
   
   var cw = (c.width - margin*2)/cols, ch = (isSquare ? cw : (c.height - margin*2)/rows);
   if(isSquare) { rows = Math.floor((c.height - margin*2)/ch); document.getElementById('g-rows').value = rows; }
@@ -274,7 +287,7 @@ function downloadGrid(){
   var thick=parseFloat(document.getElementById('g-thick').value)||2;
   var color=document.getElementById('g-color').value;
   
-  ctx.drawImage(gridBaseImg, 0, 0);
+  ctx.drawImage(gridBaseImg, imgOffsetX, imgOffsetY);
   
   var cw = (tempC.width - margin*2)/cols;
   var ch = (isSquare ? cw : (tempC.height - margin*2)/rows);
