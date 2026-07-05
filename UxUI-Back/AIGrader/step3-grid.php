@@ -9,10 +9,11 @@
         <button id="gt-pan" onclick="setGridTool('pan')" class="gt-btn active" style="border-radius: 8px;">✋ Pan</button>
         <button id="gt-draw" onclick="setGridTool('draw')" class="gt-btn" style="border-radius: 8px;">📍 Connect</button>
         <button id="gt-erase" onclick="setGridTool('erase')" class="gt-btn" style="border-radius: 8px;">🧹 Eraser</button>
+        <button id="gt-toggle-sidebar" onclick="toggleGridSidebar()" class="gt-btn" style="border-radius: 8px; margin-left: 10px; background: rgba(0, 132, 255, 0.15); border: 1px solid rgba(0,132,255,0.4); color: #00d2ff;">▶ Hide Sidebar</button>
       </div>
       
       <!-- The Image/Grid -->
-      <canvas id="grid-canvas" class="grid-canvas"></canvas>
+      <canvas id="grid-canvas" class="grid-canvas" style="max-height: 85%; max-width: 90%;"></canvas>
       
       <!-- Zoom Indicator HUD -->
       <div style="position:absolute; bottom:20px; right:20px; background:rgba(0,0,0,0.8); color:#888; padding:5px 12px; border-radius:6px; font-size:0.7rem; font-weight:700; pointer-events:none; border:1px solid #333;">
@@ -21,7 +22,7 @@
     </div>
 
     <!-- Right Properties Sidebar -->
-    <div class="grid-sidebar">
+    <div class="grid-sidebar" id="grid-sidebar-panel">
       <div class="grid-sidebar-card">
         <div style="font-weight:800; font-size:0.75rem; color:#fff; text-transform:uppercase; letter-spacing:1px; margin-bottom:20px; display:flex; align-items:center; gap:8px;">
           <span style="color:var(--primary);">📐</span> Properties

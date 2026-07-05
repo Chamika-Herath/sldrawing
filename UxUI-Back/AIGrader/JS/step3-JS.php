@@ -33,6 +33,21 @@ function clearGridDrawings(){
   drawGrid();
 }
 
+function toggleGridSidebar() {
+  var sidebar = document.getElementById('grid-sidebar-panel');
+  var btn = document.getElementById('gt-toggle-sidebar');
+  if (sidebar.style.display === 'none') {
+    sidebar.style.display = 'flex';
+    btn.innerHTML = '▶ Hide Sidebar';
+    btn.style.color = '#00d2ff';
+  } else {
+    sidebar.style.display = 'none';
+    btn.innerHTML = '◀ Show Sidebar';
+    btn.style.color = '#ff4d4d'; // Change color to indicate state
+  }
+  setTimeout(drawGrid, 50); // Redraw canvas just in case resize affects things
+}
+
 // Helper for Eraser tool
 function distToSegment(px, py, x1, y1, x2, y2) {
   var l2 = Math.hypot(x1 - x2, y1 - y2)**2;
