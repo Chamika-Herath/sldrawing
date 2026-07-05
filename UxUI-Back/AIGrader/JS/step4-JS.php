@@ -6,8 +6,10 @@ document.getElementById('sketch-input').addEventListener('change',function(){
   r.onload=function(e){
     ag.sketch=e.target.result;
     var img=document.getElementById('sketch-preview'); img.src=e.target.result; img.style.display='block';
-    document.getElementById('sketch-dz').querySelector('h3').textContent='✅ Sketch Uploaded!';
-    document.getElementById('sketch-dz').querySelector('p').textContent=self.files[0].name;
+    var dz = document.getElementById('sketch-dz');
+    dz.classList.add('has-image');
+    var changeBtn = document.getElementById('sketch-change-btn');
+    if(changeBtn) changeBtn.style.display = 'inline-block';
   }; r.readAsDataURL(this.files[0]);
 });
 

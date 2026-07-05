@@ -180,9 +180,11 @@ function loadProjects(){
           grid.innerHTML = res.data.map(function(p){
               var thumb = p.reference_img_url ? p.reference_img_url : (p.grid_img_url ? p.grid_img_url : null);
               var dateStr = p.sdt ? new Date(p.sdt).toLocaleDateString() : '';
-              return '<div class="proj-card" onclick="resumeProject('+p.id+')">'+
+              return '<div class="proj-card" style="position:relative;" onclick="resumeProject('+p.id+')">'+
                 (thumb ? '<img class="proj-thumb" src="'+thumb+'" alt="'+p.project_name+'">' : '<div class="proj-thumb-placeholder">🎨</div>')+
-                '<div class="proj-body"><div class="proj-name">'+p.project_name+'</div><div class="proj-meta"><span>'+dateStr+'</span><span class="proj-score"></span></div></div></div>';
+                '<div class="proj-body"><div class="proj-name">'+p.project_name+'</div><div class="proj-meta"><span>'+dateStr+'</span><span class="proj-score"></span></div></div>'+
+                '<button onclick="deleteProject('+p.id+', event)" title="Delete Project" style="position:absolute; top:8px; right:8px; width:32px; height:32px; border-radius:50%; background:rgba(255,50,50,0.85); color:#fff; border:none; cursor:pointer; font-weight:bold; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 5px rgba(0,0,0,0.2); transition:all 0.2s;" onmouseover="this.style.background=\'rgba(255,0,0,1)\'; this.style.transform=\'scale(1.1)\';" onmouseout="this.style.background=\'rgba(255,50,50,0.85)\'; this.style.transform=\'scale(1)\';">✕</button>'+
+                '</div>';
           }).join('');
       } else {
           window.ag_projects_data = [];
@@ -232,6 +234,31 @@ function resumeProject(id) {
     wiz.classList.add('active');
     
     navigateStep(targetStep);
+}
+
+function deleteProject(id, event) {
+    if (event) event.stopPropagation();
+    showConfirm('Are you sure you want to delete this project?', 'Delete', 'Cancel', function(){
+        var formData = new FormData();
+        formData.append('id', id);
+        fetch('View-List/AIGrader/grid_drawing_projects_DELETE.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(res => {
+            if(res.status === 'success'){
+                showMessage(res.message, 'success');
+                loadProjects();
+            } else {
+                showMessage(res.message, 'error');
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            showMessage('Failed to delete project.', 'error');
+        });
+    });
 }
 
 document.addEventListener('DOMContentLoaded', loadProjects);
