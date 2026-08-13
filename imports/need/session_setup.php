@@ -11,7 +11,7 @@ $time = $_SERVER['REQUEST_TIME'];
 $_SESSION['LAST_ACTIVITY'] = $time;
 
 
-// $pth = "https://fawaji.infortech.lk/";
+
 $online_state = false;
 $online_exnction = ".php";
 $online_offline_extention = ".php";
@@ -25,14 +25,14 @@ $online_offline_extention = ".php";
 
 
 
-$home_page_url = "http://localhost:3000/";
-$home_page = "http://localhost:3000/";
+// $home_page_url = "http://localhost:3000/";
+// $home_page = "http://localhost:3000/";
 
 
 
 //localhost
-// $home_page_url = "https://drawing.heraforce.com/";
-// $home_page = "https://drawing.heraforce.com/";
+$home_page_url = "https://sldrawing.com/";
+$home_page = "https://sldrawing.com/";
 
 
 
