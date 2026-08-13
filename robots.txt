@@ -1,4 +1,4 @@
-# robots.txt for drawing.heraforce.com
+# robots.txt for sldrawing.com
 User-agent: *
 Allow: /
 
@@ -9,4 +9,4 @@ Disallow: /api/
 Disallow: /Project/
 
 # Sitemap location
-Sitemap: https://drawing.heraforce.com/sitemap.xml
+Sitemap: https://sldrawing.com/sitemap.xml

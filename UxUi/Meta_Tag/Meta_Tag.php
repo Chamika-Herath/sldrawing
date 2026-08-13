@@ -3,25 +3,25 @@
 
 <!-- SEO Meta Tags -->
 <meta name="google-site-verification" content="Hs-tKVOBACrIqt13_sVxCQRG7BaMD1QXr5wrk-bhDiE" />
-<title><?php echo isset($get_title) ? $get_title : "SLdrawing - Unlock Your Creative Potential"; ?></title>
-<meta name="description" content="<?php echo isset($get_dis) ? $get_dis : "Master digital art with expert-led tutorials. Join a community of artists and refine your vision with our AI Grid Drawing system."; ?>">
-<meta name="keywords" content="<?php echo isset($get_key_words) ? $get_key_words : "art, drawing, tutorials, portraits, grid drawing, AI grader, digital art Sri Lanka"; ?>">
-<meta name="author" content="H.M.C.D. Herath">
-<link rel="canonical" href="https://drawing.heraforce.com<?php echo $_SERVER['REQUEST_URI']; ?>">
+<title><?php echo isset($get_title) ? $get_title : "SLdrawing - Drawing Tutorials & Art by Chamika Herath | Heraforce"; ?></title>
+<meta name="description" content="<?php echo isset($get_dis) ? $get_dis : "Master digital and traditional drawing with expert-led tutorials by Chamika Herath at Heraforce. Join the SLdrawing community and refine your artistic vision today."; ?>">
+<meta name="keywords" content="<?php echo isset($get_key_words) ? $get_key_words : "Chamika Herath, Heraforce, art, drawing, tutorials, portraits, grid drawing, AI grader, digital art Sri Lanka, learn to draw, pencil drawing, digital portrait"; ?>">
+<meta name="author" content="Chamika Herath">
+<link rel="canonical" href="https://sldrawing.com<?php echo $_SERVER['REQUEST_URI']; ?>">
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://drawing.heraforce.com<?php echo $_SERVER['REQUEST_URI']; ?>">
+<meta property="og:url" content="https://sldrawing.com<?php echo $_SERVER['REQUEST_URI']; ?>">
 <meta property="og:title" content="<?php echo isset($get_social_title) ? $get_social_title : $get_title; ?>">
 <meta property="og:description" content="<?php echo isset($get_social_dis) ? $get_social_dis : $get_dis; ?>">
-<meta property="og:image" content="https://drawing.heraforce.com<?php echo isset($image_fb) ? $image_fb : "/assets/images/hero.png"; ?>">
+<meta property="og:image" content="https://sldrawing.com<?php echo isset($image_fb) ? $image_fb : "/assets/images/hero.png"; ?>">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://drawing.heraforce.com<?php echo $_SERVER['REQUEST_URI']; ?>">
+<meta property="twitter:url" content="https://sldrawing.com<?php echo $_SERVER['REQUEST_URI']; ?>">
 <meta property="twitter:title" content="<?php echo isset($get_social_title) ? $get_social_title : $get_title; ?>">
 <meta property="twitter:description" content="<?php echo isset($get_social_dis) ? $get_social_dis : $get_dis; ?>">
-<meta property="twitter:image" content="https://drawing.heraforce.com<?php echo isset($image_twitter) ? $image_twitter : "/assets/images/hero.png"; ?>">
+<meta property="twitter:image" content="https://sldrawing.com<?php echo isset($image_twitter) ? $image_twitter : "/assets/images/hero.png"; ?>">
 
 <!-- Favicons -->
 <link rel="icon" type="image/png" href="/assets/images/shark.png">
@@ -38,7 +38,7 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "SLdrawing",
-  "url": "https://drawing.heraforce.com",
+  "url": "https://sldrawing.com",
   "description": "Unlock your creative potential with AI-powered drawing tools and pro tutorials.",
   "publisher": {
     "@type": "Person",
@@ -46,7 +46,7 @@
   },
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://drawing.heraforce.com/search?q={search_term_string}",
+    "target": "https://sldrawing.com/search?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
