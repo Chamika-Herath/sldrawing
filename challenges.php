@@ -2,7 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include_once './Meta_Tag/Meta_Tag.php'; ?>
+    <?php 
+    $get_title = "Drawing Challenges - Test Your Digital Art Skills | SLdrawing by Chamika Herath";
+    $get_dis = "Join the SLdrawing community drawing challenges. Prove your skills and learn from Chamika Herath at Heraforce.";
+    $get_key_words = "Chamika Herath, drawing challenges, digital art contest, Heraforce, art skills, SLdrawing community";
+    include_once './Meta_Tag/Meta_Tag.php'; 
+    ?>
 </head>
 <body>
     <?php 

@@ -2,7 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include_once './Meta_Tag/Meta_Tag.php'; ?>
+    <?php 
+    $get_title = "Art Gallery - Stunning Portrait & Digital Artworks | SLdrawing by Chamika Herath";
+    $get_dis = "Browse through an exclusive gallery of digital art and stunning pencil portraits curated by Chamika Herath and Heraforce.";
+    $get_key_words = "Chamika Herath, art gallery, digital artworks, portrait gallery, Heraforce, SLdrawing community, best drawings";
+    include_once './Meta_Tag/Meta_Tag.php'; 
+    ?>
 </head>
 <body>
     <?php 

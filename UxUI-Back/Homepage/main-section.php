@@ -70,25 +70,25 @@
                 <!-- Card Pack -->
                 <div class="card-item card-1 glass" style="padding: 10px; border-radius: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(5px);">
                     <div style="position: absolute; top: 15px; left: 15px; color: #fff; font-weight: 900; font-size: 1.2rem;">A<br><span style="font-size: 0.8rem;">♠</span></div>
-                    <img id="card-img-1" class="fade-mask" src="/assets/images/gallery_item_1_1773937144132.png" style="width: 100%; height: 85%; object-fit: cover; border-radius: 15px;">
+                    <img id="card-img-1" class="fade-mask" src="/assets/images/gallery_item_1_1773937144132.png" alt="Digital art portrait gallery item 1" style="width: 100%; height: 85%; object-fit: cover; border-radius: 15px;">
                     <div style="padding-top: 15px; color: #fff; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; text-align: center;">Art No. 01</div>
                     <div style="position: absolute; bottom: 15px; right: 15px; color: #fff; font-weight: 900; font-size: 1.2rem; transform: rotate(180deg);">A<br><span style="font-size: 0.8rem;">♠</span></div>
                 </div>
                 <div class="card-item card-2 glass" style="padding: 10px; border-radius: 20px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(5px);">
                     <div style="position: absolute; top: 15px; left: 15px; color: #fff; font-weight: 900; font-size: 1.2rem;">K<br><span style="font-size: 0.8rem;">♣</span></div>
-                    <img id="card-img-2" class="fade-mask" src="/assets/images/gallery_item_2_1773937165255.png" style="width: 100%; height: 85%; object-fit: cover; border-radius: 15px;">
+                    <img id="card-img-2" class="fade-mask" src="/assets/images/gallery_item_2_1773937165255.png" alt="Digital art portrait gallery item 2" style="width: 100%; height: 85%; object-fit: cover; border-radius: 15px;">
                     <div style="padding-top: 15px; color: #fff; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; text-align: center;">Art No. 02</div>
                     <div style="position: absolute; bottom: 15px; right: 15px; color: #fff; font-weight: 900; font-size: 1.2rem; transform: rotate(180deg);">K<br><span style="font-size: 0.8rem;">♣</span></div>
                 </div>
                 <div class="card-item card-3 glass" style="padding: 10px; border-radius: 20px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(5px);">
                     <div style="position: absolute; top: 15px; left: 15px; color: #fff; font-weight: 900; font-size: 1.2rem;">Q<br><span style="font-size: 0.8rem; color: #ff3e3e;">♥</span></div>
-                    <img id="card-img-3" class="fade-mask" src="/assets/images/shark.png" style="width: 100%; height: 85%; object-fit: cover; border-radius: 15px;">
+                    <img id="card-img-3" class="fade-mask" src="/assets/images/shark.png" alt="SLdrawing shark mascot logo" style="width: 100%; height: 85%; object-fit: cover; border-radius: 15px;">
                     <div style="padding-top: 15px; color: #fff; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; text-align: center;">Art No. 03</div>
                     <div style="position: absolute; bottom: 15px; right: 15px; color: #fff; font-weight: 900; font-size: 1.2rem; transform: rotate(180deg);">Q<br><span style="font-size: 0.8rem; color: #ff3e3e;">♥</span></div>
                 </div>
                 <div class="card-item card-4 glass" style="padding: 10px; border-radius: 20px; background: #fff; border: 1px solid #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
                     <div style="position: absolute; top: 15px; left: 15px; color: #333; font-weight: 900; font-size: 1.2rem;">J<br><span style="font-size: 0.8rem; color: #ff3e3e;">♦</span></div>
-                    <img id="card-img-4" class="fade-mask" src="/assets/images/tutorial_portrait_1773936991179.png" style="width: 100%; height: 85%; object-fit: cover; border-radius: 15px;">
+                    <img id="card-img-4" class="fade-mask" src="/assets/images/tutorial_portrait_1773936991179.png" alt="Step by step portrait drawing tutorial preview" style="width: 100%; height: 85%; object-fit: cover; border-radius: 15px;">
                     <div style="padding-top: 15px; color: #333; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; text-align: center;">Art No. 04</div>
                     <div style="position: absolute; bottom: 15px; right: 15px; color: #333; font-weight: 900; font-size: 1.2rem; transform: rotate(180deg);">J<br><span style="font-size: 0.8rem; color: #ff3e3e;">♦</span></div>
                 </div>

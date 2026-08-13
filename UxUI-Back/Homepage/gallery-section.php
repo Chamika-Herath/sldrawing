@@ -38,22 +38,22 @@
         
         <div class="gallery-grid">
             <div class="gallery-item reveal" style="transition-delay: 0.1s;">
-                <img src="/assets/images/booking_card_1.png">
+                <img src="/assets/images/booking_card_1.png" alt="Drawing course booking guide step 1">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.2s;">
-                <img src="/assets/images/booking_card_2.png">
+                <img src="/assets/images/booking_card_2.png" alt="Drawing course booking guide step 2">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.3s;">
-                <img src="/assets/images/booking_card_3.png">
+                <img src="/assets/images/booking_card_3.png" alt="Drawing course booking guide step 3">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.4s;">
-                <img src="/assets/images/feature_card_1.png">
+                <img src="/assets/images/feature_card_1.png" alt="SLdrawing feature overview 1">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.5s;">
-                <img src="/assets/images/feature_card_2.png">
+                <img src="/assets/images/feature_card_2.png" alt="SLdrawing feature overview 2">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.6s;">
-                <img src="/assets/images/feature_card_3.png">
+                <img src="/assets/images/feature_card_3.png" alt="SLdrawing feature overview 3">
             </div>
         </div>
     </div>

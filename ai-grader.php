@@ -2,8 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include_once './Meta_Tag/Meta_Tag.php'; ?>
-    <title>AI Grid Drawing System | H.M.C.D. Herath</title>
+    <?php 
+    $get_title = "AI Grid Drawing System - Grade & Improve Your Art | SLdrawing by Chamika Herath";
+    $get_dis = "Test and improve your drawing skills with the SLdrawing AI Grid Drawing grader created by Chamika Herath. Heraforce digital art tools.";
+    $get_key_words = "Chamika Herath, AI grader, AI drawing system, grid drawing, Heraforce, improve drawing, digital art tools";
+    include_once './Meta_Tag/Meta_Tag.php'; 
+    ?>
 </head>
 <body>
     <?php 

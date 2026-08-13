@@ -2,7 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include_once './Meta_Tag/Meta_Tag.php'; ?>
+    <?php 
+    $get_title = "Art Studio - AI Digital Workspace by Chamika Herath | SLdrawing";
+    $get_dis = "Experience the ultimate digital art studio created by Chamika Herath. Heraforce's professional environment for your best drawings.";
+    $get_key_words = "Chamika Herath, art studio, digital workspace, Heraforce, digital drawing, online art studio";
+    include_once './Meta_Tag/Meta_Tag.php'; 
+    ?>
 </head>
 <body>
     <?php 

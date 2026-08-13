@@ -3,7 +3,12 @@
 
 <html lang="en">
     <head>
-        <?php include_once './Meta_Tag/Meta_Tag.php'; ?>
+        <?php 
+        $get_title = "SLdrawing - Drawing Tutorials & Digital Art by Chamika Herath | Heraforce";
+        $get_dis = "Master digital and traditional drawing with expert-led tutorials by Chamika Herath at Heraforce. Join the SLdrawing community and refine your artistic vision today.";
+        $get_key_words = "Chamika Herath, Heraforce, art, drawing, tutorials, portraits, grid drawing, AI grader, digital art Sri Lanka, learn to draw, pencil drawing, digital portrait";
+        include_once './Meta_Tag/Meta_Tag.php'; 
+        ?>
         <style>
             body {
                 background-image: url('/assets/images/portrait_background.png') !important;
