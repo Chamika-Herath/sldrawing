@@ -11,7 +11,7 @@ class Company_Info_Variable_List
     private $footer_txt = "I";
     private $company_name = "SL DRAWING";
     private $company_web = "I";
-    private $full_company_web = "http://localhost:3000/";
+    private $full_company_web = "https://sldrawing.com/";
     private $default_sending_email = "info@";
     private $system_problem_sending_email = "info@";
     private $company_short_name = "I";
