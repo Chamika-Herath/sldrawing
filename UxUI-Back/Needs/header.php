@@ -14,6 +14,7 @@
         border-radius: 3px;
         transition: all 0.3s;
     }
+    .nav-container { transition: top 0.3s ease-in-out !important; }
     @media (max-width: 992px) {
         .nav-container { display: block !important; left: 0 !important; right: 0 !important; width: 100% !important; padding: 0 !important; }
         .nav-capsule { position: fixed !important; top: 15px !important; left: 20px !important; right: 20px !important; width: auto !important; max-width: none !important; padding: 12px 20px !important; flex-wrap: wrap !important; justify-content: space-between !important; border-radius: 20px !important; margin: 0 !important; box-sizing: border-box !important; z-index: 1001 !important; }
@@ -53,6 +54,76 @@
             margin: 0 auto;
         }
     }
+    
+    /* Dynamic Island Effects */
+    .nav-capsule {
+        transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1) !important;
+        overflow: hidden;
+        margin: 0 auto;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        background: rgba(20, 20, 28, 0.85); /* Slightly solid foundation */
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .nav-capsule.dynamic-island {
+        width: 80px !important;
+        padding: 10px !important;
+        border-radius: 100px !important;
+        margin: 0 auto !important;
+    }
+    
+    .nav-capsule.dynamic-island .nav-links,
+    .nav-capsule.dynamic-island .profile-btn,
+    .nav-capsule.dynamic-island .hamburger,
+    .nav-capsule.dynamic-island .join-btn {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        width: 0;
+        position: absolute;
+        transform: scale(0.8);
+    }
+    
+    .nav-capsule .nav-links, 
+    .nav-capsule .profile-btn,
+    .nav-capsule .join-btn,
+    .nav-capsule .hamburger {
+        transition: all 0.3s ease;
+    }
+    
+    .nav-logo-container {
+        transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+        margin: 0 auto;
+        justify-content: center;
+    }
+    
+    .logo-text {
+        transition: opacity 0.3s ease, width 0.3s ease;
+        opacity: 1;
+    }
+    
+    .nav-capsule.dynamic-island .nav-logo-container {
+        width: 48px;
+        padding-left: 0;
+    }
+    
+    .logo-icon {
+        transition: all 0.3s ease;
+    }
+
+    .nav-capsule.dynamic-island .logo-icon {
+        margin-right: 0 !important;
+        transform: scale(1.1);
+    }
+
+    .nav-capsule.dynamic-island .logo-text {
+        opacity: 0;
+        width: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
 </style>
 
 <div class="nav-container" style="position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; pointer-events: none;">
@@ -67,7 +138,8 @@
         pointer-events: auto;
     ">
         <div class="nav-logo-container" style="font-size: 1.8rem; font-weight: 900; color: var(--primary); cursor: pointer; letter-spacing: -1px; display: flex; align-items: center;" onclick="window.location.href='/'">
-            <span style="background: var(--primary); color: #fff; padding: 2px 8px; border-radius: 8px; margin-right: 2px;">SL</span>drawing
+            <img class="logo-icon" src="https://heraforce.com/assets/images/heraforce_cyber_queen_logo_1778267022286J.png" alt="Heraforce" style="height: 38px; width: 38px; border-radius: 50%; margin-right: 8px; object-fit: contain; background: #fff; border: 2px solid var(--primary);">
+            <span class="logo-text"><span style="color: #fff;">SL</span>drawing</span>
         </div>
         
         <div class="hamburger" id="mobile-menu-btn" style="pointer-events: auto;">
@@ -118,6 +190,39 @@
                 navLinks.classList.toggle('active');
             });
         }
+
+        // Dynamic Island Logic
+        const navCapsule = document.querySelector('.nav-capsule');
+        const navContainer = document.querySelector('.nav-container');
+        
+        function handleDynamicIsland() {
+            if(!navCapsule || window.innerWidth <= 992) return;
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll > 80) {
+                navCapsule.classList.add('dynamic-island');
+            } else {
+                navCapsule.classList.remove('dynamic-island');
+            }
+        }
+
+        window.addEventListener('scroll', handleDynamicIsland, false);
+
+        if (navContainer && navCapsule) {
+            navContainer.addEventListener('mouseenter', () => {
+                if(window.innerWidth > 992) {
+                    navCapsule.classList.remove('dynamic-island');
+                }
+            });
+            navContainer.addEventListener('mouseleave', () => {
+                let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if(currentScroll > 80 && window.innerWidth > 992) {
+                    navCapsule.classList.add('dynamic-island');
+                }
+            });
+        }
+        
+        // Initial Check
+        handleDynamicIsland();
 
         // Active Link Highlighting
         const currentPath = window.location.pathname;
