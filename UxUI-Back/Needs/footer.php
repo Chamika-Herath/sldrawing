@@ -15,13 +15,13 @@
                     Empowering artists worldwide with next-generation AI-assisted tools. Mastering the art of grid drawing and creative expression.
                 </p>
                 <div style="display: flex; gap: 15px;">
-                    <a href="https://www.facebook.com/HeraForceCreation/" target="_blank" rel="noopener noreferrer" style="width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--text); transition: 0.3s; text-decoration: none;" onmouseover="this.style.background='var(--primary)'; this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.color='var(--text)'">
+                    <a href="https://www.facebook.com/HeraForceCreation/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style="width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--text); transition: 0.3s; text-decoration: none;" onmouseover="this.style.background='var(--primary)'; this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.color='var(--text)'">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22 12C22 6.48 17.52 2 12 2S2 6.48 2 12c0 4.84 3.44 8.85 7.94 9.74V14.7H7.06V12h2.88V9.79c0-2.85 1.7-4.43 4.3-4.43 1.25 0 2.56.22 2.56.22v2.81h-1.44c-1.42 0-1.86.88-1.86 1.78V12h3.16l-.51 2.7h-2.65v6.99C18.56 20.85 22 16.84 22 12z"/></svg>
                     </a>
-                    <a href="https://heraforce.com/" target="_blank" rel="noopener noreferrer" style="width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--text); transition: 0.3s; text-decoration: none;" onmouseover="this.style.background='var(--primary)'; this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.color='var(--text)'">
+                    <a href="https://heraforce.com/" target="_blank" rel="noopener noreferrer" aria-label="Heraforce Official Website" style="width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--text); transition: 0.3s; text-decoration: none;" onmouseover="this.style.background='var(--primary)'; this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.color='var(--text)'">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg>
                     </a>
-                    <a href="https://www.youtube.com/@HeraForce-r4i" target="_blank" rel="noopener noreferrer" style="width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--text); transition: 0.3s; text-decoration: none;" onmouseover="this.style.background='var(--primary)'; this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.color='var(--text)'">
+                    <a href="https://www.youtube.com/@HeraForce-r4i" target="_blank" rel="noopener noreferrer" aria-label="YouTube Channel" style="width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: var(--text); transition: 0.3s; text-decoration: none;" onmouseover="this.style.background='var(--primary)'; this.style.color='#fff'" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.color='var(--text)'">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.5s-.2-1.6-.8-2.3c-.8-.8-1.7-.8-2.1-.9C17.7 3 12 3 12 3s-5.7 0-8.6.3c-.4 0-1.3.1-2.1.9C.7 4.9.5 6.5.5 6.5S0 8.2 0 9.9v4.2c0 1.7.5 3.4.5 3.4s.2 1.6.8 2.3c.8.8 1.8.8 2.2.9 1.6.1 6.7.3 6.7.3s5.7 0 8.6-.3c.4 0 1.3-.1 2.1-.9.6-.7.8-2.3.8-2.3s.5-1.7.5-3.4V9.9c0-1.7-.5-3.4-.5-3.4ZM9.7 15.5V8.5l6.2 3.5-6.2 3.5Z"/></svg>
                     </a>
                 </div>
@@ -29,7 +29,7 @@
 
             <!-- Column 2: Platform -->
             <div>
-                <h4 style="color: var(--text); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Platform</h4>
+                <h3 style="color: var(--text); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Platform</h3>
                 <ul style="list-style: none; display: grid; gap: 15px;">
                     <li><a href="index.php" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Home</a></li>
                     <li><a href="studio.php" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Studio</a></li>
@@ -40,7 +40,7 @@
 
             <!-- Column 3: Community -->
             <div>
-                <h4 style="color: var(--text); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Community</h4>
+                <h3 style="color: var(--text); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Community</h3>
                 <ul style="list-style: none; display: grid; gap: 15px;">
                     <li><a href="challenges.php" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Challenges</a></li>
                     <li><a href="gallery.php" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Gallery</a></li>
@@ -51,7 +51,7 @@
 
             <!-- Column 4: Contact -->
             <div>
-                <h4 style="color: var(--text); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Contact</h4>
+                <h3 style="color: var(--text); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Contact</h3>
                 <div style="display: grid; gap: 20px;">
                     <div style="display: flex; gap: 15px; align-items: flex-start;">
                         <i data-lucide="mail" style="width: 20px; color: var(--primary); margin-top: 2px;"></i>

@@ -28,7 +28,6 @@
 <link rel="apple-touch-icon" href="/assets/images/shark.png">
 
 <!-- Fonts & Libraries -->
-<link rel="stylesheet" href="/assets/css/style.css">
 <script defer src="https://unpkg.com/lucide@latest"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
 

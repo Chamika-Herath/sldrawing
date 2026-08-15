@@ -189,7 +189,7 @@
                 <div class="video-wrapper" id="video-wrapper">
                     <iframe 
                         id="youtube-iframe"
-                        src="https://www.youtube.com/embed/GH3_NUbRpCY?rel=0&modestbranding=1" 
+                        src="https://www.youtube-nocookie.com/embed/GH3_NUbRpCY?rel=0&modestbranding=1" 
                         title="Digital Drawing Process" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -256,7 +256,7 @@
             `).join('');
 
             // Update Video
-            iframe.src = `https://www.youtube.com/embed/${data.id}?rel=0&modestbranding=1`;
+            iframe.src = `https://www.youtube-nocookie.com/embed/${data.id}?rel=0&modestbranding=1`;
 
             // Fade in
             contentArea.classList.remove('fade-out');
