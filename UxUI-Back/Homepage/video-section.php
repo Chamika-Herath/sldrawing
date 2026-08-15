@@ -189,6 +189,7 @@
                 <div class="video-wrapper" id="video-wrapper">
                     <iframe 
                         id="youtube-iframe"
+                        loading="lazy"
                         src="https://www.youtube-nocookie.com/embed/GH3_NUbRpCY?rel=0&modestbranding=1" 
                         title="Digital Drawing Process" 
                         frameborder="0" 
