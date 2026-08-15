@@ -30,7 +30,7 @@
     }
 </style>
 
-<section class="gallery-section" style="padding: 120px 0; background: url('/assets/images/gallery_background_new.png') center / cover fixed no-repeat; position: relative;">
+<section class="gallery-section" style="padding: 120px 0; background: url('/assets/images/gallery_background_new.webp') center / cover fixed no-repeat; position: relative;">
     <!-- Overlay for text readability -->
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 11, 15, 0.7); z-index: 0; pointer-events: none;"></div>
     <div class="container" style="position: relative; z-index: 1;">
@@ -38,22 +38,22 @@
         
         <div class="gallery-grid">
             <div class="gallery-item reveal" style="transition-delay: 0.1s;">
-                <img src="/assets/images/booking_card_1.png" alt="Drawing course booking guide step 1">
+                <img src="/assets/images/booking_card_1.webp" alt="Drawing course booking guide step 1">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.2s;">
-                <img src="/assets/images/booking_card_2.png" alt="Drawing course booking guide step 2">
+                <img src="/assets/images/booking_card_2.webp" alt="Drawing course booking guide step 2">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.3s;">
-                <img src="/assets/images/booking_card_3.png" alt="Drawing course booking guide step 3">
+                <img src="/assets/images/booking_card_3.webp" alt="Drawing course booking guide step 3">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.4s;">
-                <img src="/assets/images/feature_card_1.png" alt="SLdrawing feature overview 1">
+                <img src="/assets/images/feature_card_1.webp" alt="SLdrawing feature overview 1">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.5s;">
-                <img src="/assets/images/feature_card_2.png" alt="SLdrawing feature overview 2">
+                <img src="/assets/images/feature_card_2.webp" alt="SLdrawing feature overview 2">
             </div>
             <div class="gallery-item reveal" style="transition-delay: 0.6s;">
-                <img src="/assets/images/feature_card_3.png" alt="SLdrawing feature overview 3">
+                <img src="/assets/images/feature_card_3.webp" alt="SLdrawing feature overview 3">
             </div>
         </div>
     </div>

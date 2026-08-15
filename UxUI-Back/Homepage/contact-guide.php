@@ -1,4 +1,4 @@
-<section class="contact-guide" style="padding: 120px 0; background: url('/assets/images/museum_bg_4.png') center / cover fixed no-repeat; position: relative; overflow: hidden;">
+<section class="contact-guide" style="padding: 120px 0; background: url('/assets/images/museum_bg_4.webp') center / cover fixed no-repeat; position: relative; overflow: hidden;">
     <!-- Overlay for text readability -->
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 11, 15, 0.7); z-index: 0; pointer-events: none;"></div>
     

@@ -29,8 +29,8 @@
 
 <!-- Fonts & Libraries -->
 <link rel="stylesheet" href="/assets/css/style.css">
-<script src="https://unpkg.com/lucide@latest"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+<script defer src="https://unpkg.com/lucide@latest"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
 
 <!-- Structured Data (JSON-LD) -->
 <script type="application/ld+json">

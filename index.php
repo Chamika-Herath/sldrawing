@@ -11,7 +11,7 @@
         ?>
         <style>
             body {
-                background-image: url('/assets/images/portrait_background.png') !important;
+                background-image: url('/assets/images/portrait_background.webp') !important;
                 background-size: cover !important;
                 background-position: center !important;
                 background-attachment: fixed !important;
