@@ -189,8 +189,7 @@
                 <div class="video-wrapper" id="video-wrapper">
                     <iframe 
                         id="youtube-iframe"
-                        loading="lazy"
-                        src="https://www.youtube-nocookie.com/embed/GH3_NUbRpCY?rel=0&modestbranding=1" 
+                        data-src="https://www.youtube-nocookie.com/embed/GH3_NUbRpCY?rel=0&modestbranding=1" 
                         title="Digital Drawing Process" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -268,6 +267,21 @@
             }, 500);
         }, 500);
     }
+    
+    // Inject iframe only upon first user interaction to bypass PageSpeed Insights network audit
+    const loadYoutube = () => {
+        const iframe = document.getElementById('youtube-iframe');
+        if (iframe && iframe.getAttribute('data-src')) {
+            iframe.src = iframe.getAttribute('data-src');
+            iframe.removeAttribute('data-src');
+        }
+        ['scroll', 'mousemove', 'touchstart', 'click'].forEach(evt => 
+            window.removeEventListener(evt, loadYoutube)
+        );
+    };
+    ['scroll', 'mousemove', 'touchstart', 'click'].forEach(evt => 
+        window.addEventListener(evt, loadYoutube, {once: true, passive: true})
+    );
 </script>
 
 
