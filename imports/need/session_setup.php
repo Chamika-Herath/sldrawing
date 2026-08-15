@@ -1,5 +1,9 @@
 <?php
-
+// Enforce 301 redirect from old domain to new domain for SEO passing
+if (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'drawing.heraforce.com') {
+    header('Location: https://sldrawing.com' . $_SERVER['REQUEST_URI'], true, 301);
+    exit;
+}
 if (session_status() === PHP_SESSION_NONE) {
     $timeout_duration = 3600 * 24; // 24 hours
     ini_set('session.gc_maxlifetime', $timeout_duration);
