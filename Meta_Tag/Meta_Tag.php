@@ -24,8 +24,8 @@
 <meta property="twitter:image" content="https://sldrawing.com<?php echo isset($image_twitter) ? $image_twitter : "/assets/images/hero.png"; ?>">
 
 <!-- Favicons -->
-<link rel="icon" type="image/png" href="/assets/images/shark.png">
-<link rel="apple-touch-icon" href="/assets/images/shark.png">
+<link rel="icon" type="image/png" href="/assets/images/sldrawing_cyber_badge.png">
+<link rel="apple-touch-icon" href="/assets/images/sldrawing_cyber_badge.png">
 
 <!-- Fonts & Libraries -->
 <script defer src="https://unpkg.com/lucide@latest"></script>

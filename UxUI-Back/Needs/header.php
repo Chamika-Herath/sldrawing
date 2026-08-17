@@ -60,11 +60,7 @@
         transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1) !important;
         overflow: hidden;
         margin: 0 auto;
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        background: rgba(20, 20, 28, 0.85); /* Slightly solid foundation */
-        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-        border: 1px solid rgba(255,255,255,0.05);
+        /* Inherits background and borders from the global .glass class */
     }
 </style>
 
@@ -80,8 +76,8 @@
         pointer-events: auto;
     ">
         <div class="nav-logo-container" style="font-size: 1.8rem; font-weight: 900; color: var(--primary); cursor: pointer; letter-spacing: -1px; display: flex; align-items: center;" onclick="window.location.href='/'">
-            <img class="logo-icon" src="https://heraforce.com/assets/images/heraforce_cyber_queen_logo_1778267022286J.png" alt="Heraforce" style="height: 38px; width: 38px; border-radius: 50%; margin-right: 8px; object-fit: contain; background: #fff; border: 2px solid var(--primary);">
-            <span class="logo-text"><span style="color: #fff;">SL</span>drawing</span>
+            <img class="logo-icon" src="/assets/images/sldrawing_cyber_badge.png" alt="SLdrawing Emblem" style="height: 38px; width: 38px; border-radius: 50%; margin-right: 8px; object-fit: contain; background: #fff; border: 2px solid var(--primary);">
+            <span class="logo-text"><span style="color: var(--text);">SL</span>drawing</span>
         </div>
         
         <div class="hamburger" id="mobile-menu-btn" style="pointer-events: auto;">

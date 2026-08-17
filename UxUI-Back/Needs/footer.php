@@ -7,8 +7,9 @@
         <div class="footer-grid">
             <!-- Column 1: Brand & About -->
             <div>
-                <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 25px; display: flex; align-items: center; gap: 18px;">
-                    <img src="https://heraforce.com/assets/images/heraforce_cyber_queen_logo_1778267022286J.png" alt="HeraForce Logo" style="width: 96px; height: auto; border-radius: 18px; object-fit: contain; display: block;">
+                <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
+                    <img src="/assets/images/sldrawing_cyber_badge.png" alt="SLdrawing Logo" style="width: 75px; height: auto; border-radius: 15px; object-fit: contain; display: block;">
+                    <img src="https://heraforce.com/assets/images/heraforce_cyber_queen_logo_1778267022286J.png" alt="HeraForce Logo" style="width: 75px; height: auto; border-radius: 15px; object-fit: contain; display: block;">
                     <span style="background: var(--primary); color: #fff; padding: 5px 12px; border-radius: 8px;">SL</span> drawing
                 </h2>
                 <p style="color: var(--text-dim); line-height: 1.7; font-size: 1rem; margin-bottom: 30px; max-width: 320px;">
@@ -71,7 +72,7 @@
         <!-- Bottom Footer -->
         <div class="footer-bottom">
             <div class="footer-copy">
-                &copy; 2026 SLdrawing. All Rights Reserved. Designed by <a href="https://www.heraforce.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); font-weight: 700; text-decoration: none;">Chamika Herath</a>
+                &copy; 2026 SLdrawing. All Rights Reserved. Designed and Maintained by <a href="https://www.heraforce.com/" target="_blank" rel="noopener noreferrer" style="color: var(--text); font-weight: 700; text-decoration: none;">Chamika Herath | Heraforce</a>
             </div>
             <div class="footer-links">
                 <a href="#" style="color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: 0.3s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-dim)'">Privacy Policy</a>
