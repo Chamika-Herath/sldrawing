@@ -66,64 +66,6 @@
         box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         border: 1px solid rgba(255,255,255,0.05);
     }
-    
-    .nav-capsule.dynamic-island {
-        width: 80px !important;
-        padding: 10px !important;
-        border-radius: 100px !important;
-        margin: 0 auto !important;
-    }
-    
-    .nav-capsule.dynamic-island .nav-links,
-    .nav-capsule.dynamic-island .profile-btn,
-    .nav-capsule.dynamic-island .hamburger,
-    .nav-capsule.dynamic-island .join-btn {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        width: 0;
-        position: absolute;
-        transform: scale(0.8);
-    }
-    
-    .nav-capsule .nav-links, 
-    .nav-capsule .profile-btn,
-    .nav-capsule .join-btn,
-    .nav-capsule .hamburger {
-        transition: all 0.3s ease;
-    }
-    
-    .nav-logo-container {
-        transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1);
-        margin: 0 auto;
-        justify-content: center;
-    }
-    
-    .logo-text {
-        transition: opacity 0.3s ease, width 0.3s ease;
-        opacity: 1;
-    }
-    
-    .nav-capsule.dynamic-island .nav-logo-container {
-        width: 48px;
-        padding-left: 0;
-    }
-    
-    .logo-icon {
-        transition: all 0.3s ease;
-    }
-
-    .nav-capsule.dynamic-island .logo-icon {
-        margin-right: 0 !important;
-        transform: scale(1.1);
-    }
-
-    .nav-capsule.dynamic-island .logo-text {
-        opacity: 0;
-        width: 0;
-        visibility: hidden;
-        pointer-events: none;
-    }
 </style>
 
 <div class="nav-container" style="position: fixed; top: 20px; left: 0; width: 100%; z-index: 1000; display: flex; justify-content: center; pointer-events: none;">
@@ -191,38 +133,35 @@
             });
         }
 
-        // Dynamic Island Logic
-        const navCapsule = document.querySelector('.nav-capsule');
+        // Navbar Hide on Scroll Logic
         const navContainer = document.querySelector('.nav-container');
+        let lastScrollTop = 0;
         
-        function handleDynamicIsland() {
-            if(!navCapsule || window.innerWidth <= 992) return;
+        function handleNavbarScroll() {
+            if(!navContainer) return;
             let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-            if (currentScroll > 80) {
-                navCapsule.classList.add('dynamic-island');
-            } else {
-                navCapsule.classList.remove('dynamic-island');
+            
+            // Don't hide if mobile menu is open
+            if (navLinks && navLinks.classList.contains('active')) {
+                navContainer.style.top = window.innerWidth <= 992 ? "10px" : "20px";
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+                return;
             }
+            
+            if (currentScroll > lastScrollTop && currentScroll > 80) {
+                // Scroll Down
+                navContainer.style.top = "-150px"; 
+            } else {
+                // Scroll Up
+                navContainer.style.top = window.innerWidth <= 992 ? "10px" : "20px";
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
         }
 
-        window.addEventListener('scroll', handleDynamicIsland, false);
-
-        if (navContainer && navCapsule) {
-            navContainer.addEventListener('mouseenter', () => {
-                if(window.innerWidth > 992) {
-                    navCapsule.classList.remove('dynamic-island');
-                }
-            });
-            navContainer.addEventListener('mouseleave', () => {
-                let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-                if(currentScroll > 80 && window.innerWidth > 992) {
-                    navCapsule.classList.add('dynamic-island');
-                }
-            });
-        }
+        window.addEventListener('scroll', handleNavbarScroll, false);
         
         // Initial Check
-        handleDynamicIsland();
+        handleNavbarScroll();
 
         // Active Link Highlighting
         const currentPath = window.location.pathname;
