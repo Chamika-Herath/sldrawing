@@ -92,19 +92,19 @@
         
         <ul class="nav-links" id="mobile-nav-links" style="display: flex; gap: 40px; list-style: none; align-items: center; margin: 0; padding: 0;">
             <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="/ai-grader.php" class="nav-link">Grid Art</a></li>
-            <li><a href="/tutorials.php" class="nav-link">Tutorials</a></li>
-            <li><a href="/studio.php" class="nav-link">Studio</a></li>
-            <li><a href="/gallery.php" class="nav-link">Community</a></li>
+            <li><a href="/ai-grader" class="nav-link">Grid Art</a></li>
+            <li><a href="/tutorials" class="nav-link">Tutorials</a></li>
+            <li><a href="/studio" class="nav-link">Studio</a></li>
+            <li><a href="/gallery" class="nav-link">Community</a></li>
             <?php if (isset($_SESSION['user_id'])): ?>
-                <li><a href="/UxUi/Main/User-Profile-New.php" class="profile-btn" aria-label="User Profile">
+                <li><a href="/UxUi/Main/User-Profile-New" class="profile-btn" aria-label="User Profile">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
                         <circle cx="12" cy="7" r="4"/>
                     </svg>
                 </a></li>
             <?php else: ?>
-                <li><a href="/UxUi/Main/User-Login.php" class="btn btn-primary join-btn" style="
+                <li><a href="/UxUi/Main/User-Login" class="btn btn-primary join-btn" style="
                     padding: 10px 30px; 
                     border-radius: 50px; 
                     background: linear-gradient(45deg, var(--primary), #00d2ff); 

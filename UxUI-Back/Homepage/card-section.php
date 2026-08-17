@@ -47,21 +47,21 @@
             <img src="/assets/images/feature_card_1.png" alt="SLdrawing feature overview 1" style="width: 100%; height: 220px; object-fit: cover; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
             <h2 style="font-size: 2.2rem; margin-bottom: 15px; font-weight: 800; color: var(--text);">Smart Studio</h2>
             <p style="color: var(--text-dim); line-height: 1.7; font-size: 1.1rem;">Our interactive AI-powered studio allows you to isolate subjects, refine colors, and apply professional textures in seconds.</p>
-            <a href="/studio.php" style="display: inline-block; margin-top: 30px; color: var(--primary); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Launch Editor &rarr;</a>
+            <a href="/studio" style="display: inline-block; margin-top: 30px; color: var(--primary); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Launch Editor &rarr;</a>
         </div>
         
         <div class="feature-card highlight reveal" style="background: var(--surface); border-color: var(--primary);">
             <img src="/assets/images/feature_card_2.png" alt="SLdrawing feature overview 2" style="width: 100%; height: 220px; object-fit: cover; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 10px 20px rgba(254,98,29,0.2);">
             <h2 style="font-size: 2.2rem; margin-bottom: 15px; font-weight: 800; color: var(--text);">Daily Challenges</h2>
             <p style="color: var(--text-dim); line-height: 1.7; font-size: 1.1rem;">Step out of your comfort zone with our rotating daily prompts. Join thousands of artists in the 'Daily Spark' community event.</p>
-            <a href="/challenges.php" style="display: inline-block; margin-top: 30px; color: var(--primary); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Join Challenge &rarr;</a>
+            <a href="/challenges" style="display: inline-block; margin-top: 30px; color: var(--primary); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Join Challenge &rarr;</a>
         </div>
         
         <div class="feature-card reveal" style="background: var(--surface); border-color: rgba(255,255,255,0.05);">
             <img src="/assets/images/feature_card_3.png" alt="SLdrawing feature overview 3" style="width: 100%; height: 220px; object-fit: cover; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
             <h2 style="font-size: 2.2rem; margin-bottom: 15px; font-weight: 800; color: var(--text);">Pro Tutorials</h2>
             <p style="color: var(--text-dim); line-height: 1.7; font-size: 1.1rem;">Over 500+ hours of video content covering everything from foundational sketches to hyper-realistic coloring techniques.</p>
-            <a href="/tutorials.php" style="display: inline-block; margin-top: 30px; color: var(--primary); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Start Learning &rarr;</a>
+            <a href="/tutorials" style="display: inline-block; margin-top: 30px; color: var(--primary); text-decoration: none; font-weight: 800; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Start Learning &rarr;</a>
         </div>
     </div>
 </section>

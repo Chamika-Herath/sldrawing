@@ -31,10 +31,10 @@
             <div>
                 <h3 style="color: var(--text); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Platform</h3>
                 <ul style="list-style: none; display: grid; gap: 15px;">
-                    <li><a href="index.php" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Home</a></li>
-                    <li><a href="studio.php" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Studio</a></li>
-                    <li><a href="ai-grader.php" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">AI Grader</a></li>
-                    <li><a href="tutorials.php" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Tutorials</a></li>
+                    <li><a href="/" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Home</a></li>
+                    <li><a href="/studio" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Studio</a></li>
+                    <li><a href="/ai-grader" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">AI Grader</a></li>
+                    <li><a href="/tutorials" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Tutorials</a></li>
                 </ul>
             </div>
 
@@ -42,8 +42,8 @@
             <div>
                 <h3 style="color: var(--text); font-weight: 700; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;">Community</h3>
                 <ul style="list-style: none; display: grid; gap: 15px;">
-                    <li><a href="challenges.php" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Challenges</a></li>
-                    <li><a href="gallery.php" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Gallery</a></li>
+                    <li><a href="/challenges" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Challenges</a></li>
+                    <li><a href="/gallery" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Gallery</a></li>
                     <li><a href="#" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Leaderboard</a></li>
                     <li><a href="#" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: 500;" onmouseover="this.style.color='var(--primary)'; this.style.paddingLeft='5px'" onmouseout="this.style.color='var(--text-dim)'; this.style.paddingLeft='0'">Art blog</a></li>
                 </ul>
