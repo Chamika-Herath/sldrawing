@@ -14,14 +14,14 @@
 <meta property="og:url" content="https://sldrawing.com<?php echo $_SERVER['REQUEST_URI']; ?>">
 <meta property="og:title" content="<?php echo isset($get_social_title) ? $get_social_title : $get_title; ?>">
 <meta property="og:description" content="<?php echo isset($get_social_dis) ? $get_social_dis : $get_dis; ?>">
-<meta property="og:image" content="https://sldrawing.com<?php echo isset($image_fb) ? $image_fb : "/assets/images/hero.png"; ?>">
+<meta property="og:image" content="https://sldrawing.com<?php echo isset($image_fb) ? $image_fb : "/assets/images/sldrawing_cyber_badge.png"; ?>">
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image">
 <meta property="twitter:url" content="https://sldrawing.com<?php echo $_SERVER['REQUEST_URI']; ?>">
 <meta property="twitter:title" content="<?php echo isset($get_social_title) ? $get_social_title : $get_title; ?>">
 <meta property="twitter:description" content="<?php echo isset($get_social_dis) ? $get_social_dis : $get_dis; ?>">
-<meta property="twitter:image" content="https://sldrawing.com<?php echo isset($image_twitter) ? $image_twitter : "/assets/images/hero.png"; ?>">
+<meta property="twitter:image" content="https://sldrawing.com<?php echo isset($image_twitter) ? $image_twitter : "/assets/images/sldrawing_cyber_badge.png"; ?>">
 
 <!-- Favicons -->
 <link rel="icon" type="image/png" href="/assets/images/sldrawing_cyber_badge.png">
