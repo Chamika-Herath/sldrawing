@@ -7,15 +7,20 @@
 
     function Main_dashboard_close_all() {
         document.getElementById("Main_Dashboard_01_A").style.display = "none";
-       
-        
-       
+        document.getElementById("Main_Dashboard_02_A").style.display = "none";
     }
 
     function Main_Dashboard_01_A_OPEN() { 
         Main_dashboard_close_all();
         document.getElementById("Main_Dashboard_01_A").style.display = "";
         setSidebarActive('dashboard');
+        
+    }
+
+    function Main_Dashboard_02_A_OPEN() { 
+        Main_dashboard_close_all();
+        document.getElementById("Main_Dashboard_02_A").style.display = "";
+        setSidebarActive('members');
         
     }
 

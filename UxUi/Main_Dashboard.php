@@ -52,6 +52,8 @@ include_once '../Controllers/Main/Cook_Managment/Cook_Managing.php';
 
             include_once '../UxUI-Back/Main_Dashboard/Main_Dashboard_01_dashboard/Main_Dashboard_01_dashboard_summery.php';
 
+            include_once '../UxUI-Back/Main_Dashboard/Main_Dashboard_02/Main_Dashboard_02_A_member_list.php';
+
       
            
 
