@@ -9,6 +9,8 @@
         document.getElementById("Main_Dashboard_01_A").style.display = "none";
         document.getElementById("Main_Dashboard_02_A").style.display = "none";
         document.getElementById("Main_Dashboard_03_A").style.display = "none";
+        document.getElementById("Main_Dashboard_04_A").style.display = "none";
+        document.getElementById("Main_Dashboard_05_A").style.display = "none";
         
     }
 
@@ -30,6 +32,20 @@
         Main_dashboard_close_all();
         document.getElementById("Main_Dashboard_03_A").style.display = "";
         setSidebarActive('projects');
+        
+    }
+
+    function Main_Dashboard_04_A_OPEN() { 
+        Main_dashboard_close_all();
+        document.getElementById("Main_Dashboard_04_A").style.display = "";
+        setSidebarActive('tutorils');
+        
+    }
+
+    function Main_Dashboard_05_A_OPEN() { 
+        Main_dashboard_close_all();
+        document.getElementById("Main_Dashboard_05_A").style.display = "";
+        setSidebarActive('videos');
         
     }
 

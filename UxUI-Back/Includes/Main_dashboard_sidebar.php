@@ -166,6 +166,12 @@
     <li class="wwjm-sidebar-nav-item" data-page="projects" onclick="if(typeof Main_Dashboard_03_A_OPEN === 'function'){ Main_Dashboard_03_A_OPEN(); }">
       <a href="javascript:void(0);"><svg class="wwjm-sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8l-4 4v16a2 2 0 0 0 2 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>Art Projects</a>
     </li>
+    <li class="wwjm-sidebar-nav-item" data-page="tutorils" onclick="if(typeof Main_Dashboard_04_A_OPEN === 'function'){ Main_Dashboard_04_A_OPEN(); }">
+      <a href="javascript:void(0);"><svg class="wwjm-sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8l-4 4v16a2 2 0 0 0 2 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>Tutorials</a>
+    </li>
+    <li class="wwjm-sidebar-nav-item" data-page="videos" onclick="if(typeof Main_Dashboard_05_A_OPEN === 'function'){ Main_Dashboard_05_A_OPEN(); }">
+      <a href="javascript:void(0);"><svg class="wwjm-sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8l-4 4v16a2 2 0 0 0 2 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>Youtbe Videos</a>
+    </li>
     
     <li class="wwjm-sidebar-nav-item" data-page="accounts" >
       <a href="http://localhost:3000/UxUi/Main-Dashboard.php"><svg class="wwjm-sidebar-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 8 12 12 16"/><line x1="16" y1="12" x2="8" y2="12"/></svg>Go Back To Live Site</a>
