@@ -447,111 +447,19 @@
                     <div style="text-align: right;">Action</div>
                 </div>
 
-                <!-- Horizontal Member Cards -->
-                <div class="member-list-container">
+                <!-- Horizontal Member Cards (Dynamically Loaded) -->
+                <div class="member-list-container" id="member-list-container">
                     
-                    <!-- Member Card 1 -->
-                    <div class="member-card">
-                        <div class="col-user">
-                            <div class="avatar-placeholder">CH</div>
-                            <div class="user-info">
-                                <span class="user-name">Chamika Herath</span>
-                                <span class="user-email">chamika@heraforce.com</span>
-                            </div>
-                        </div>
-                        <div class="col-status">
-                            <div class="status-badge status-active">
-                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
-                                Active
-                            </div>
-                        </div>
-                        <div class="col-date">Aug 15, 2026</div>
-                        <div class="col-action">
-                            <button class="action-btn" title="View Details">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Member Card 2 -->
-                    <div class="member-card">
-                        <div class="col-user">
-                            <div class="avatar-placeholder" style="background: linear-gradient(135deg, #10b981, #059669);">JD</div>
-                            <div class="user-info">
-                                <span class="user-name">Jane Doe</span>
-                                <span class="user-email">jane.doe@example.com</span>
-                            </div>
-                        </div>
-                        <div class="col-status">
-                            <div class="status-badge status-active">
-                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
-                                Active
-                            </div>
-                        </div>
-                        <div class="col-date">Aug 12, 2026</div>
-                        <div class="col-action">
-                            <button class="action-btn" title="View Details">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Member Card 3 -->
-                    <div class="member-card">
-                        <div class="col-user">
-                            <div class="avatar-placeholder" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">MK</div>
-                            <div class="user-info">
-                                <span class="user-name">Michael Ken</span>
-                                <span class="user-email">michael44@example.com</span>
-                            </div>
-                        </div>
-                        <div class="col-status">
-                            <div class="status-badge status-inactive">
-                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
-                                Inactive
-                            </div>
-                        </div>
-                        <div class="col-date">Aug 09, 2026</div>
-                        <div class="col-action">
-                            <button class="action-btn" title="View Details">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Member Card 4 -->
-                    <div class="member-card">
-                        <div class="col-user">
-                            <div class="avatar-placeholder" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">SL</div>
-                            <div class="user-info">
-                                <span class="user-name">Serena Locksley</span>
-                                <span class="user-email">serena.art@sldrawing.com</span>
-                            </div>
-                        </div>
-                        <div class="col-status">
-                            <div class="status-badge status-active">
-                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
-                                Active
-                            </div>
-                        </div>
-                        <div class="col-date">Aug 01, 2026</div>
-                        <div class="col-action">
-                            <button class="action-btn" title="View Details">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                            </button>
-                        </div>
+                    <div style="padding: 40px; text-align: center; color: var(--sld-text-400);">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 10px; opacity: 0.5; animation: spin-ring 2s infinite linear;"><circle cx="12" cy="12" r="10"/><path d="M12 6v2"/></svg>
+                        <p>Loading Member Data...</p>
                     </div>
 
                 </div>
 
             </div>
 
-<?php 
-// Include specific JS script corresponding to this UI for AJAX processing
-if (file_exists('JS/Main_Dashboard_02_A_member_list_JS.php')) {
-    include_once 'JS/Main_Dashboard_02_A_member_list_JS.php';
-}
-?>
+
             
         </section>
         

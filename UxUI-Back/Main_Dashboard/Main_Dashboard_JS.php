@@ -25,6 +25,7 @@
         Main_dashboard_close_all();
         document.getElementById("Main_Dashboard_02_A").style.display = "";
         setSidebarActive('members');
+        load_member_list();
         
     }
 
