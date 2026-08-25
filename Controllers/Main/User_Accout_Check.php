@@ -22,6 +22,7 @@ class User_Account_Check
 
     private $session_token;
     private $email;
+    private $main_user_account_access_level_list_id;
 
     public function __construct($user_name, $password)
     {
@@ -116,6 +117,7 @@ class User_Account_Check
                 $this->is_google_authentication_enable = $row['is_google_authentication_enable'];
                 $this->is_two_factor_auth_enable = $row['is_two_factor_auth_enable'];
                 $this->phone_number = $row['phone_number'];
+                $this->main_user_account_access_level_list_id = $row['main_user_account_access_level_list_id'];
 
 
                 $User_Accout_Check_Device_obj = new User_Accout_Check_Device();
@@ -205,5 +207,10 @@ class User_Account_Check
     public function get_google_authentication()
     {
         return $this->is_google_authentication_enable;
+    }
+
+    public function get_main_user_account_access_level_list_id()
+    {
+        return $this->main_user_account_access_level_list_id;
     }
 }

@@ -39,9 +39,14 @@
                             window.location.href = "<?php echo $home_page ?><?php echo $User_login_url ?>OTP-Two-step-Verification<?php echo $online_offline_extention ?>?type=" + type;
 
                         } else {
-                            var sucessMsg = encodeURIComponent("User-Login-Successful");
-                            window.location.href = "<?php echo $home_page ?><?php echo $User_login_url ?>Successful-Page<?php echo $online_offline_extention ?>?message=" + sucessMsg;
-
+                            if (json[0].main_user_account_access_level_list_id === "1" || json[0].main_user_account_access_level_list_id === 1) {
+                                window.location.href = "<?php echo $home_page ?>UxUi/Main_Dashboard.php";
+                            } else if (json[0].main_user_account_access_level_list_id === "2" || json[0].main_user_account_access_level_list_id === 2) {
+                                window.location.href = "<?php echo $home_page ?>index<?php echo $online_offline_extention ?>";
+                            } else {
+                                var sucessMsg = encodeURIComponent("User-Login-Successful");
+                                window.location.href = "<?php echo $home_page ?><?php echo $User_login_url ?>Successful-Page<?php echo $online_offline_extention ?>?message=" + sucessMsg;
+                            }
                         }
 
 

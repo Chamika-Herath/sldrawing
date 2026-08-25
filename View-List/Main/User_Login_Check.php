@@ -58,6 +58,7 @@ if ($User_Account_Check_obj->check_user_name()) {
             $_SESSION['user_name'] = $User_Account_Check_obj->get_user_name();
             $_SESSION['otp_pending'] = true;
             $state['google_authentication'] = "1";
+            $state['main_user_account_access_level_list_id'] = $User_Account_Check_obj->get_main_user_account_access_level_list_id();
 
             $json[] = $state;
         } else {
@@ -66,6 +67,7 @@ if ($User_Account_Check_obj->check_user_name()) {
             $_SESSION['user_name'] = $User_Account_Check_obj->get_user_name();
             $_SESSION['otp_pending'] = false;
             $state['google_authentication'] = "0";
+            $state['main_user_account_access_level_list_id'] = $User_Account_Check_obj->get_main_user_account_access_level_list_id();
             if ($User_Account_Check_obj->get_is_two_factor_auth_enable() == "1") {
                 $phone_number = $User_Account_Check_obj->get_phone_number();
 
