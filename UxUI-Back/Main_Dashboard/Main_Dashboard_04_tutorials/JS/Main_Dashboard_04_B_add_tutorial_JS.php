@@ -28,6 +28,8 @@
         $("#tut_input_title").val(tut.title);
         $("#tut_input_level").val(tut.difficulty_level);
         $("#tut_input_url").val(tut.video_url);
+        $("#tut_input_seo_keywords").val(tut.seo_keywords);
+        $("#tut_input_seo_description").val(tut.seo_description);
         
         // Manually push exact HTML without invoking Quill's strict Delta Filter which strips non-whitelisted style tags (like width & height)
         const qlEditor = document.querySelector('#tut_quill_editor .ql-editor');
@@ -46,6 +48,8 @@
         var title = $("#tut_input_title").val();
         var difficulty = $("#tut_input_level").val();
         var video_url = $("#tut_input_url").val();
+        var seo_keywords = $("#tut_input_seo_keywords").val();
+        var seo_description = $("#tut_input_seo_description").val();
         
         var description = tutorialQuill.root.innerHTML;
         if(description === '<p><br></p>') description = "";
@@ -70,6 +74,8 @@
         formData.append("description", description);
         formData.append("difficulty", difficulty);
         formData.append("video_url", video_url);
+        formData.append("seo_keywords", seo_keywords);
+        formData.append("seo_description", seo_description);
 
         var fileInput = document.getElementById("tut_input_thumbnail");
         if (fileInput && fileInput.files.length > 0) {
@@ -94,6 +100,8 @@
                         $("#tut_panel_title").text("Upload New Tutorial");
                         $("#tut_input_title").val("");
                         $("#tut_input_url").val("");
+                        $("#tut_input_seo_keywords").val("");
+                        $("#tut_input_seo_description").val("");
                         tutorialQuill.setText("");
                         $("#tut_thumb_preview").hide().attr("src", "");
                         $("#tut_thumb_placeholder").show();

@@ -3,15 +3,29 @@ include_once './imports/need/session_setup.php';
 include_once './imports/need/DB.php';
 include_once './Controllers/Main/sld_tutorials/sld_tutorials_LIST.php';
 
+$slug = isset($_GET['tutorial']) ? $_GET['tutorial'] : '';
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-if($id == 0){
+
+if($slug === '' && $id === 0){
     header("Location: tutorials.php");
     exit;
 }
 
-$tutorial_list = new sld_tutorials_LIST();
-$res = $tutorial_list->custom_query("SELECT * FROM sld_tutorials WHERE id = $id AND ast = 1 LIMIT 1");
-$tut = $res ? $res->fetch_assoc() : null;
+$DB = new DataBase();
+$conn = $DB->get_data_base_connction();
+
+if ($slug !== '') {
+    $stmt = $conn->prepare("SELECT * FROM sld_tutorials WHERE seo_slug = ? AND ast = 1 LIMIT 1");
+    $stmt->bind_param("s", $slug);
+} else {
+    $stmt = $conn->prepare("SELECT * FROM sld_tutorials WHERE id = ? AND ast = 1 LIMIT 1");
+    $stmt->bind_param("i", $id);
+}
+
+$stmt->execute();
+$res = $stmt->get_result();
+$tut = $res && $res->num_rows > 0 ? $res->fetch_assoc() : null;
+
 if(!$tut){
     header("Location: tutorials.php");
     exit;
@@ -25,39 +39,73 @@ $color = ($diff == 'BEGINNER') ? '#a855f7' : (($diff == 'INTERMEDIATE') ? '#00f3
 <head>
     <?php 
     $get_title = htmlspecialchars($tut['title']) . " - Tutorial | SLdrawing";
-    // Construct small string for META text snippet
-    $get_dis = substr(strip_tags(html_entity_decode($tut['description'])), 0, 150);
-    $get_key_words = "Chamika Herath, drawing tutorials, " . $tut['difficulty_level'];
+    
+    // Construct dynamic strings for META tags falling back to algorithmic defaults if empty
+    $get_dis = !empty($tut['seo_description']) ? htmlspecialchars($tut['seo_description']) : substr(strip_tags(html_entity_decode($tut['description'])), 0, 150);
+    $get_key_words = !empty($tut['seo_keywords']) ? htmlspecialchars($tut['seo_keywords']) : "Chamika Herath, drawing tutorials, " . $tut['difficulty_level'];
     include_once './Meta_Tag/Meta_Tag.php'; 
     ?>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Homemade+Apple&family=Inter:wght@400;600&display=swap');
+
+        body {
+            background-color: #2b2520 !important;
+            background-image: radial-gradient(circle at center, rgba(30,22,17,0) 0%, rgba(15,10,5,0.7) 100%),
+                              url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E") !important;
+        }
+
         .tutorial-content-body {
-            color: var(--text);
+            color: #211c18;
             font-size: 17px;
             line-height: 1.8;
             word-wrap: break-word;
+            font-family: 'Inter', sans-serif;
+            
+            /* Parchment Paper Colors & Texture */
+            background-color: #eeddbb; /* Warm vintage beige */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+            padding: 40px !important;
+            
+            /* Slightly uneven borders for realism */
+            border-radius: 2px 4px 1px 3px !important;
+            /* Deep soft shadow making it float off the page dynamically */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6), -5px -5px 15px rgba(255,255,255,0.02) inset !important;
+            position: relative;
         }
+        
+        .tutorial-content-body::after {
+            content: '';
+            position: absolute;
+            bottom: -3px; left: 0; width: 100%; height: 5px;
+            background: transparent;
+            box-shadow: 0 10px 5px -5px rgba(0,0,0,0.4);
+            pointer-events: none;
+        }
+
         .tutorial-content-body img {
             max-width: 100%;
             height: auto;
-            border-radius: 12px;
+            border-radius: 2px;
             margin: 20px 0;
+            filter: sepia(0.3) grayscale(20%) contrast(1.15) brightness(0.9);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         /* Style Quill Lists & Structural nodes appropriately */
         .tutorial-content-body ul, .tutorial-content-body ol {
             margin-left: 20px;
             padding-left: 10px;
-            color: var(--text-dim);
+            color: #3b332b;
             margin-bottom: 25px;
         }
         .tutorial-content-body h2, .tutorial-content-body h3 {
-            color: #fff;
+            font-family: 'Playfair Display', serif;
+            color: #33261c;
             margin-top: 30px;
             margin-bottom: 15px;
             font-weight: 700;
         }
         .tutorial-content-body a {
-            color: var(--primary);
+            color: #731919;
             text-decoration: underline;
         }
         .tutorial-video-wrapper {
@@ -66,9 +114,10 @@ $color = ($diff == 'BEGINNER') ? '#a855f7' : (($diff == 'INTERMEDIATE') ? '#00f3
             padding-top: 25px;
             height: 0;
             margin-bottom: 40px;
-            border-radius: 20px;
+            border-radius: 4px;
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
         }
         .tutorial-video-wrapper iframe {
             position: absolute;
@@ -88,21 +137,23 @@ $color = ($diff == 'BEGINNER') ? '#a855f7' : (($diff == 'INTERMEDIATE') ? '#00f3
     
     <main class="container section-padding" style="margin-top: 100px; max-width: 1200px; margin-bottom: 80px;">
         <!-- Return Path -->
-        <a href="tutorials.php" style="color: var(--text-dim); text-decoration: none; font-size: 14px; display: inline-block; margin-bottom: 20px; transition: 0.3s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-dim)'">
+        <a href="tutorials.php" style="font-family: 'Inter', sans-serif; color: #a48c77; text-decoration: none; font-size: 14px; display: inline-block; margin-bottom: 20px; transition: 0.3s;" onmouseover="this.style.color='#dbaf82'" onmouseout="this.style.color='#a48c77'">
             &#8592; Back to Library
         </a>
         
-        <h1 style="font-size: 3rem; margin-bottom: 20px; color: var(--text); font-weight: 800; line-height: 1.1;"><?php echo htmlspecialchars($tut['title']); ?></h1>
+        <h1 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 20px; color: #dbaf82; font-weight: 400; font-style: italic; line-height: 1.1; letter-spacing: 1px;">
+            <?php echo htmlspecialchars($tut['title']); ?>
+        </h1>
         
-        <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 40px; color: var(--text-dim); font-size: 14px;">
-            <span style="color: <?php echo $color; ?>; font-weight: 700; background: rgba(255,255,255,0.05); padding: 5px 15px; border-radius: 50px;">
-                <?php echo $diff; ?>
+        <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 40px; color: #a48c77; font-size: 13px; font-family: 'Inter', sans-serif;">
+            <span style="color: <?php echo ($diff == 'BEGINNER') ? '#8c5922' : (($diff == 'INTERMEDIATE') ? '#3c5a61' : '#731919'); ?>; font-weight: 800; background: rgba(0,0,0,0.3); padding: 5px 15px; border-radius: 5px; box-shadow: inset 0 0 10px rgba(0,0,0,0.5);">
+                <?php echo $diff; ?> EDITION
             </span>
-            <span>Published: <?php echo date("F j, Y", strtotime($tut['sdt'])); ?></span>
+            <span>Published on <?php echo date("F j, Y", strtotime($tut['sdt'])); ?></span>
         </div>
 
         <!-- Content Payload Surface Area -->
-        <div id="tutorial_book" class="tutorial-content-body glass" style="padding: 40px; border-radius: 20px; background: var(--surface);">
+        <div id="tutorial_book" class="tutorial-content-body">
             <!-- Inject Raw HTML Payload from Database entirely untouched to preserve Quill rich text structures perfectly -->
             <?php echo $tut['description']; ?>
         </div>

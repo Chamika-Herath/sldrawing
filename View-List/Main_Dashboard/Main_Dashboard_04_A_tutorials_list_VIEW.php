@@ -13,6 +13,7 @@ if ($res) {
     while ($row = $res->fetch_assoc()) {
         $data['id'] = $row['id'];
         $data['title'] = $row['title'];
+        $data['seo_slug'] = $row['seo_slug'];
         
         // Keep the original raw HTML matrix for powering editor interfaces and full views
         $data['description_raw'] = $row['description'];
@@ -23,6 +24,8 @@ if ($res) {
         
         $data['difficulty_level'] = $row['difficulty_level'];
         $data['video_url'] = $row['video_url'];
+        $data['seo_keywords'] = $row['seo_keywords'];
+        $data['seo_description'] = $row['seo_description'];
         
         // Supply fallback thumbnail rendering if the user published it blindly without image attachments
         $data['thumbnail_url'] = !empty($row['thumbnail_url']) ? $row['thumbnail_url'] : '../../../assets/images/shark1.webp'; 

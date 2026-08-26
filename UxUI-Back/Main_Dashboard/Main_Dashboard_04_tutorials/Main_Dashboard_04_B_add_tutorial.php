@@ -97,6 +97,17 @@
                                 </div>
                             </div>
 
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                                <div>
+                                    <label style="display:block; margin-bottom: 8px; font-size: 13px; font-weight:600; color:var(--sld-text-400);">SEO Keywords (Comma Separated)</label>
+                                    <input type="text" id="tut_input_seo_keywords" placeholder="e.g., drawing tutorial, portrait shading, artist guide" style="width: 100%; padding: 14px 18px; border-radius: 8px; background: var(--sld-dark-800); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-size:15px; outline:none; transition:0.3s;" onfocus="this.style.borderColor='var(--sld-orange-500)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                                </div>
+                                <div>
+                                    <label style="display:block; margin-bottom: 8px; font-size: 13px; font-weight:600; color:var(--sld-text-400);">SEO Meta Description</label>
+                                    <input type="text" id="tut_input_seo_description" placeholder="Short preview text focusing on search visibility..." style="width: 100%; padding: 14px 18px; border-radius: 8px; background: var(--sld-dark-800); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-size:15px; outline:none; transition:0.3s;" onfocus="this.style.borderColor='var(--sld-orange-500)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+                                </div>
+                            </div>
+
                             <div style="margin-bottom: 30px;">
                                 <label style="display:block; margin-bottom: 8px; font-size: 13px; font-weight:600; color:var(--sld-text-400);">Upload Thumbnail</label>
                                 

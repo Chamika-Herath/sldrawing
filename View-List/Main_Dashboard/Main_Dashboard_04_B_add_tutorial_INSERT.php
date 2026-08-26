@@ -19,6 +19,8 @@ $title = isset($_POST['title']) ? trim($_POST['title']) : '';
 $description = isset($_POST['description']) ? trim($_POST['description']) : '';
 $difficulty = isset($_POST['difficulty']) ? trim($_POST['difficulty']) : '';
 $video_url = isset($_POST['video_url']) ? trim($_POST['video_url']) : '';
+$seo_keywords = isset($_POST['seo_keywords']) ? trim($_POST['seo_keywords']) : '';
+$seo_description = isset($_POST['seo_description']) ? trim($_POST['seo_description']) : '';
 
 $thumbnail_url = isset($_POST['old_thumbnail']) ? trim($_POST['old_thumbnail']) : "";
 if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] == 0) {
@@ -50,7 +52,12 @@ $tutorial_adder->set_title($title);
 $tutorial_adder->set_description($description);
 $tutorial_adder->set_difficulty_level($difficulty);
 $tutorial_adder->set_video_url($video_url);
-$tutorial_adder->set_thumbnail_url($thumbnail_url);
+$tutorial_adder->set_seo_keywords($seo_keywords);
+$tutorial_adder->set_seo_description($seo_description);
+
+if ($thumbnail_url !== "") {
+    $tutorial_adder->set_thumbnail_url($thumbnail_url);
+}
 $tutorial_adder->set_main_user_login_id($_SESSION['user_id']); // Track which account generated this
 
 if ($tutorial_adder->process_update()) {
