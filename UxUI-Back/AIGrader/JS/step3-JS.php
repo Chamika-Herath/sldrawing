@@ -221,7 +221,7 @@ function initGrid(){
 
 function drawGrid(){
   var c=document.getElementById('grid-canvas'),ctx=c.getContext('2d');
-  var cols=parseInt(document.getElementById('g-cols').value)||8, rows=parseInt(document.getElementById('g-rows').value)||8;
+  var cols=parseFloat(document.getElementById('g-cols').value)||8, rows=parseFloat(document.getElementById('g-rows').value)||8;
   var margin=parseInt(document.getElementById('g-margin').value)||0, isSquare=document.getElementById('g-square').checked;
   var thick=parseFloat(document.getElementById('g-thick').value)||2, color=document.getElementById('g-color').value;
   var zm=document.getElementById('g-zm').value/100;
@@ -233,7 +233,7 @@ function drawGrid(){
   ctx.drawImage(gridBaseImg, imgOffsetX, imgOffsetY);
   
   var cw = (c.width - margin*2)/cols, ch = (isSquare ? cw : (c.height - margin*2)/rows);
-  if(isSquare) { rows = Math.floor((c.height - margin*2)/ch); document.getElementById('g-rows').value = rows; }
+  if(isSquare) { rows = (c.height - margin*2)/ch; document.getElementById('g-rows').value = Math.floor(rows*100)/100; }
 
   // Draw Snapped Lines (using Grid Color)
   ctx.strokeStyle = color; ctx.lineWidth = (thick * 1.5) / zm;
@@ -249,8 +249,16 @@ function drawGrid(){
 
   // Grid Lines
   ctx.lineWidth=thick/zm; ctx.beginPath();
-  for(var i=0; i<=cols; i++){ var x = margin + i*cw; ctx.moveTo(x, margin); ctx.lineTo(x, margin + rows*ch); }
-  for(var j=0; j<=rows; j++){ var y = margin + j*ch; ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); }
+  for(var i=0; i<=Math.ceil(cols); i++){ 
+      var x = margin + i*cw; 
+      if (x > c.width - margin + 0.1) x = c.width - margin;
+      ctx.moveTo(x, margin); ctx.lineTo(x, margin + rows*ch); 
+  }
+  for(var j=0; j<=Math.ceil(rows); j++){ 
+      var y = margin + j*ch; 
+      if (y > c.height - margin + 0.1) y = c.height - margin;
+      ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); 
+  }
   ctx.stroke();
 
   // Intersection Dots (only in Draw/Erase mode)
@@ -266,13 +274,18 @@ function drawGrid(){
       drawGridLabels(ctx, cols, rows, cw, ch, margin, color, zm);
   }
 
+  var showDims = document.getElementById('g-show-dims') ? document.getElementById('g-show-dims').checked : false;
+  if (showDims) {
+      drawGridDims(ctx, cw, ch, margin, color, zm);
+  }
+
   ctx.restore();
   var zVal = Math.round(zm * 100) + '%';
   document.getElementById('g-zm-val').textContent = zVal;
   var zi = document.getElementById('g-zm-indicator'); if(zi) zi.textContent = zVal;
   ag.grid=c.toDataURL('image/png');
 }
-['g-rows','g-cols','g-thick','g-color','g-zm','g-margin','g-square','g-labels','g-lbl-size','g-lbl-color'].forEach(function(id){
+['g-rows','g-cols','g-thick','g-color','g-zm','g-margin','g-square','g-labels','g-lbl-size','g-lbl-color','g-show-dims','g-phys-size','g-phys-unit'].forEach(function(id){
   var el = document.getElementById(id);
   if(el) {
     el.addEventListener('input',function(){
@@ -321,6 +334,36 @@ function drawGridLabels(ctx, cols, rows, cw, ch, margin, _gridColor, zoom) {
     }
 }
 
+function drawGridDims(ctx, cw, ch, margin, color, zoom) {
+      var sizeVal = document.getElementById('g-phys-size') ? document.getElementById('g-phys-size').value : "1";
+      var unitVal = document.getElementById('g-phys-unit') ? document.getElementById('g-phys-unit').value : "cm";
+      var dimLabel = sizeVal + " " + unitVal;
+      var lblColor = document.getElementById('g-lbl-color') ? document.getElementById('g-lbl-color').value : color;
+      
+      var dimFontSize = Math.max(10, Math.min(cw, ch) * 0.18) / zoom;
+      ctx.font = "bold " + dimFontSize + "px Arial";
+      ctx.fillStyle = lblColor;
+      ctx.strokeStyle = "#ffffff";
+      ctx.lineWidth = 3/zoom;
+      
+      // Width label inside top edge of cell 0,0
+      ctx.textAlign = "center";
+      ctx.textBaseline = "top";
+      var tyX = margin + 2/zoom;
+      ctx.strokeText(dimLabel, margin + cw/2, tyX);
+      ctx.fillText(dimLabel, margin + cw/2, tyX);
+
+      // Height label inside left edge of cell 0,0
+      ctx.save();
+      ctx.translate(margin + 2/zoom, margin + ch/2);
+      ctx.rotate(-Math.PI/2);
+      ctx.textAlign = "center";
+      ctx.textBaseline = "bottom"; 
+      ctx.strokeText(dimLabel, 0, 0);
+      ctx.fillText(dimLabel, 0, 0);
+      ctx.restore();
+}
+
 function downloadGrid(){
   var tempC = document.createElement('canvas');
   tempC.width = gridBaseImg.width;
@@ -349,13 +392,26 @@ function downloadGrid(){
   // Grid Lines
   ctx.strokeStyle = color; ctx.lineWidth = thick;
   ctx.beginPath();
-  for(var i=0; i<=cols; i++){ var x = margin + i*cw; ctx.moveTo(x, margin); ctx.lineTo(x, margin + actualRows*ch); }
-  for(var j=0; j<=actualRows; j++){ var y = margin + j*ch; ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); }
+  for(var i=0; i<=Math.ceil(cols); i++){ 
+      var x = margin + i*cw; 
+      if (x > tempC.width - margin + 0.1) x = tempC.width - margin;
+      ctx.moveTo(x, margin); ctx.lineTo(x, margin + actualRows*ch); 
+  }
+  for(var j=0; j<=Math.ceil(actualRows); j++){ 
+      var y = margin + j*ch; 
+      if (y > tempC.height - margin + 0.1) y = tempC.height - margin;
+      ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); 
+  }
   ctx.stroke();
 
   var showLabels = document.getElementById('g-labels') ? document.getElementById('g-labels').checked : false;
   if(showLabels) {
       drawGridLabels(ctx, cols, actualRows, cw, ch, margin, color, 1);
+  }
+
+  var showDims = document.getElementById('g-show-dims') ? document.getElementById('g-show-dims').checked : false;
+  if (showDims) {
+      drawGridDims(ctx, cw, ch, margin, color, 1);
   }
 
   var a = document.createElement('a');
@@ -393,13 +449,26 @@ function downloadGridOnly(){
   // Grid Lines
   ctx.strokeStyle = color; ctx.lineWidth = thick;
   ctx.beginPath();
-  for(var i=0; i<=cols; i++){ var x = margin + i*cw; ctx.moveTo(x, margin); ctx.lineTo(x, margin + actualRows*ch); }
-  for(var j=0; j<=actualRows; j++){ var y = margin + j*ch; ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); }
+  for(var i=0; i<=Math.ceil(cols); i++){ 
+      var x = margin + i*cw; 
+      if (x > tempC.width - margin + 0.1) x = tempC.width - margin;
+      ctx.moveTo(x, margin); ctx.lineTo(x, margin + actualRows*ch); 
+  }
+  for(var j=0; j<=Math.ceil(actualRows); j++){ 
+      var y = margin + j*ch; 
+      if (y > tempC.height - margin + 0.1) y = tempC.height - margin;
+      ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); 
+  }
   ctx.stroke();
 
   var showLabels = document.getElementById('g-labels') ? document.getElementById('g-labels').checked : false;
   if(showLabels) {
       drawGridLabels(ctx, cols, actualRows, cw, ch, margin, color, 1);
+  }
+
+  var showDims = document.getElementById('g-show-dims') ? document.getElementById('g-show-dims').checked : false;
+  if (showDims) {
+      drawGridDims(ctx, cw, ch, margin, color, 1);
   }
 
   var a = document.createElement('a');
@@ -448,5 +517,39 @@ function applyAndNextStep3() {
         console.error(err);
         alert('Network or server error occurred.');
     });
+}
+
+function calculatePhysicalGrid() {
+    var template = document.getElementById('g-paper-template').value;
+    if (!template) {
+        alert("Please select a paper preset!");
+        return;
+    }
+    
+    var dims = template.split(",");
+    var widthCm = parseFloat(dims[0]);
+    var heightCm = parseFloat(dims[1]);
+    
+    var size = parseFloat(document.getElementById('g-phys-size').value);
+    var unit = document.getElementById('g-phys-unit').value;
+    
+    if (isNaN(size) || size <= 0) {
+        alert("Please enter a valid grid size.");
+        return;
+    }
+    
+    var paperWidth = unit === 'inch' ? (widthCm / 2.54) : widthCm;
+    var paperHeight = unit === 'inch' ? (heightCm / 2.54) : heightCm;
+    
+    var calculatedCols = paperWidth / size;
+    var calculatedRows = paperHeight / size;
+    
+    document.getElementById('g-cols').value = calculatedCols.toFixed(2);
+    document.getElementById('g-rows').value = calculatedRows.toFixed(2);
+    
+    var dimsMarker = document.getElementById('g-show-dims');
+    if (dimsMarker) dimsMarker.checked = true;
+
+    drawGrid();
 }
 </script>

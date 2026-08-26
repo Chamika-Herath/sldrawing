@@ -31,10 +31,41 @@
         
         <!-- Grid Matrix -->
         <div class="g-controls" style="grid-template-columns: 1fr 1fr; gap:12px;">
-          <div class="g-grp"><label>Cols</label><input type="number" id="g-cols" value="8" min="1" max="50"></div>
-          <div class="g-grp"><label>Rows</label><input type="number" id="g-rows" value="8" min="1" max="50"></div>
+          <div class="g-grp"><label>Cols</label><input type="number" id="g-cols" value="8" min="0.1" step="0.01" max="500"></div>
+          <div class="g-grp"><label>Rows</label><input type="number" id="g-rows" value="8" min="0.1" step="0.01" max="500"></div>
           <div class="g-grp"><label>Margin</label><input type="number" id="g-margin" value="0" min="0" max="200"></div>
           <div class="g-grp"><label>Thick</label><input type="number" id="g-thick" value="1.0" min="0.1" max="10" step="0.1"></div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border:1px solid #333; border-radius:8px; padding:10px; margin-top:20px;">
+           <label style="margin:0; text-transform:none; font-size:0.75rem; color:#ccc; display:block; margin-bottom:10px;">Physical Paper Grid Setup</label>
+           
+           <div style="display:flex; gap:8px; margin-bottom:8px;">
+               <select id="g-paper-template" style="flex:1; padding:6px; background:#222; color:#fff; border:1px solid #444; border-radius:4px; font-size: 0.7rem;">
+                   <option value="">-- Preset --</option>
+                   <option value="21,29.7">A4 Portrait</option>
+                   <option value="29.7,21">A4 Landscape</option>
+                   <option value="29.7,42">A3 Portrait</option>
+                   <option value="42,29.7">A3 Landscape</option>
+                   <option value="42,59.4">A2 Portrait</option>
+                   <option value="59.4,42">A2 Landscape</option>
+               </select>
+               <button onclick="calculatePhysicalGrid()" style="background:var(--primary); color:#fff; border:none; padding:0 10px; border-radius:4px; font-weight:bold; font-size:0.7rem;">Apply Paper</button>
+           </div>
+
+           <div style="display:flex; gap:8px; align-items:center; margin-bottom:8px;">
+              <span style="font-size:0.7rem; color:#888;">Grid Cell Size:</span>
+              <input type="number" id="g-phys-size" value="1" min="0.1" step="0.1" style="width:40px; padding:4px; border-radius:4px; border:1px solid #444; background:#222; color:#fff; font-size: 0.75rem;">
+              <select id="g-phys-unit" style="padding:4px; background:#222; color:#fff; border:1px solid #444; border-radius:4px; font-size: 0.75rem;">
+                  <option value="cm">cm</option>
+                  <option value="inch">inch</option>
+              </select>
+           </div>
+           
+           <div style="display:flex; justify-content:space-between; align-items:center;">
+             <label style="margin:0; text-transform:none; font-size:0.75rem; color:#ccc;">Show Cell Dimensions Marker (e.g. 1cm)</label>
+             <input type="checkbox" id="g-show-dims" checked style="width:16px; height:16px; cursor:pointer; accent-color:var(--primary);">
+           </div>
         </div>
 
         <div style="margin: 20px 0;">
