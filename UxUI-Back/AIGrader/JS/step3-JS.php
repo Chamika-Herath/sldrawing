@@ -260,13 +260,19 @@ function drawGrid(){
       ctx.beginPath(); ctx.arc(margin + i*cw, margin + j*ch, 4/zm, 0, Math.PI*2); ctx.fill();
     }
   }
+
+  var showLabels = document.getElementById('g-labels') ? document.getElementById('g-labels').checked : false;
+  if (showLabels) {
+      drawGridLabels(ctx, cols, rows, cw, ch, margin, color, zm);
+  }
+
   ctx.restore();
   var zVal = Math.round(zm * 100) + '%';
   document.getElementById('g-zm-val').textContent = zVal;
   var zi = document.getElementById('g-zm-indicator'); if(zi) zi.textContent = zVal;
   ag.grid=c.toDataURL('image/png');
 }
-['g-rows','g-cols','g-thick','g-color','g-zm','g-margin','g-square'].forEach(function(id){
+['g-rows','g-cols','g-thick','g-color','g-zm','g-margin','g-square','g-labels','g-lbl-size','g-lbl-color'].forEach(function(id){
   var el = document.getElementById(id);
   if(el) {
     el.addEventListener('input',function(){
@@ -274,6 +280,47 @@ function drawGrid(){
     });
   }
 });
+
+function drawGridLabels(ctx, cols, rows, cw, ch, margin, _gridColor, zoom) {
+    var lblSizeInput = document.getElementById('g-lbl-size');
+    var lblColorInput = document.getElementById('g-lbl-color');
+    var baseFontSize = lblSizeInput ? parseFloat(lblSizeInput.value) : 14;
+    var lblColor = lblColorInput ? lblColorInput.value : "#0084ff";
+    
+    var fontSize = baseFontSize / zoom;
+    ctx.font = "bold " + fontSize + "px Arial";
+
+    for (var i = 0; i < cols; i++) {
+        var charIdx = i;
+        var letter = "";
+        while (charIdx >= 0) {
+            letter = String.fromCharCode(65 + (charIdx % 26)) + letter;
+            charIdx = Math.floor(charIdx / 26) - 1;
+        }
+        // Place Column letters exactly at the top-right of the cell to prevent overlap
+        ctx.textAlign = "right";
+        ctx.textBaseline = "top";
+        var tx = margin + i * cw + cw - 4/zoom;
+        var ty = margin + 4/zoom; 
+
+        ctx.lineWidth = (3 / zoom);
+        ctx.strokeStyle = "#ffffff"; ctx.strokeText(letter, tx, ty);
+        ctx.fillStyle = lblColor; ctx.fillText(letter, tx, ty);
+    }
+    for (var j = 0; j < rows; j++) {
+        var num = (j + 1).toString();
+        // Place Row numbers exactly at the bottom-left of the cell to prevent overlap
+        ctx.textAlign = "left";
+        ctx.textBaseline = "bottom";
+        var tx = margin + 4/zoom; 
+        var ty = margin + j * ch + ch - 4/zoom;
+
+        ctx.lineWidth = (3 / zoom);
+        ctx.strokeStyle = "#ffffff"; ctx.strokeText(num, tx, ty);
+        ctx.fillStyle = lblColor; ctx.fillText(num, tx, ty);
+    }
+}
+
 function downloadGrid(){
   var tempC = document.createElement('canvas');
   tempC.width = gridBaseImg.width;
@@ -305,6 +352,11 @@ function downloadGrid(){
   for(var i=0; i<=cols; i++){ var x = margin + i*cw; ctx.moveTo(x, margin); ctx.lineTo(x, margin + actualRows*ch); }
   for(var j=0; j<=actualRows; j++){ var y = margin + j*ch; ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); }
   ctx.stroke();
+
+  var showLabels = document.getElementById('g-labels') ? document.getElementById('g-labels').checked : false;
+  if(showLabels) {
+      drawGridLabels(ctx, cols, actualRows, cw, ch, margin, color, 1);
+  }
 
   var a = document.createElement('a');
   a.download = 'high_quality_grid.png';
@@ -344,6 +396,11 @@ function downloadGridOnly(){
   for(var i=0; i<=cols; i++){ var x = margin + i*cw; ctx.moveTo(x, margin); ctx.lineTo(x, margin + actualRows*ch); }
   for(var j=0; j<=actualRows; j++){ var y = margin + j*ch; ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); }
   ctx.stroke();
+
+  var showLabels = document.getElementById('g-labels') ? document.getElementById('g-labels').checked : false;
+  if(showLabels) {
+      drawGridLabels(ctx, cols, actualRows, cw, ch, margin, color, 1);
+  }
 
   var a = document.createElement('a');
   a.download = 'grid_only.png';

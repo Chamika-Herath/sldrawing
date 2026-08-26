@@ -45,9 +45,20 @@
           </div>
         </div>
 
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px; padding:10px; background:rgba(255,255,255,0.03); border:1px solid #333; border-radius:8px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 5px; padding:10px; background:rgba(255,255,255,0.03); border:1px solid #333; border-radius:8px;">
            <label style="margin:0; text-transform:none; letter-spacing:0; font-size:0.75rem; color:#ccc;">Square Cells Only</label>
            <input type="checkbox" id="g-square" checked style="width:18px; height:18px; cursor:pointer; accent-color:var(--primary);">
+        </div>
+        
+        <div style="background:rgba(255,255,255,0.03); border:1px solid #333; border-radius:8px; padding:10px; margin-bottom: 20px;">
+           <div style="display:flex; justify-content:space-between; align-items:center;">
+             <label style="margin:0; text-transform:none; letter-spacing:0; font-size:0.75rem; color:#ccc;">Show Labels (A, 1)</label>
+             <input type="checkbox" id="g-labels" style="width:18px; height:18px; cursor:pointer; accent-color:var(--primary);">
+           </div>
+           <div class="g-controls" style="grid-template-columns: 1fr 1fr; gap:12px; margin-top:10px;">
+             <div class="g-grp"><label style="font-size:0.65rem;">Lbl Size</label><input type="number" id="g-lbl-size" value="14" min="8" max="72"></div>
+             <div class="g-grp"><label style="font-size:0.65rem;">Lbl Color</label><input type="color" id="g-lbl-color" value="#0084ff" style="padding:0; height:28px; width:100%; border-radius:4px; border:none; background:none; cursor:pointer;"></div>
+           </div>
         </div>
 
         <!-- Zoom HUD -->
