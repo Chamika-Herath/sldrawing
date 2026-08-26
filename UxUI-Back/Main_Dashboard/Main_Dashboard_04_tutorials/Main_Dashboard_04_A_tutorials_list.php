@@ -429,82 +429,14 @@
                     </div>
                 </div>
 
-                <!-- Tutorials List Display -->
-                <div class="tutorial-list-container">
-                    
-                    <!-- Tutorial Item 1 -->
-                    <div class="tutorial-card">
-                        <div class="tutorial-thumb-container" style="background-image: url('../../../assets/images/tutorial_portrait_1773936991179.webp');">
-                            <div class="tutorial-play-overlay"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
-                            <div class="tutorial-duration">45:20</div>
-                        </div>
-                        <div class="tutorial-info">
-                            <div class="tutorial-title">Mastering Face Proportions</div>
-                            <div class="tutorial-desc">Learn the classical Grid Drawing methods for achieving perfect facial proportions every time. A step-by-step masterclass with Chamika Herath.</div>
-                            <div class="tutorial-meta">
-                                <span class="tutorial-badge badge-beginner">Beginner</span>
-                                <span class="tutorial-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> 2.4K views</span>
-                                <span class="tutorial-stat" style="color:var(--sld-success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Published</span>
-                            </div>
-                        </div>
-                        <div class="tutorial-actions">
-                            <button class="action-btn-circle" title="Edit Tutorial"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
-                            <button class="action-btn-circle" title="View Analytics"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></button>
-                        </div>
-                    </div>
-
-                    <!-- Tutorial Item 2 -->
-                    <div class="tutorial-card">
-                        <div class="tutorial-thumb-container" style="background-image: url('../../../assets/images/tutorial_coloring_1773937010332.webp'); background-color: var(--sld-dark-700);">
-                            <div class="tutorial-play-overlay"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
-                            <div class="tutorial-duration">1:12:05</div>
-                        </div>
-                        <div class="tutorial-info">
-                            <div class="tutorial-title">Digital Coloring & Shading Styles</div>
-                            <div class="tutorial-desc">Deep dive into digital mixing techniques, establishing ambient light sources, and choosing dynamic shadow colors for concept art.</div>
-                            <div class="tutorial-meta">
-                                <span class="tutorial-badge badge-intermediate">Intermediate</span>
-                                <span class="tutorial-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> 512 views</span>
-                                <span class="tutorial-stat" style="color:var(--sld-success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Published</span>
-                            </div>
-                        </div>
-                        <div class="tutorial-actions">
-                            <button class="action-btn-circle" title="Edit Tutorial"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
-                            <button class="action-btn-circle" title="View Analytics"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></button>
-                        </div>
-                    </div>
-
-                    <!-- Tutorial Item 3 -->
-                    <div class="tutorial-card">
-                        <div class="tutorial-thumb-container" style="background-image: url('../../../assets/images/shark1.webp'); background-color: var(--sld-dark-700);">
-                            <div class="tutorial-play-overlay"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
-                            <div class="tutorial-duration">28:15</div>
-                        </div>
-                        <div class="tutorial-info">
-                            <div class="tutorial-title">Anatomy of Action Poses</div>
-                            <div class="tutorial-desc">Learn how to sketch dynamic action figures quickly with clear lines of action, weight distribution, and foreshortening basics.</div>
-                            <div class="tutorial-meta">
-                                <span class="tutorial-badge badge-intermediate" style="background:rgba(147, 51, 234, 0.15); color: #c084fc; border-color: rgba(147, 51, 234, 0.2);">Advanced</span>
-                                <span class="tutorial-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> --</span>
-                                <span class="tutorial-stat" style="color:var(--sld-text-400);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg> Draft</span>
-                            </div>
-                        </div>
-                        <div class="tutorial-actions">
-                            <button class="action-btn-circle" title="Edit Tutorial"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
-                            <button class="action-btn-circle" title="View Analytics"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></button>
-                        </div>
-                    </div>
-
+                <!-- Tutorials List Display (Dynamic) -->
+                <div class="tutorial-list-container" id="md_tutorial_list_container">
+                      <!-- Javascript load_tutorials() engine handles output securely in real-time here. -->
                 </div>
 
             </div>
 
-<?php 
-// Include specific JS script corresponding to this UI for AJAX processing
-if (file_exists('JS/Main_Dashboard_04_A_tutorials_list_JS.php')) {
-    include_once 'JS/Main_Dashboard_04_A_tutorials_list_JS.php';
-}
-?>
+
             
         </section>
         

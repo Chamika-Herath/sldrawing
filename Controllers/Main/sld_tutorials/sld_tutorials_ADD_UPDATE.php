@@ -24,7 +24,7 @@ class sld_tutorials_ADD_UPDATE
         $state = false;
 
         if ($this->id == 0) {
-            $stmt = $conn->prepare("INSERT INTO sld_tutorials (title, description, difficulty_level, video_url, thumbnail_url, main_user_login_id) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO sld_tutorials (title, description, difficulty_level, video_url, thumbnail_url, main_user_login_id, ast, sdt) VALUES (?, ?, ?, ?, ?, ?, 1, CURRENT_TIMESTAMP)");
             $stmt->bind_param("sssssi", $this->title, $this->description, $this->difficulty_level, $this->video_url, $this->thumbnail_url, $this->main_user_login_id);
             if ($stmt->execute()) {
                 $this->id = $stmt->insert_id;

@@ -50,7 +50,7 @@
         Main_dashboard_close_all();
         document.getElementById("Main_Dashboard_04_A").style.display = "";
         setSidebarActive('tutorils');
-        
+        if(typeof load_tutorials === "function") load_tutorials();
     }
 
     function Main_Dashboard_04_B_OPEN() { 
