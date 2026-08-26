@@ -102,11 +102,114 @@ $color = ($diff == 'BEGINNER') ? '#a855f7' : (($diff == 'INTERMEDIATE') ? '#00f3
         </div>
 
         <!-- Content Payload Surface Area -->
-        <div class="tutorial-content-body glass" style="padding: 40px; border-radius: 20px; background: var(--surface);">
+        <div id="tutorial_book" class="tutorial-content-body glass" style="padding: 40px; border-radius: 20px; background: var(--surface);">
             <!-- Inject Raw HTML Payload from Database entirely untouched to preserve Quill rich text structures perfectly -->
             <?php echo $tut['description']; ?>
         </div>
     </main>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var book = document.getElementById("tutorial_book");
+        // We use Heading 2 tags (Top Level Headers) as natural Semantic Page Breaks!
+        var headers = book.querySelectorAll("h2");
+        
+        if (headers.length > 0) { // If H2s exist, pagify it!
+            var nodes = Array.from(book.childNodes);
+            var pages = [];
+            
+            var currentPage = document.createElement("div");
+            currentPage.className = "tut-page";
+            
+            nodes.forEach(node => {
+                // When we hit an H2, we break the page (unless we are at the very beginning)
+                if (node.tagName && node.tagName.toLowerCase() === 'h2') {
+                    if (currentPage.textContent.trim() !== "" || currentPage.querySelectorAll('img').length > 0) {
+                        pages.push(currentPage);
+                        currentPage = document.createElement("div");
+                        currentPage.className = "tut-page";
+                    }
+                }
+                currentPage.appendChild(node);
+            });
+            // Push the last remaining elements
+            if (currentPage.childNodes.length > 0) pages.push(currentPage);
+
+            // If we actually created more than 1 page
+            if(pages.length > 1) {
+                book.innerHTML = "";
+                
+                // Create native UI paginator container
+                var paginator = document.createElement("div");
+                paginator.style.display = "flex";
+                paginator.style.justifyContent = "space-between";
+                paginator.style.marginTop = "60px";
+                paginator.style.paddingTop = "25px";
+                paginator.style.borderTop = "1px solid rgba(255,255,255,0.05)";
+                
+                var currentIndex = 0;
+                
+                function updatePaginator() {
+                    pages.forEach((p, index) => {
+                        p.style.display = (index === currentIndex) ? "block" : "none";
+                        p.style.animation = (index === currentIndex) ? "fadeObj 0.5s ease" : "none";
+                    });
+                    
+                    paginator.innerHTML = "";
+                    var prevBtn = document.createElement("button");
+                    prevBtn.innerHTML = "&#8592; Previous";
+                    prevBtn.style.padding = "12px 25px";
+                    prevBtn.style.borderRadius = "8px";
+                    prevBtn.style.border = "1px solid var(--primary)";
+                    prevBtn.style.background = "transparent";
+                    prevBtn.style.color = "var(--primary)";
+                    prevBtn.style.cursor = "pointer";
+                    prevBtn.style.fontWeight = "700";
+                    prevBtn.style.opacity = currentIndex > 0 ? "1" : "0.2";
+                    prevBtn.style.pointerEvents = currentIndex > 0 ? "auto" : "none";
+                    prevBtn.onclick = () => { if(currentIndex > 0) { currentIndex--; updatePaginator(); window.scrollTo({top: 100, behavior: 'smooth'}); } };
+                    
+                    var nextBtn = document.createElement("button");
+                    nextBtn.innerHTML = "Next Page &#8594;";
+                    nextBtn.style.padding = "12px 25px";
+                    nextBtn.style.borderRadius = "8px";
+                    nextBtn.style.border = "none";
+                    nextBtn.style.background = "var(--primary)";
+                    nextBtn.style.color = "#000";
+                    nextBtn.style.fontWeight = "700";
+                    nextBtn.style.cursor = "pointer";
+                    nextBtn.style.opacity = currentIndex < pages.length - 1 ? "1" : "0.2";
+                    nextBtn.style.pointerEvents = currentIndex < pages.length - 1 ? "auto" : "none";
+                    nextBtn.onclick = () => { if(currentIndex < pages.length-1) { currentIndex++; updatePaginator(); window.scrollTo({top: 100, behavior: 'smooth'}); } };
+                    
+                    var counter = document.createElement("div");
+                    counter.style.color = "var(--text-dim)";
+                    counter.style.alignSelf = "center";
+                    counter.style.fontSize = "14px";
+                    counter.style.fontWeight = "600";
+                    counter.innerHTML = "PAGE " + (currentIndex + 1) + " OF " + pages.length;
+
+                    paginator.appendChild(prevBtn);
+                    paginator.appendChild(counter);
+                    paginator.appendChild(nextBtn);
+                }
+
+                pages.forEach(p => book.appendChild(p));
+                book.appendChild(paginator);
+                
+                // Add fade animation CSS cleanly
+                if(!document.getElementById("tutFadeAnim")) {
+                    var style = document.createElement("style");
+                    style.id = "tutFadeAnim";
+                    style.innerHTML = "@keyframes fadeObj { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }";
+                    document.head.appendChild(style);
+                }
+                
+                updatePaginator();
+            }
+        }
+    });
+    </script>
 
     <?php include_once './UxUI-Back/Needs/footer.php'; ?>
 </body>
