@@ -248,18 +248,7 @@ function drawGrid(){
   }
 
   // Grid Lines
-  ctx.lineWidth=thick/zm; ctx.beginPath();
-  for(var i=0; i<=Math.ceil(cols); i++){ 
-      var x = margin + i*cw; 
-      if (x > c.width - margin + 0.1) x = c.width - margin;
-      ctx.moveTo(x, margin); ctx.lineTo(x, margin + rows*ch); 
-  }
-  for(var j=0; j<=Math.ceil(rows); j++){ 
-      var y = margin + j*ch; 
-      if (y > c.height - margin + 0.1) y = c.height - margin;
-      ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); 
-  }
-  ctx.stroke();
+  drawGridLines(ctx, cols, rows, cw, ch, margin, thick, color, c.width, c.height, zm);
 
   // Intersection Dots (only in Draw/Erase mode)
   if(gridTool === 'draw' || gridTool === 'erase'){
@@ -285,7 +274,7 @@ function drawGrid(){
   var zi = document.getElementById('g-zm-indicator'); if(zi) zi.textContent = zVal;
   ag.grid=c.toDataURL('image/png');
 }
-['g-rows','g-cols','g-thick','g-color','g-zm','g-margin','g-square','g-labels','g-lbl-size','g-lbl-color','g-show-dims','g-phys-size','g-phys-unit'].forEach(function(id){
+['g-rows','g-cols','g-thick','g-color','g-zm','g-margin','g-square','g-labels','g-lbl-size','g-lbl-color','g-show-dims','g-phys-size','g-phys-unit','g-cross'].forEach(function(id){
   var el = document.getElementById(id);
   if(el) {
     el.addEventListener('input',function(){
@@ -364,6 +353,48 @@ function drawGridDims(ctx, cw, ch, margin, color, zoom) {
       ctx.restore();
 }
 
+function drawGridLines(ctx, cols, rows, cw, ch, margin, thick, color, canvasW, canvasH, zoom) {
+  // Main Lines
+  ctx.strokeStyle = color; 
+  ctx.lineWidth = thick / zoom;
+  ctx.beginPath();
+  for(var i=0; i<=Math.ceil(cols); i++){ 
+      var x = margin + i*cw; 
+      if (x > canvasW - margin + 0.1) x = canvasW - margin;
+      ctx.moveTo(x, margin); ctx.lineTo(x, margin + rows*ch); 
+  }
+  for(var j=0; j<=Math.ceil(rows); j++){ 
+      var y = margin + j*ch; 
+      if (y > canvasH - margin + 0.1) y = canvasH - margin;
+      ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); 
+  }
+  ctx.stroke();
+
+  // Cross Lines
+  var showCross = document.getElementById('g-cross') ? document.getElementById('g-cross').checked : false;
+  if(showCross) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(margin, margin, Math.min(cols*cw, canvasW-margin*2), Math.min(rows*ch, canvasH-margin*2));
+      ctx.clip();
+      
+      ctx.beginPath();
+      ctx.lineWidth = (thick / zoom) * 0.5; // thinner for diagonals
+      for (var i=0; i<Math.ceil(cols); i++) {
+          for (var j=0; j<Math.ceil(rows); j++) {
+             var x1 = margin + i*cw;
+             var y1 = margin + j*ch;
+             var x2 = margin + (i+1)*cw;
+             var y2 = margin + (j+1)*ch;
+             ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
+             ctx.moveTo(x2, y1); ctx.lineTo(x1, y2);
+          }
+      }
+      ctx.stroke();
+      ctx.restore();
+  }
+}
+
 function downloadGrid(){
   var tempC = document.createElement('canvas');
   tempC.width = gridBaseImg.width;
@@ -390,19 +421,7 @@ function downloadGrid(){
   });
 
   // Grid Lines
-  ctx.strokeStyle = color; ctx.lineWidth = thick;
-  ctx.beginPath();
-  for(var i=0; i<=Math.ceil(cols); i++){ 
-      var x = margin + i*cw; 
-      if (x > tempC.width - margin + 0.1) x = tempC.width - margin;
-      ctx.moveTo(x, margin); ctx.lineTo(x, margin + actualRows*ch); 
-  }
-  for(var j=0; j<=Math.ceil(actualRows); j++){ 
-      var y = margin + j*ch; 
-      if (y > tempC.height - margin + 0.1) y = tempC.height - margin;
-      ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); 
-  }
-  ctx.stroke();
+  drawGridLines(ctx, cols, actualRows, cw, ch, margin, thick, color, tempC.width, tempC.height, 1);
 
   var showLabels = document.getElementById('g-labels') ? document.getElementById('g-labels').checked : false;
   if(showLabels) {
@@ -447,19 +466,7 @@ function downloadGridOnly(){
   });
 
   // Grid Lines
-  ctx.strokeStyle = color; ctx.lineWidth = thick;
-  ctx.beginPath();
-  for(var i=0; i<=Math.ceil(cols); i++){ 
-      var x = margin + i*cw; 
-      if (x > tempC.width - margin + 0.1) x = tempC.width - margin;
-      ctx.moveTo(x, margin); ctx.lineTo(x, margin + actualRows*ch); 
-  }
-  for(var j=0; j<=Math.ceil(actualRows); j++){ 
-      var y = margin + j*ch; 
-      if (y > tempC.height - margin + 0.1) y = tempC.height - margin;
-      ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); 
-  }
-  ctx.stroke();
+  drawGridLines(ctx, cols, actualRows, cw, ch, margin, thick, color, tempC.width, tempC.height, 1);
 
   var showLabels = document.getElementById('g-labels') ? document.getElementById('g-labels').checked : false;
   if(showLabels) {

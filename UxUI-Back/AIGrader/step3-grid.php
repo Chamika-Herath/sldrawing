@@ -77,6 +77,11 @@
         </div>
 
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 5px; padding:10px; background:rgba(255,255,255,0.03); border:1px solid #333; border-radius:8px;">
+           <label style="margin:0; text-transform:none; letter-spacing:0; font-size:0.75rem; color:#ccc;">Diagonal Cross Lines (X)</label>
+           <input type="checkbox" id="g-cross" style="width:18px; height:18px; cursor:pointer; accent-color:var(--primary);">
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 5px; padding:10px; background:rgba(255,255,255,0.03); border:1px solid #333; border-radius:8px;">
            <label style="margin:0; text-transform:none; letter-spacing:0; font-size:0.75rem; color:#ccc;">Square Cells Only</label>
            <input type="checkbox" id="g-square" checked style="width:18px; height:18px; cursor:pointer; accent-color:var(--primary);">
         </div>
