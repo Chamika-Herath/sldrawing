@@ -108,7 +108,11 @@
 
         <button class="dl-btn" onclick="downloadGrid()" style="background:#0084ff; font-size:0.8rem; height:45px; border-radius:8px; margin-bottom: 8px; width: 100%;">Export High Quality PNG</button>
         <button onclick="downloadGridOnly()" style="background:#28a745; color:#fff; font-size:0.8rem; height:45px; border-radius:8px; width: 100%; border:none; cursor:pointer; margin-bottom: 0px;">Export Grid Only</button>
-        <button onclick="clearGridDrawings()" style="display:block; width:100%; padding:10px; background:none; border:none; color:#666; cursor:pointer; font-size:0.7rem; text-decoration:underline;">Discard Custom Paths</button>
+        
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:5px;">
+           <button onclick="clearGridDrawings()" style="flex:1; padding:10px; background:none; border:none; color:#666; cursor:pointer; font-size:0.7rem; text-decoration:underline;">Clear Custom Paths</button>
+           <button onclick="resetGridSettings()" style="flex:1; padding:10px; background:none; border:none; color:#ff4d4d; cursor:pointer; font-size:0.7rem; text-decoration:underline;">Reset Settings</button>
+        </div>
       </div>
 
       <!-- Footer Navigation -->

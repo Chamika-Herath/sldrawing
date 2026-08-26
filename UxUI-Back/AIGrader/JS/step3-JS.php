@@ -559,4 +559,50 @@ function calculatePhysicalGrid() {
 
     drawGrid();
 }
+
+function resetGridSettings() {
+    document.getElementById('g-cols').value = 8;
+    document.getElementById('g-rows').value = 8;
+    document.getElementById('g-margin').value = 0;
+    document.getElementById('g-thick').value = 1.0;
+    
+    var pTemplate = document.getElementById('g-paper-template');
+    if (pTemplate) pTemplate.value = "";
+    var pSize = document.getElementById('g-phys-size');
+    if (pSize) pSize.value = 1;
+    var pUnit = document.getElementById('g-phys-unit');
+    if (pUnit) pUnit.value = "cm";
+    var sDims = document.getElementById('g-show-dims');
+    if (sDims) sDims.checked = true;
+    
+    var colorInput = document.getElementById('g-color');
+    if (colorInput) colorInput.value = "#0084ff";
+    
+    var cross = document.getElementById('g-cross');
+    if (cross) cross.checked = false;
+    
+    var square = document.getElementById('g-square');
+    if (square) square.checked = true;
+    
+    var labels = document.getElementById('g-labels');
+    if (labels) labels.checked = false;
+    
+    var gLblSize = document.getElementById('g-lbl-size');
+    if(gLblSize) gLblSize.value = 14;
+    var gLblColor = document.getElementById('g-lbl-color');
+    if(gLblColor) gLblColor.value = "#0084ff";
+
+    var zm = document.getElementById('g-zm');
+    if(zm) {
+        zm.value = 100;
+        zm.dispatchEvent(new Event('input'));
+    }
+    
+    gridPanX = 0;
+    gridPanY = 0;
+    imgOffsetX = 0;
+    imgOffsetY = 0;
+
+    drawGrid();
+}
 </script>
