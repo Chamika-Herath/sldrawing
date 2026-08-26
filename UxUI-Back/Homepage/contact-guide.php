@@ -1,52 +1,127 @@
-<section class="contact-guide" style="padding: 120px 0; background: url('/assets/images/museum_bg_4.webp') center / cover fixed no-repeat; position: relative; overflow: hidden;">
-    <!-- Overlay for text readability -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 11, 15, 0.7); z-index: 0; pointer-events: none;"></div>
+<style>
+    .contact-guide {
+        padding: 120px 0;
+        position: relative;
+        background: transparent;
+        z-index: 5;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+        background: rgba(20, 12, 8, 0.6);
+        border: 1px solid rgba(255,255,255,0.05);
+        border-radius: 30px;
+        padding: 50px;
+        box-shadow: 0 40px 80px rgba(0,0,0,0.8), inset 0 0 50px rgba(0,0,0,0.5);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .contact-grid::before {
+        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+        background: linear-gradient(90deg, rgba(219,118,54,0) 0%, rgba(219,118,54,0.3) 50%, rgba(219,118,54,0) 100%);
+    }
+
+    .contact-info {
+        text-align: center;
+    }
     
-    <!-- Abstract Artistic Background Element -->
-    <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(254, 98, 29, 0.15) 0%, transparent 70%); filter: blur(60px); pointer-events: none; z-index: 1;"></div>
+    .contact-portrait {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        border-radius: 20px;
+        border: 2px solid #3c2415;
+        box-shadow: 20px 20px 40px rgba(0,0,0,0.8);
+        filter: sepia(0.3) brightness(0.9);
+        margin-bottom: 30px;
+    }
+
+    .contact-form-container {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .atelier-input {
+        width: 100%;
+        padding: 15px 20px;
+        background: rgba(255,255,255,0.02);
+        border: none;
+        border-bottom: 2px solid rgba(219, 118, 54, 0.4);
+        border-radius: 5px 5px 0 0;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 1.1rem;
+        transition: 0.3s;
+    }
     
-    <div class="container glass reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding: 80px; border-radius: 50px; align-items: center; position: relative; z-index: 2;">
-        <div>
-            <h2 style="font-size: 3.5rem; margin-bottom: 25px; font-weight: 800; letter-spacing: -2px; color: var(--text);">Let's <span style="color: var(--primary);">Talk Art</span></h2>
-            <p style="color: var(--text-dim); margin-bottom: 45px; font-size: 1.2rem; line-height: 1.6;">Have questions about our tutorials or need help with the Studio? Our support artists are ready to help you thrive.</p>
+    .atelier-input::placeholder { color: rgba(255,255,255,0.3); }
+    .atelier-input:focus {
+        outline: none;
+        background: rgba(255,255,255,0.05);
+        border-bottom-color: #db7636;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    .submit-btn {
+        padding: 20px;
+        background: #db7636;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.4s;
+        box-shadow: 0 15px 30px rgba(219, 118, 54, 0.2);
+    }
+    
+    .submit-btn:hover {
+        background: #e9884c;
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(219, 118, 54, 0.4);
+    }
+
+    @media (max-width: 992px) {
+        .contact-grid { grid-template-columns: 1fr; gap: 50px; padding: 30px 20px; }
+    }
+</style>
+
+<section class="contact-guide">
+    <div class="container">
+        
+        <div class="contact-grid">
+            <div class="contact-info reveal">
+                <img src="/assets/images/portrait_hero.webp" alt="Artist Profile" class="contact-portrait">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #fff; margin-bottom: 10px;">Let's Talk <span style="color: #db7636;">Art</span></h3>
+                <p style="font-family: 'Inter', sans-serif; color: #a48c77; line-height: 1.6; font-size: 1.1rem; padding: 0 20px;">For business inquiries, museum collaborations, or personal tutelage.</p>
+            </div>
             
-            <div style="display: grid; gap: 25px;">
-                <div style="display: flex; gap: 20px; align-items: center;">
-                    <div style="width: 60px; height: 60px; background: var(--primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.5rem; box-shadow: 0 10px 30px rgba(254,98,29,0.3);">📧</div>
-                    <div>
-                        <div style="font-size: 0.9rem; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Email Us</div>
-                        <div style="font-size: 1.1rem; color: var(--text); font-weight: 700;">chamika@heradorce.com</div>
-                    </div>
-                </div>
-                <div style="display: flex; gap: 20px; align-items: center;">
-                    <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.05); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--text); font-size: 1.5rem;">📍</div>
-                    <div>
-                        <div style="font-size: 0.9rem; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Location</div>
-                        <div style="font-size: 1.1rem; color: var(--text); font-weight: 700;">Global Artist Community</div>
-                    </div>
-                </div>
+            <div class="contact-form-container reveal" style="transition-delay: 0.2s;">
+                <form id="contactForm" style="display: flex; flex-direction: column; gap: 20px;">
+                    <input type="text" name="full_name" id="full_name" placeholder="Your Name" required class="atelier-input">
+                    <input type="email" name="email" id="email" placeholder="Your Courier (Email)" required class="atelier-input">
+                    <select name="subject" class="atelier-input" style="color: rgba(255,255,255,0.7); cursor: pointer;">
+                        <option value="Collab">Gallery Curation / Business</option>
+                        <option value="Tutorials">Masterclass Inquiries</option>
+                        <option value="General">General Commendations</option>
+                    </select>
+                    <textarea name="message" id="message" placeholder="Pen your thoughts..." required class="atelier-input" rows="5" style="resize: none;"></textarea>
+                    
+                    <div id="form-status" style="display: none; padding: 15px; border-radius: 10px; font-weight: 700; text-align: center; color: #fff;"></div>
+                    <button type="submit" id="submitBtn" class="submit-btn" style="margin-top: 10px;">Send Artifact via Courier</button>
+                    <p style="font-size: 0.8rem; color: rgba(255,255,255,0.3); text-align: center; font-family: 'Inter', sans-serif;">We will unseal your message within 24 standard earth cycles.</p>
+                </form>
             </div>
         </div>
-        
-        <div>
-            <form id="contactForm" style="display: grid; gap: 20px; background: var(--surface); padding: 40px; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05);">
-                <div style="display: grid; gap: 5px;">
-                    <label style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--primary); letter-spacing: 1px;">Full Name</label>
-                    <input type="text" name="full_name" id="full_name" required placeholder="e.g. Leonardo da Vinci" style="width: 100%; padding: 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); font-weight: 600; color: var(--text);">
-                </div>
-                <div style="display: grid; gap: 5px;">
-                    <label style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--primary); letter-spacing: 1px;">Email Address</label>
-                    <input type="email" name="email" id="email" required placeholder="leo@masterpiece.com" style="width: 100%; padding: 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); font-weight: 600; color: var(--text);">
-                </div>
-                <div style="display: grid; gap: 5px;">
-                    <label style="font-size: 0.8rem; font-weight: 800; text-transform: uppercase; color: var(--primary); letter-spacing: 1px;">Message</label>
-                    <textarea name="message" id="message" required placeholder="Tell us about your artistic journey..." style="width: 100%; padding: 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); font-weight: 600; color: var(--text); height: 120px; resize: none;"></textarea>
-                </div>
-                <!-- Status Message Display -->
-                <div id="form-status" style="display: none; padding: 15px; border-radius: 10px; font-weight: 700; text-align: center;"></div>
-                <button type="submit" id="submitBtn" class="btn-primary" style="margin-top: 10px; width: 100%; font-size: 1.1rem;">Send Message</button>
-            </form>
-        </div>
+
     </div>
 </section>
 
@@ -76,7 +151,7 @@
                 .then(response => response.json())
                 .then(data => {
                     submitBtn.disabled = false;
-                    submitBtn.innerText = "Send Message";
+                    submitBtn.innerText = "Send Artifact via Courier";
                     statusDiv.style.display = "block";
                     
                     if (data.success) {
@@ -92,7 +167,7 @@
                 })
                 .catch(error => {
                     submitBtn.disabled = false;
-                    submitBtn.innerText = "Send Message";
+                    submitBtn.innerText = "Send Artifact via Courier";
                     statusDiv.style.display = "block";
                     statusDiv.style.background = "rgba(231, 76, 60, 0.2)";
                     statusDiv.style.color = "#e74c3c";
@@ -102,12 +177,4 @@
         }
     });
 </script>
-
-
-<style>
-    @media (max-width: 992px) {
-        .contact-guide .glass { grid-template-columns: 1fr; padding: 40px 20px; gap: 50px; }
-        .contact-guide h2 { font-size: 2.8rem !important; }
-    }
-</style>
 

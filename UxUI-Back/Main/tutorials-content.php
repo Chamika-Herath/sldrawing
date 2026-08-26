@@ -7,12 +7,7 @@ $res = $tutorial_list->custom_query("SELECT * FROM sld_tutorials WHERE ast = 1 O
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Homemade+Apple&family=Inter:wght@400;600&display=swap');
 
-/* Global Override for this page to create the dark studio backdrop */
-body {
-    background-color: #2b2520 !important;
-    background-image: radial-gradient(circle at center, rgba(30,22,17,0) 0%, rgba(15,10,5,0.7) 100%),
-                      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E") !important;
-}
+/* Global Override removed - inheriting from header.php for unified UI */
 
 /* Classic Art Gallery Masonry Frame Definitions */
 .atelier-grid {

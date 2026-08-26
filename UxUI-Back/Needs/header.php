@@ -1,4 +1,12 @@
 <style>
+    /* Global Atelier Platform Styling */
+    body {
+        background-color: #15110e !important; /* Deep dark coffee Atelier standard */
+        color: #e5d5c5;
+        font-family: 'Inter', sans-serif;
+        background-image: none !important;
+    }
+
     .hamburger {
         display: none;
         flex-direction: column;

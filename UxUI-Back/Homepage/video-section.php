@@ -1,192 +1,176 @@
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+
     .video-section-vibrant {
-        background: url('/assets/images/museum_bg_1.png') center / cover fixed no-repeat;
-        padding: 120px 0;
+        background: radial-gradient(circle at 60% 40%, rgba(219, 118, 54, 0.08) 0%, transparent 60%),
+                    linear-gradient(180deg, #15110e 0%, rgba(22, 14, 10, 0.95) 50%, #15110e 100%), 
+                    url('/assets/images/museum_bg_1.webp') center / cover fixed no-repeat;
+        padding: 150px 0;
         position: relative;
         overflow: hidden;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        border-bottom: 1px solid rgba(255,255,255,0.02);
     }
     
-    .video-section-vibrant::before {
-        content: '';
-        position: absolute;
-        top: -10%;
-        right: -5%;
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(circle, rgba(254,98,29,0.12) 0%, transparent 70%);
-        filter: blur(100px);
-        z-index: 0;
-    }
-
-    .video-section-vibrant::after {
-        content: '';
-        position: absolute;
-        bottom: -10%;
-        left: -5%;
-        width: 500px;
-        height: 500px;
-        background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%);
-        filter: blur(100px);
-        z-index: 0;
-    }
-
-
     .video-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 70px;
+        grid-template-columns: 1fr 1.3fr;
+        gap: 60px;
         align-items: center;
         position: relative;
-        z-index: 1;
+        z-index: 5;
     }
 
     @media (max-width: 992px) {
-        .video-grid {
-            grid-template-columns: 1fr;
-            text-align: center;
-            gap: 50px;
-        }
-        .video-section-vibrant {
-            padding: 80px 0;
-        }
-        .video-text-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .video-grid { grid-template-columns: 1fr; text-align: center; gap: 60px; }
+        .video-section-vibrant { padding: 80px 0; }
+        .feature-list { display: flex; flex-direction: column; align-items: center; }
+        .curs-watermark { display: none !important; }
     }
+
+    .art-frame-perspective {
+        perspective: 1500px;
+        position: relative;
+    }
+
+    /* Decorative Backlight Behind the Frame */
+    .art-frame-perspective::before {
+        content: ''; position: absolute; top: 10%; left: 10%; width: 80%; height: 80%;
+        background: #db7636; filter: blur(80px); opacity: 0.15; z-index: 0;
+    }
+
+    /* Interactive 3D Museum Canvas */
+    .glass-vid-container {
+        position: relative;
+        z-index: 5;
+        padding: 15px;
+        background: #110a07; /* Dark wood canvas base */
+        border: 2px solid #3c2514; /* Inner wood border */
+        box-shadow: 
+            0 40px 100px rgba(0,0,0,0.9), 
+            0 0 0 8px #1a0f0a,
+            0 0 0 10px #704728, /* Outer Golden-Wood Trim */
+            inset 0 0 30px rgba(219, 118, 54, 0.2);
+        
+        transform: rotateY(-18deg) rotateX(4deg) scale(0.95);
+        transform-style: preserve-3d;
+        transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        cursor: pointer;
+    }
+
+    .glass-vid-container:hover {
+        transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+        box-shadow: 
+            0 50px 120px rgba(0,0,0,0.9), 
+            0 0 0 8px #1a0f0a,
+            0 0 0 10px #db7636, /* Illuminate outer trim on hover */
+            inset 0 0 40px rgba(219, 118, 54, 0.5);
+    }
+    
+    /* Simulate a Name Plaque at the bottom of the painting */
+    .glass-vid-container::after {
+        content: 'MASTERCLASS EXHIBIT';
+        position: absolute;
+        bottom: -35px; left: 50%;
+        transform: translateX(-50%) translateZ(20px);
+        background: linear-gradient(180deg, #d4b584 0%, #aa854b 100%);
+        color: #1a0f0a;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.65rem;
+        font-weight: 900;
+        letter-spacing: 2px;
+        padding: 4px 15px;
+        border-radius: 2px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.7), inset 0 1px 1px rgba(255,255,255,0.8);
+        opacity: 0.8;
+        transition: 0.5s;
+    }
+    .glass-vid-container:hover::after { opacity: 1; bottom: -40px; }
 
     .video-wrapper {
         position: relative;
-        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        padding-bottom: 56.25%;
         height: 0;
         overflow: hidden;
-        border-radius: 24px;
         background: #000;
-        box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-        border: 4px solid rgba(255,255,255,0.1);
-        transition: opacity 0.5s ease;
+        border: 1px solid rgba(255,255,255,0.05);
+        box-shadow: inset 0 0 40px rgba(0,0,0,0.9); /* Deep canvas recess */
     }
 
     .video-wrapper iframe {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
+        top: 0; left: 0; width: 100%; height: 100%; border: none;
+        opacity: 0.8; transition: 0.5s; filter: grayscale(20%) sepia(10%);
     }
+    .glass-vid-container:hover iframe { opacity: 1; filter: grayscale(0%) sepia(0%); }
 
-    .feature-list {
-        list-style: none;
-        padding: 0;
-        margin-top: 30px;
-        transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
+    /* Elegant list items */
+    .feature-list { list-style: none; padding: 0; margin-top: 0px; }
+    
     .feature-item {
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        color: rgba(255,255,255,0.9);
-        font-weight: 600;
-        font-size: 1.1rem;
+        margin-bottom: 18px; display: flex; align-items: center; color: #a48c77;
+        font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600;
+        text-transform: uppercase; letter-spacing: 1.5px;
+        transition: 0.4s; cursor: pointer;
     }
+    .feature-item:hover { color: #fff; transform: translateX(8px); }
+    .feature-item svg { transition: 0.4s; }
+    .feature-item:hover svg { filter: drop-shadow(0 0 10px rgba(219, 118, 54, 0.8)); transform: rotate(135deg) !important; }
 
-    .feature-icon {
-        background: rgba(255,255,255,0.15);
-        color: #fff;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 15px;
-        font-size: 0.9rem;
-        backdrop-filter: blur(5px);
-        border: 1px solid rgba(255,255,255,0.2);
-    }
-
-    /* Slider Controls */
-    .video-container-rel {
-        position: relative;
-    }
-    
-    .nav-btn {
+    .curs-watermark {
+        font-family: 'Homemade Apple', cursive;
+        font-size: 5rem;
+        color: rgba(255,255,255, 0.03);
         position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 50px;
-        height: 50px;
-        background: rgba(255,255,255,0.2);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.3);
-        border-radius: 50%;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 10;
-        transition: all 0.3s ease;
-        font-size: 1.5rem;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-    
-    .nav-btn:hover {
-        background: rgba(255,255,255,0.4);
-        transform: translateY(-50%) scale(1.1);
-    }
-    
-    .nav-btn.prev {
-        left: -80px;
-    }
-    
-    .nav-btn.next {
-        right: -80px;
-    }
-    
-    @media (max-width: 1200px) {
-        .nav-btn.prev { left: -10px; }
-        .nav-btn.next { right: -10px; }
-    }
-
-    .content-fade {
-        transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .fade-out {
-        opacity: 0;
-        transform: translateY(10px);
+        top: 20px; left: 10%;
+        transform: rotate(-10deg);
+        z-index: 0; pointer-events: none;
+        white-space: nowrap;
     }
 </style>
 
 <section class="video-section-vibrant">
-    <!-- Overlay for text readability -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 11, 15, 0.7); z-index: 0; pointer-events: none;"></div>
+    <!-- Artistic Cursive Layering -->
+    <div class="curs-watermark">The Exhibition Archive</div>
+    
     <div class="container video-grid">
-        <div class="video-text-container content-fade reveal" id="video-content-area">
-            <h2 id="video-title" style="font-size: 3.8rem; line-height: 1.1; margin-bottom: 25px; color: #fff; font-weight: 900; letter-spacing: -2px;">
-                See the <span id="video-title-span" style="background: linear-gradient(to right, #f59e0b, #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Portrait Sketching</span>
+        <!-- Typography Column -->
+        <div class="video-text-container" style="position: relative; z-index: 5;">
+            <div style="font-family: 'Inter', sans-serif; font-size: 0.85rem; letter-spacing: 4px; color: #db7636; text-transform: uppercase; margin-bottom: 20px; font-weight: 800; display: inline-block; border-bottom: 1px solid rgba(219, 118, 54, 0.3); padding-bottom: 8px;">
+                Curator's Archive
+            </div>
+            
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 4rem; line-height: 1.05; margin-bottom: 35px; color: #fff; font-weight: 400; text-shadow: 0 10px 30px rgba(0,0,0,0.8);">
+                <span style="font-style: italic; color: #db7636; font-size: 3.2rem;">The Digital</span><br>
+                <span style="font-weight: 700;">MASTERCLASS</span>
             </h2>
-            <p id="video-description" style="color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 1.25rem; margin-bottom: 35px; max-width: 500px; font-weight: 500;">
-                Master the art of realistic portrait sketching with our step-by-step masterclass by industry experts.
-            </p>
-            <div class="feature-list" id="feature-list">
-                <div class="feature-item"><div class="feature-icon" style="background: rgba(245,158,11,0.3); border-color: #f59e0b;">✓</div>Proportional alignment</div>
-                <div class="feature-item"><div class="feature-icon" style="background: rgba(245,158,11,0.3); border-color: #f59e0b;">✓</div>Advanced shading</div>
-                <div class="feature-item"><div class="feature-icon" style="background: rgba(245,158,11,0.3); border-color: #f59e0b;">✓</div>Facial mechanics</div>
+            
+            <div style="border-left: 2px solid #db7636; padding-left: 25px; margin-bottom: 45px; position: relative;">
+                <p style="font-family: 'Playfair Display', serif; color: #e5d5c5; line-height: 1.8; font-size: 1.25rem; font-style: italic; max-width: 420px; position: relative; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">
+                    "Watch the process unravel. Our specialized grid architecture bridges traditional canvas methodologies firmly into the digital landscape."
+                </p>
+                <div style="position: absolute; top: -15px; left: -15px; font-size: 4rem; font-family: 'Playfair Display', serif; color: rgba(219,118,54,0.1); line-height: 1; pointer-events: none;">"</div>
+            </div>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="#db7636" style="margin-right: 18px; transform: rotate(45deg);"><rect width="24" height="24" /></svg>
+                    Observe stroke mathematics
+                </div>
+                <div class="feature-item">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="#db7636" style="margin-right: 18px; transform: rotate(45deg);"><rect width="24" height="24" /></svg>
+                    Advanced coordinate mapping
+                </div>
+                <div class="feature-item">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="#db7636" style="margin-right: 18px; transform: rotate(45deg);"><rect width="24" height="24" /></svg>
+                    Step-by-step replication
+                </div>
             </div>
         </div>
         
-        <div class="video-container-rel reveal" style="transition-delay: 0.2s;">
-            <div class="nav-btn prev" onclick="changeVideo(-1)">‹</div>
-            <div class="nav-btn next" onclick="changeVideo(1)">›</div>
-            
-            <div class="glass-container" style="padding: 15px; border-radius: 35px; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
-                <div class="video-wrapper" id="video-wrapper">
+        <!-- 3D Interactive Video Frame Column -->
+        <div class="art-frame-perspective">
+            <div class="glass-vid-container">
+                <div class="video-wrapper">
                     <iframe 
                         id="youtube-iframe"
                         data-src="https://www.youtube-nocookie.com/embed/GH3_NUbRpCY?rel=0&modestbranding=1" 
@@ -201,74 +185,8 @@
     </div>
 </section>
 
-
 <script>
-    const videoData = [
-        {
-            id: "GH3_NUbRpCY",
-            title: "Portrait Sketching",
-            desc: "Master the art of realistic portrait sketching with our step-by-step masterclass by industry experts.",
-            features: ["Proportional alignment", "Advanced shading", "Facial mechanics"]
-        },
-        {
-            id: "2uQpSg1Rm7A",
-            title: "Master Shading",
-            desc: "Learn the secrets of realistic shading and texture to bring depth and life to your sketches.",
-            features: ["Value transitions", "Texture rendering", "Light source logic"]
-        },
-        {
-            id: "7MxLxYRsA94",
-            title: "Digital Painting",
-            desc: "Transition your traditional skills into the digital world with pro painting techniques.",
-            features: ["Brush management", "Digital blending", "Color workflow"]
-        }
-    ];
-
-    let currentVideoIdx = 0;
-    let isTransitioning = false;
-
-    function changeVideo(direction) {
-        if (isTransitioning) return;
-        isTransitioning = true;
-
-        currentVideoIdx = (currentVideoIdx + direction + videoData.length) % videoData.length;
-        const data = videoData[currentVideoIdx];
-
-        const contentArea = document.getElementById('video-content-area');
-        const videoWrapper = document.getElementById('video-wrapper');
-        const iframe = document.getElementById('youtube-iframe');
-
-        // Fade out
-        contentArea.classList.add('fade-out');
-        videoWrapper.style.opacity = '0';
-
-        setTimeout(() => {
-            // Update content
-            document.getElementById('video-title-span').innerText = data.title;
-            document.getElementById('video-description').innerText = data.desc;
-            
-            const featureList = document.getElementById('feature-list');
-            featureList.innerHTML = data.features.map(f => `
-                <div class="feature-item">
-                    <div class="feature-icon" style="background: rgba(254,98,29,0.1); border: 1px solid rgba(254,98,29,0.3); color: #fe621d;">✓</div>
-                    ${f}
-                </div>
-            `).join('');
-
-            // Update Video
-            iframe.src = `https://www.youtube-nocookie.com/embed/${data.id}?rel=0&modestbranding=1`;
-
-            // Fade in
-            contentArea.classList.remove('fade-out');
-            videoWrapper.style.opacity = '1';
-            
-            setTimeout(() => {
-                isTransitioning = false;
-            }, 500);
-        }, 500);
-    }
-    
-    // Inject iframe only upon first user interaction to bypass PageSpeed Insights network audit
+    // Inject iframe optimally bypassing network waterfalls
     const loadYoutube = () => {
         const iframe = document.getElementById('youtube-iframe');
         if (iframe && iframe.getAttribute('data-src')) {

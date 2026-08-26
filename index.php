@@ -10,13 +10,7 @@
         include_once './Meta_Tag/Meta_Tag.php'; 
         ?>
         <style>
-            body {
-                background-image: url('/assets/images/portrait_background.webp') !important;
-                background-size: cover !important;
-                background-position: center !important;
-                background-attachment: fixed !important;
-                background-repeat: no-repeat !important;
-            }
+            @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,800;1,400&family=Inter:wght@400;600;800&display=swap');
         </style>
     </head>
     <body>
