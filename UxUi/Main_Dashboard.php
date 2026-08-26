@@ -56,6 +56,9 @@ include_once '../Controllers/Main/Cook_Managment/Cook_Managing.php';
             include_once '../UxUI-Back/Main_Dashboard/Main_Dashboard_02/Main_Dashboard_02_A_member_list.php';
             include_once '../UxUI-Back/Main_Dashboard/Main_Dashboard_02/JS/Main_Dashboard_02_A_member_list_JS.php';
 
+            include_once '../UxUI-Back/Main_Dashboard/Main_Dashboard_02/Main_Dashboard_02_B_inside_member.php';
+            include_once '../UxUI-Back/Main_Dashboard/Main_Dashboard_02/JS/Main_Dashboard_02_B_inside_member_JS.php';
+
 
 
             include_once '../UxUI-Back/Main_Dashboard/Main_Dashboard_03_projects/Main_Dashboard_03_A_projects_list.php';

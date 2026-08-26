@@ -312,6 +312,45 @@ function downloadGrid(){
   a.click();
 }
 
+function downloadGridOnly(){
+  var tempC = document.createElement('canvas');
+  tempC.width = gridBaseImg.width;
+  tempC.height = gridBaseImg.height;
+  var ctx = tempC.getContext('2d');
+  
+  var cols=parseInt(document.getElementById('g-cols').value)||8;
+  var rows=parseInt(document.getElementById('g-rows').value)||8;
+  var margin=parseInt(document.getElementById('g-margin').value)||0;
+  var isSquare=document.getElementById('g-square').checked;
+  var thick=parseFloat(document.getElementById('g-thick').value)||2;
+  var color=document.getElementById('g-color').value;
+  
+  // No base image drawn to keep background transparent
+  // ctx.drawImage(gridBaseImg, imgOffsetX, imgOffsetY);
+  
+  var cw = (tempC.width - margin*2)/cols;
+  var ch = (isSquare ? cw : (tempC.height - margin*2)/rows);
+  var actualRows = isSquare ? Math.floor((tempC.height - margin*2)/ch) : rows;
+
+  // Snapped Lines
+  ctx.strokeStyle = color; ctx.lineWidth = thick * 1.5;
+  gridSnappedLines.forEach(l => {
+    ctx.beginPath(); ctx.moveTo(margin + l.c1 * cw, margin + l.r1 * ch); ctx.lineTo(margin + l.c2 * cw, margin + l.r2 * ch); ctx.stroke();
+  });
+
+  // Grid Lines
+  ctx.strokeStyle = color; ctx.lineWidth = thick;
+  ctx.beginPath();
+  for(var i=0; i<=cols; i++){ var x = margin + i*cw; ctx.moveTo(x, margin); ctx.lineTo(x, margin + actualRows*ch); }
+  for(var j=0; j<=actualRows; j++){ var y = margin + j*ch; ctx.moveTo(margin, y); ctx.lineTo(margin + cols*cw, y); }
+  ctx.stroke();
+
+  var a = document.createElement('a');
+  a.download = 'grid_only.png';
+  a.href = tempC.toDataURL('image/png', 1.0);
+  a.click();
+}
+
 function applyAndNextStep3() {
     if (!ag.projectId) {
         alert("Error: Project ID is missing. Please start over.");

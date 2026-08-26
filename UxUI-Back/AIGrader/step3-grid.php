@@ -59,7 +59,8 @@
             <input type="range" id="g-zm" min="50" max="300" value="100" style="width:100%; accent-color:var(--primary); cursor:pointer; margin-top:8px;">
         </div>
 
-        <button class="dl-btn" onclick="downloadGrid()" style="background:#0084ff; font-size:0.8rem; height:45px; border-radius:8px;">Export High Quality PNG</button>
+        <button class="dl-btn" onclick="downloadGrid()" style="background:#0084ff; font-size:0.8rem; height:45px; border-radius:8px; margin-bottom: 8px; width: 100%;">Export High Quality PNG</button>
+        <button onclick="downloadGridOnly()" style="background:#28a745; color:#fff; font-size:0.8rem; height:45px; border-radius:8px; width: 100%; border:none; cursor:pointer; margin-bottom: 0px;">Export Grid Only</button>
         <button onclick="clearGridDrawings()" style="display:block; width:100%; padding:10px; background:none; border:none; color:#666; cursor:pointer; font-size:0.7rem; text-decoration:underline;">Discard Custom Paths</button>
       </div>
 
