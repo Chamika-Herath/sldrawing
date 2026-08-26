@@ -11,6 +11,8 @@
         document.getElementById("Main_Dashboard_02_B").style.display = "none";
         document.getElementById("Main_Dashboard_03_A").style.display = "none";
         document.getElementById("Main_Dashboard_04_A").style.display = "none";
+        document.getElementById("Main_Dashboard_04_B").style.display = "none";
+
         document.getElementById("Main_Dashboard_05_A").style.display = "none";
         
     }
@@ -49,6 +51,12 @@
         document.getElementById("Main_Dashboard_04_A").style.display = "";
         setSidebarActive('tutorils');
         
+    }
+
+    function Main_Dashboard_04_B_OPEN() { 
+        Main_dashboard_close_all();
+        if(document.getElementById("Main_Dashboard_04_B")) document.getElementById("Main_Dashboard_04_B").style.display = "";
+        setSidebarActive('tutorils');
     }
 
     function Main_Dashboard_05_A_OPEN() { 
