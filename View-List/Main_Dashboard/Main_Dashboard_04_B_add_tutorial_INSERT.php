@@ -14,12 +14,13 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+$id = isset($_POST['id']) ? intval($_POST['id']) : 0;
 $title = isset($_POST['title']) ? trim($_POST['title']) : '';
 $description = isset($_POST['description']) ? trim($_POST['description']) : '';
 $difficulty = isset($_POST['difficulty']) ? trim($_POST['difficulty']) : '';
 $video_url = isset($_POST['video_url']) ? trim($_POST['video_url']) : '';
 
-$thumbnail_url = "";
+$thumbnail_url = isset($_POST['old_thumbnail']) ? trim($_POST['old_thumbnail']) : "";
 if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] == 0) {
     $upload_dir = "../../assets/images/"; 
     if (!is_dir($upload_dir)) mkdir($upload_dir, 0777, true);
@@ -44,6 +45,7 @@ if (empty($title) || empty($description)) {
 }
 
 $tutorial_adder = new sld_tutorials_ADD_UPDATE();
+$tutorial_adder->set_id($id);
 $tutorial_adder->set_title($title);
 $tutorial_adder->set_description($description);
 $tutorial_adder->set_difficulty_level($difficulty);

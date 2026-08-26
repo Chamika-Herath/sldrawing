@@ -8,6 +8,7 @@ function load_tutorials() {
         success: function(res) {
             try {
                 var json = JSON.parse(res);
+                window.loaded_tutorials = json;
                 var html = "";
                 if(json.length > 0) {
                     for(var i=0; i<json.length; i++) {
@@ -34,7 +35,7 @@ function load_tutorials() {
                                 </div>
                             </div>
                             <div class="tutorial-actions">
-                                <button class="action-btn-circle" title="Edit Tutorial"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                                <button class="action-btn-circle" title="Edit Tutorial" onclick="edit_tutorial(${json[i].id})"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
                                 <button class="action-btn-circle" title="View Analytics"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></button>
                             </div>
                         </div>`;

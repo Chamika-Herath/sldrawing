@@ -53,7 +53,7 @@
             <div class="collection-dashboard-wrapper">
                 <section class="collection-dashboard-content">
                     <div class="collection-panel-header">
-                        <h2>Upload New Tutorial</h2>
+                        <h2 id="tut_panel_title">Upload New Tutorial</h2>
                         <button class="collection-panel-close" title="Close" onclick="Main_Dashboard_04_A_OPEN();">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                         </button>
@@ -70,6 +70,9 @@
                         <div style="background: var(--sld-dark-950); padding: 30px; border-radius: var(--sld-radius-lg); border: 1px solid var(--sld-border); max-width: 800px; margin: 0 auto;">
                             
                             <div style="margin-bottom: 24px;">
+                                <input type="hidden" id="tut_input_id" value="0">
+                                <input type="hidden" id="tut_old_thumbnail" value="">
+                                
                                 <label style="display:block; margin-bottom: 8px; font-size: 13px; font-weight:600; color:var(--sld-text-400);">Tutorial Title</label>
                                 <input type="text" id="tut_input_title" placeholder="e.g., Mastering Face Proportions" style="width: 100%; padding: 14px 18px; border-radius: 8px; background: var(--sld-dark-800); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-size:15px; outline:none; transition:0.3s;" onfocus="this.style.borderColor='var(--sld-orange-500)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
                             </div>
@@ -133,15 +136,20 @@
 
     <!-- Initialize Quill Engine -->
     <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
     <script>
         var tutorialQuill = new Quill('#tut_quill_editor', {
             theme: 'snow',
             placeholder: 'Draft your tutorial here... Add images, videos, format lists and text freely.',
             modules: {
+                imageResize: {
+                    displaySize: true
+                },
                 toolbar: [
                     [{ 'header': [2, 3, false] }],
                     ['bold', 'italic', 'underline', 'strike'],
                     [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    [{ 'align': [] }],
                     ['blockquote', 'code-block'],
                     ['link', 'image', 'video'],
                     ['clean']

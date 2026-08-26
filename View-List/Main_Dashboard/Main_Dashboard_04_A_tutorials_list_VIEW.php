@@ -14,7 +14,10 @@ if ($res) {
         $data['id'] = $row['id'];
         $data['title'] = $row['title'];
         
-        // Use standard html stripping to prevent rich HTML from breaking the list feed layouts.
+        // Keep the original raw HTML matrix for powering editor interfaces and full views
+        $data['description_raw'] = $row['description'];
+        
+        // Output standard HTML stripping to prevent rich HTML from tearing layout borders
         $raw_text = strip_tags(html_entity_decode($row['description']));
         $data['description'] = trim($raw_text);
         
