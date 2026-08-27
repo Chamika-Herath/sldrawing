@@ -29,14 +29,14 @@ $online_offline_extention = ".php";
 
 
 
-// $home_page_url = "http://localhost:3000/";
-// $home_page = "http://localhost:3000/";
+$home_page_url = "http://localhost:3000/";
+$home_page = "http://localhost:3000/";
 
 
 
 //localhost
-$home_page_url = "https://sldrawing.com/";
-$home_page = "https://sldrawing.com/";
+// $home_page_url = "https://sldrawing.com/";
+// $home_page = "https://sldrawing.com/";
 
 
 

@@ -22,9 +22,9 @@ class DataBase
 
     public function __construct()
     {
-            //    $this->servername = "localhost";
-            //    $this->username = "root";
-            //    $this->password = "";
+               $this->servername = "localhost";
+               $this->username = "root";
+               $this->password = "";
 
 
 
@@ -32,9 +32,9 @@ class DataBase
 
 
       
-        $this->servername = "localhost";
-        $this->username = "u511731669_sldro";
-        $this->password = "@5Ej=sbAWui";
+        // $this->servername = "localhost";
+        // $this->username = "u511731669_sldro";
+        // $this->password = "@5Ej=sbAWui";
 
     
         

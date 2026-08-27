@@ -76,11 +76,17 @@
         .smart-grid { grid-template-columns: 1fr; gap: 30px; }
         .glass-feature-card { padding: 30px 20px; }
     }
+    
+    @media (max-width: 768px) {
+        .card-section { padding: 60px 15px; }
+        .card-section h2.reveal { font-size: 2.8rem !important; }
+        .card-section p.reveal { font-size: 1.1rem !important; }
+    }
 </style>
 
 <section class="card-section">
     <!-- Abstract Ambient Background Noise representing a physical dark room natively -->
-    <div style="position: absolute; top: 20%; right: 10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(219,118,54,0.05) 0%, transparent 60%); filter: blur(60px); pointer-events: none; z-index: 1;"></div>
+    <div style="position: absolute; top: 20%; right: 10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(219,118,54,0.05) 0%, transparent 60%); pointer-events: none; z-index: 1;"></div>
     
     <div class="container" style="position: relative; z-index: 5;">
         <!-- Header Topology -->

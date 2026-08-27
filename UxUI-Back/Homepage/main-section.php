@@ -4,9 +4,15 @@
     @media (max-width: 992px) {
         .hero-section { min-height: 100vh !important; }
         .hero-grid { grid-template-columns: 1fr; text-align: center; padding-top: 80px; gap: 40px; }
-        .hero-h1 { font-size: 3rem !important; margin-bottom: 20px !important; }
-        .hero-btn-container { justify-content: center !important; flex-wrap: wrap; }
-        .hero-images { justify-content: center !important; margin-top: 20px; }
+        .hero-h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .hero-btn-container { justify-content: center; flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+        .hero-btn-container a { width: 100%; text-align: center; }
+        .hero-images { justify-content: center; margin-top: 20px; transform: scale(0.85); }
+    }
+    
+    @media (max-width: 768px) {
+        .hero-h1 { font-size: 2.5rem !important; }
+        .hero-images { transform: scale(0.7); }
     }
     
     .hero-overlay {
@@ -41,6 +47,7 @@
         transition: opacity 0.5s ease-in-out, transform 1s cubic-bezier(0.34, 1.56, 0.64, 1);
         transform-origin: bottom center;
         box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        will-change: transform;
     }
     .fade-mask { transition: opacity 0.5s ease-in-out; filter: saturate(1.2) contrast(1.1) brightness(1.0); }
     

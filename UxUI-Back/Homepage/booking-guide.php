@@ -12,6 +12,13 @@
         gap: 60px;
         margin-top: 60px;
     }
+
+    @media (max-width: 768px) {
+        .booking-guide { padding: 60px 15px; }
+        .museum-grid { grid-template-columns: 1fr; gap: 40px; }
+        .booking-guide h2 { font-size: 2.8rem !important; }
+        .booking-guide p { font-size: 1.1rem !important; }
+    }
     
     .museum-display {
         position: relative;

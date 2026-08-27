@@ -4,7 +4,7 @@
     .video-section-vibrant {
         background: radial-gradient(circle at 60% 40%, rgba(219, 118, 54, 0.08) 0%, transparent 60%),
                     linear-gradient(180deg, #15110e 0%, rgba(22, 14, 10, 0.95) 50%, #15110e 100%), 
-                    url('/assets/images/museum_bg_1.webp') center / cover fixed no-repeat;
+                    url('/assets/images/museum_bg_1.webp') center / cover no-repeat;
         padding: 150px 0;
         position: relative;
         overflow: hidden;
@@ -22,9 +22,18 @@
 
     @media (max-width: 992px) {
         .video-grid { grid-template-columns: 1fr; text-align: center; gap: 60px; }
-        .video-section-vibrant { padding: 80px 0; }
-        .feature-list { display: flex; flex-direction: column; align-items: center; }
+        .video-section-vibrant { padding: 80px 15px; }
+        .feature-list { display: flex; flex-direction: column; align-items: flex-start; margin: 0 auto; max-width: 300px;}
         .curs-watermark { display: none !important; }
+        .glass-vid-container { transform: rotateY(0deg) rotateX(0deg) scale(1) !important; padding: 5px; }
+        .glass-vid-container::after { display: none !important; } /* Hide the 3D plaque on small screens to save space */
+    }
+
+    @media (max-width: 768px) {
+        .video-text-container h2 { font-size: 2.5rem !important; margin-bottom: 20px !important; }
+        .video-text-container h2 span { font-size: 2.3rem !important; }
+        .video-text-container p { font-size: 1rem !important; line-height: 1.5 !important; }
+        .art-frame-perspective::before { display: none; }
     }
 
     .art-frame-perspective {
