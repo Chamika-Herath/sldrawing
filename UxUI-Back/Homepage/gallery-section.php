@@ -78,15 +78,14 @@
         overflow: hidden;
         background: #17110d;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
         transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
                     opacity 0.6s ease, 
                     filter 0.6s ease, 
-                    border-color 0.4s ease;
+                    border-color 0.4s ease, 
+                    box-shadow 0.4s ease;
         cursor: pointer;
         user-select: none;
-        will-change: transform, opacity;
-        transform: translateZ(0);
     }
 
     .showcase-card img {
@@ -104,24 +103,26 @@
         pointer-events: none;
     }
 
-    /* Floating Pill Badge on active card - High performance solid dark glass */
+    /* Floating Pill Badge on active card */
     .showcase-badge {
         position: absolute;
         top: 15px;
         left: 15px;
-        background: rgba(22, 16, 12, 0.95);
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         color: #fff;
         font-family: 'Inter', sans-serif;
         font-size: 0.7rem;
         font-weight: 700;
         padding: 4px 12px;
         border-radius: 20px;
-        border: 1px solid rgba(255,255,255,0.25);
+        border: 1px solid rgba(255,255,255,0.3);
         letter-spacing: 1px;
         text-transform: uppercase;
         opacity: 0;
         transform: translateY(-5px);
-        transition: opacity 0.4s ease, transform 0.4s ease;
+        transition: 0.4s ease;
     }
 
     .showcase-card-title {

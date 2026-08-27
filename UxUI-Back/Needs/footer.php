@@ -199,7 +199,7 @@
         <!-- Bottom Footer -->
         <div class="footer-bottom">
             <div class="footer-copy">
-                &copy; 2026 SLdrawing. All Rights Reserved. Designed by <a href="https://www.heraforce.com/" target="_blank" rel="noopener noreferrer" style="color: rgba(219,192,147, 0.8); text-decoration: none;">Chamika Herath | Heraforce</a>
+                &copy; 2026 SLdrawing. All Rights Reserved. Designed by <a href="https://www.heraforce.com/" target="_blank" rel="noopener noreferrer" style="color: rgba(219,192,147, 0.8); text-decoration: none;">Chamika Herath</a>
             </div>
             <div class="footer-bottom-links">
                 <a href="#">Privacy Policy</a>
