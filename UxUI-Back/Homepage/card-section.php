@@ -17,17 +17,16 @@
     .glass-feature-card {
         padding: 25px;
         border-radius: 20px;
-        background: rgba(35, 22, 14, 0.4);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255,255,255,0.05);
-        border-top: 1px solid rgba(255,255,255,0.1);
-        box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 20px 40px rgba(255,255,255,0.02);
-        transition: 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        background: rgba(26, 17, 11, 0.92);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-top: 1px solid rgba(255,255,255,0.15);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.4s ease, border-color 0.4s ease;
         position: relative;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        will-change: transform;
     }
 
     .glass-feature-card:hover {

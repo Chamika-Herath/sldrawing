@@ -41,10 +41,11 @@
         position: relative;
     }
 
-    /* Decorative Backlight Behind the Frame */
+    /* Decorative Backlight Behind the Frame - Optimized radial-gradient glow */
     .art-frame-perspective::before {
         content: ''; position: absolute; top: 10%; left: 10%; width: 80%; height: 80%;
-        background: #db7636; filter: blur(80px); opacity: 0.15; z-index: 0;
+        background: radial-gradient(circle, rgba(219, 118, 54, 0.2) 0%, transparent 70%); z-index: 0;
+        pointer-events: none;
     }
 
     /* Interactive 3D Museum Canvas */
