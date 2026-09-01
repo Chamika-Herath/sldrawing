@@ -90,6 +90,32 @@ $_SESSION['pth'] = $pth;
 
 $_SESSION['pth_php'] = $pth_php;
 
+if (!isset($_SESSION['user_id'])) {
+    $s_cook = "0";
+    if (isset($_SESSION['user_main_cook_id'])) {
+        $s_cook = $_SESSION['user_main_cook_id'];
+    } else if (isset($_COOKIE['main_user_account_cook'])) {
+        $s_cook = $_COOKIE['main_user_account_cook'];
+        $_SESSION['user_main_cook_id'] = $s_cook;
+    }
+    
+    if ($s_cook !== "0") {
+        $db_path_sess = dirname(__FILE__) . '/DB.php';
+        $cook_path_sess = dirname(__FILE__) . '/../../Controllers/Main/Cook_Managment/Cook_Managing.php';
+        
+        if (file_exists($db_path_sess) && file_exists($cook_path_sess)) {
+            include_once $db_path_sess;
+            include_once $cook_path_sess;
+            
+            $cookie_check_obj_sess = new Cook_Management($s_cook);
+            if ($cookie_check_obj_sess->check_login_availability()) {
+                $_SESSION['user_id'] = $cookie_check_obj_sess->get_user_id();
+                $_SESSION['user_name'] = $cookie_check_obj_sess->get_email();
+            }
+        }
+    }
+}
+
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "0";
 $user_main_cook_id = isset($_SESSION['user_main_cook_id']) ? $_SESSION['user_main_cook_id'] : "0";
 
