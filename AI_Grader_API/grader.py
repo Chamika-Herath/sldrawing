@@ -140,6 +140,10 @@ def process_images(ref_img_path, sketch_img_path):
     # Score formula: Harsher penalty (500 multiplier instead of 300)
     score = int(max(0, 100 - (avg_error * 500))) 
     
+    # If the images are completely different and score drops to the very bottom, snap to 0%
+    if score < 5:
+        score = 0
+    
     # --- Advanced Visual Feedback ---
     feedback_img = sketch_img.copy()
     

@@ -40,7 +40,12 @@ function runAICheck(){
           
           // Animate score
           var iv = setInterval(function(){
-              s++;
+              if (ag.score === 0) {
+                  ring.textContent = '0%';
+                  clearInterval(iv);
+                  return;
+              }
+              if (s < ag.score) s++;
               ring.textContent = s + '%';
               if(s >= ag.score) clearInterval(iv);
           }, 20);
@@ -145,6 +150,18 @@ function runAICheck(){
                       var as = Math.atan2(sRy - sLy, sRx - sLx);
                       var ar = Math.atan2(rRy - rLy, rRx - rLx);
                       var R = as - ar;
+
+                      // Fix: CSS rotate takes radians but we must force it properly without unwanted artifacts.
+                      // Sometimes atan2 flip causes identical images to rotate slightly if float precision throws off by a tiny rad decimal.
+                      // If the difference is extremely small (near 0), clamp it to 0 so identical images don't shift.
+                      if (Math.abs(R) < 0.005) {
+                          R = 0;
+                      }
+                      
+                      // Also clamp scale if it is extremely close to 1.0, to prevent minor micro-zooming
+                      if (Math.abs(S - 1.0) < 0.02) {
+                          S = 1.0;
+                      }
 
                       // CSS Transform: Translate Ref Left Eye to (0,0), Scale/Rotate, Translate to Sketch Left Eye
                       refImg.style.transform = "translate(" + sLx + "px, " + sLy + "px) " + 
