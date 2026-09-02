@@ -98,6 +98,18 @@ def process_images(ref_img_path, sketch_img_path):
     ref_img = cv2.imread(ref_img_path)
     sketch_img = cv2.imread(sketch_img_path)
     
+    if ref_img is None or sketch_img is None:
+        return {"score": 0, "feedback": ["Error: Could not load images."], "heatmap_bytes": b''}
+        
+    # Standardize neural net evaluation by resizing sketch to reference resolution.
+    # Neural Networks produce small sub-pixel jitters on extremely small face features if resolutions differ.
+    # If the user uploaded images with matching aspect ratios, we safely match their absolute pixels.
+    ref_aspect = ref_img.shape[1] / float(ref_img.shape[0])
+    sketch_aspect = sketch_img.shape[1] / float(sketch_img.shape[0])
+    
+    if abs(ref_aspect - sketch_aspect) < 0.05:
+        sketch_img = cv2.resize(sketch_img, (ref_img.shape[1], ref_img.shape[0]))
+    
     ref_points = get_landmarks(ref_img)
     sketch_points = get_landmarks(sketch_img)
     
@@ -129,16 +141,16 @@ def process_images(ref_img_path, sketch_img_path):
         diff = abs(ref_ratios[key] - sketch_ratios[key])
         perc_error = diff / ref_ratios[key] if ref_ratios[key] != 0 else 1
         
-        # Give a 4% tolerance to account for compression artifacts when identical images are used
-        perc_error = max(0.0, perc_error - 0.04)
-        
+        # Subtract a 5% baseline tolerance (0.05) to absorb resolution disparities, canvas scaling, and neural-net tracking noise
+        perc_error = max(0.0, perc_error - 0.05)
+            
         errors[key] = perc_error
         total_error += min(perc_error, 1.0)
         
     avg_error = total_error / 5.0
     
-    # Score formula: Harsher penalty (500 multiplier instead of 300)
-    score = int(max(0, 100 - (avg_error * 500))) 
+    # Score formula: Smooth penalty curve stripping off noise
+    score = int(max(0, 100 - (avg_error * 1000))) 
     
     # If the images are completely different and score drops to the very bottom, snap to 0%
     if score < 5:
