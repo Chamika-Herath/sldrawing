@@ -76,8 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // 3. Send to Python API
-    $api_url = "https://heraforce-sldrawing.hf.space/grade";
-   // $api_url = "http://127.0.0.1:8000/grade";
+    //$api_url = "https://heraforce-sldrawing.hf.space/grade";
+    $api_url = "http://127.0.0.1:8000/grade";
     
     // Create cURL file objects
     $cfile_ref = new CURLFile($ref_absolute_path, mime_content_type($ref_absolute_path), basename($ref_absolute_path));

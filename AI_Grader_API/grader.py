@@ -39,7 +39,7 @@ def get_landmarks(image):
     # Extract all 478 points
     points = {}
     for idx, lm in enumerate(landmarks):
-        points[idx] = (int(lm.x * w), int(lm.y * h))
+        points[idx] = (lm.x * w, lm.y * h)
         
     return points
 
@@ -128,6 +128,10 @@ def process_images(ref_img_path, sketch_img_path):
     for key in ref_ratios.keys():
         diff = abs(ref_ratios[key] - sketch_ratios[key])
         perc_error = diff / ref_ratios[key] if ref_ratios[key] != 0 else 1
+        
+        # Give a 4% tolerance to account for compression artifacts when identical images are used
+        perc_error = max(0.0, perc_error - 0.04)
+        
         errors[key] = perc_error
         total_error += min(perc_error, 1.0)
         
