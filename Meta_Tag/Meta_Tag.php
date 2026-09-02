@@ -11,6 +11,8 @@
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="SLdrawing">
+<meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://sldrawing.com<?php echo $_SERVER['REQUEST_URI']; ?>">
 <meta property="og:title" content="<?php echo isset($get_social_title) ? $get_social_title : $get_title; ?>">
 <meta property="og:description" content="<?php echo isset($get_social_dis) ? $get_social_dis : $get_dis; ?>">
@@ -33,22 +35,54 @@
 
 <!-- Structured Data (JSON-LD) -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "SLdrawing",
-  "url": "https://sldrawing.com",
-  "description": "Unlock your creative potential with AI-powered drawing tools and pro tutorials.",
-  "publisher": {
-    "@type": "Person",
-    "name": "H.M.C.D. Herath"
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "SLdrawing",
+    "url": "https://sldrawing.com",
+    "description": "Unlock your creative potential with AI-powered drawing tools and pro tutorials.",
+    "publisher": {
+      "@type": "Person",
+      "name": "H.M.C.D. Herath"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://sldrawing.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
   },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://sldrawing.com/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "SiteNavigationElement",
+        "position": 1,
+        "name": "Grid Art",
+        "url": "https://sldrawing.com/ai-grader"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 2,
+        "name": "Tutorials",
+        "url": "https://sldrawing.com/tutorials"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 3,
+        "name": "Studio",
+        "url": "https://sldrawing.com/studio"
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 4,
+        "name": "Community",
+        "url": "https://sldrawing.com/gallery"
+      }
+    ]
   }
-}
+]
 </script>
 
 <style>
