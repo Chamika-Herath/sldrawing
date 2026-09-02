@@ -34,6 +34,28 @@
         text-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
 
+    /* Low-weight hardware accelerated entrance animations */
+    @keyframes floatUp {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes gentleFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+    }
+
+    .animate-float-up {
+        opacity: 0;
+        animation: floatUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        will-change: transform, opacity;
+    }
+    
+    .animate-gentle-float {
+        animation: gentleFloat 8s ease-in-out infinite;
+        will-change: transform;
+    }
+
     /* Continuous Fan Animation */
     .card-stack { position: relative; width: 340px; height: 450px; z-index: 10; margin: 0 auto; }
     
@@ -65,42 +87,42 @@
     <div class="container hero-grid">
         <!-- Typography Container -->
         <div class="hero-text-container" style="max-width: 700px; position: relative; z-index: 5;">
-            <h1 class="hero-h1">
+            <h1 class="hero-h1 animate-float-up" style="animation-delay: 0.1s;">
                 MASTER YOUR <br>
                 <span style="color: #db7636;">DIGITAL ART</span>
             </h1>
-            <p style="font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #a48c77; margin-bottom: 45px; line-height: 1.5; font-style: italic;">
+            <p class="animate-float-up" style="animation-delay: 0.3s; font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #a48c77; margin-bottom: 45px; line-height: 1.5; font-style: italic;">
                 Unraveling real-world art requirements alongside our unparalleled masterclass infrastructure deeply rooted today.
             </p>
-            <div class="hero-btn-container" style="display: flex; gap: 20px;">
+            <div class="hero-btn-container animate-float-up" style="display: flex; gap: 20px; animation-delay: 0.5s;">
                 <a href="/studio" class="btn" style="padding: 18px 45px; background: #db7636; color: #000; text-decoration: none; font-weight: 800; border-radius: 8px; text-transform: uppercase; box-shadow: 0 15px 30px rgba(219, 118, 54, 0.3); transition: all 0.3s ease; font-size: 0.9rem; letter-spacing: 1px;">Start Journey Now</a>
                 <a href="/tutorials" class="btn" style="padding: 18px 45px; border: 1px solid rgba(255,255,255,0.3); color: #fff; text-decoration: none; font-weight: 600; border-radius: 8px; text-transform: uppercase; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); transition: all 0.3s ease; font-size: 0.9rem; letter-spacing: 1px;">System Access</a>
             </div>
         </div>
         
         <!-- Abstract Art Display Container -->
-        <div class="hero-images" style="display: flex; justify-content: center; align-items: center; height: 500px; position: relative; z-index: 10;">
+        <div class="hero-images animate-gentle-float" style="display: flex; justify-content: center; align-items: center; height: 500px; position: relative; z-index: 10;">
             <div class="card-stack">
                 <!-- Card Pack -->
-                <div class="card-item card-1 glass" style="padding: 10px; border-radius: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(10px);">
+                <div class="card-item card-1 glass" style="padding: 10px; border-radius: 20px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);">
                     <div style="position: absolute; top: 15px; left: 15px; color: #fff; font-weight: 900; font-size: 1.2rem;">A<br><span style="font-size: 0.8rem;">♠</span></div>
                     <img id="card-img-1" class="fade-mask" src="/assets/images/gallery_item_1_1773937144132.webp" alt="Digital art portrait gallery item 1" style="width: 100%; height: 85%; object-fit: cover; border-radius: 15px;">
                     <div style="padding-top: 15px; color: #fff; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; text-align: center;">Art No. 01</div>
                     <div style="position: absolute; bottom: 15px; right: 15px; color: #fff; font-weight: 900; font-size: 1.2rem; transform: rotate(180deg);">A<br><span style="font-size: 0.8rem;">♠</span></div>
                 </div>
-                <div class="card-item card-2 glass" style="padding: 10px; border-radius: 20px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(10px);">
+                <div class="card-item card-2 glass" style="padding: 10px; border-radius: 20px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);">
                     <div style="position: absolute; top: 15px; left: 15px; color: #fff; font-weight: 900; font-size: 1.2rem;">K<br><span style="font-size: 0.8rem;">♣</span></div>
                     <img id="card-img-2" class="fade-mask" src="/assets/images/gallery_item_2_1773937165255.webp" alt="Digital art portrait gallery item 2" style="width: 100%; height: 85%; object-fit: cover; border-radius: 15px;">
                     <div style="padding-top: 15px; color: #fff; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; text-align: center;">Art No. 02</div>
                     <div style="position: absolute; bottom: 15px; right: 15px; color: #fff; font-weight: 900; font-size: 1.2rem; transform: rotate(180deg);">K<br><span style="font-size: 0.8rem;">♣</span></div>
                 </div>
-                <div class="card-item card-3 glass" style="padding: 10px; border-radius: 20px; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(10px);">
+                <div class="card-item card-3 glass" style="padding: 10px; border-radius: 20px; background: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.4);">
                     <div style="position: absolute; top: 15px; left: 15px; color: #fff; font-weight: 900; font-size: 1.2rem;">Q<br><span style="font-size: 0.8rem; color: #db7636;">♥</span></div>
                     <img id="card-img-3" class="fade-mask" src="/assets/images/shark.webp" alt="SLdrawing shark mascot logo" style="width: 100%; height: 85%; object-fit: cover; border-radius: 15px;">
                     <div style="padding-top: 15px; color: #fff; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; text-align: center;">Art No. 03</div>
                     <div style="position: absolute; bottom: 15px; right: 15px; color: #fff; font-weight: 900; font-size: 1.2rem; transform: rotate(180deg);">Q<br><span style="font-size: 0.8rem; color: #db7636;">♥</span></div>
                 </div>
-                <div class="card-item card-4 glass" style="padding: 10px; border-radius: 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px);">
+                <div class="card-item card-4 glass" style="padding: 10px; border-radius: 20px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
                     <div style="position: absolute; top: 15px; left: 15px; color: #fff; font-weight: 900; font-size: 1.2rem;">J<br><span style="font-size: 0.8rem; color: #db7636;">♦</span></div>
                     <img id="card-img-4" class="fade-mask" src="/assets/images/tutorial_portrait_1773936991179.webp" alt="Step by step portrait drawing tutorial preview" style="width: 100%; height: 85%; object-fit: cover; border-radius: 15px;">
                     <div style="padding-top: 15px; color: #fff; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; text-align: center;">Art No. 04</div>

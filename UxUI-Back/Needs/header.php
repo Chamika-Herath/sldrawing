@@ -22,7 +22,7 @@
         border-radius: 3px;
         transition: all 0.3s;
     }
-    .nav-container { transition: top 0.3s ease-in-out !important; }
+    .nav-container { transition: transform 0.3s ease-in-out !important; }
     @media (max-width: 992px) {
         .nav-container { display: block !important; left: 0 !important; right: 0 !important; width: 100% !important; padding: 0 !important; }
         .nav-capsule { position: fixed !important; top: 15px !important; left: 20px !important; right: 20px !important; width: auto !important; max-width: none !important; padding: 12px 20px !important; flex-wrap: wrap !important; justify-content: space-between !important; border-radius: 20px !important; margin: 0 !important; box-sizing: border-box !important; z-index: 1001 !important; }
@@ -147,17 +147,17 @@
             
             // Don't hide if mobile menu is open
             if (navLinks && navLinks.classList.contains('active')) {
-                navContainer.style.top = window.innerWidth <= 992 ? "10px" : "20px";
+                navContainer.style.transform = "translateY(0)";
                 lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
                 return;
             }
             
             if (currentScroll > lastScrollTop && currentScroll > 80) {
                 // Scroll Down
-                navContainer.style.top = "-150px"; 
+                navContainer.style.transform = "translateY(-150px)"; 
             } else {
                 // Scroll Up
-                navContainer.style.top = window.innerWidth <= 992 ? "10px" : "20px";
+                navContainer.style.transform = "translateY(0)";
             }
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
         }
